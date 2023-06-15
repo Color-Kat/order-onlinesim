@@ -12,16 +12,10 @@ module.exports = {
         {
             extend: {
                 colors: {
-                    'app':
-                        '#1a1a1d',
-                    'app-dark':
-                        '#0f0f0f',
-                    'app-accent':
-                        '#ff3442',
-                    'app-gray':
-                        '#777777',
-                    'app-light':
-                        '#f1f1f1',
+                    'app-light': '#fff',
+                    'app': '#f3f2f2',
+                    'app-dark': '#242424',
+                    'app-accent': '#f82f38',
                 },
 
                 animation: {
@@ -65,6 +59,9 @@ module.exports = {
                         '100%': {transform: 'scale(1)'},
                     },
                 },
+                screens: {
+                    'xs': '560px'
+                }
             },
         },
     plugins: [],

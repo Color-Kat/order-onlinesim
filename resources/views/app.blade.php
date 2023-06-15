@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Title -->
-    <title>New project</title>
+    <title>Аэродом</title>
 
     <!-- KeyWords -->
-    <meta name="Keywords" content="">
+    <meta name="keywords" content="бц Аэродом, Ленинградский проспект, офис в Хорошевском районе">
 
     <!--  Description  -->
-    <meta name="description" content="">
+    <meta name="description" content="Аренда и продажа офисов класса А в бизнес-центре Аэродом на Севере Москвы.">
 
     <!--  Webmanifest  -->
     <!--    <link rel="manifest" href="/manifest.webmanifest">-->
@@ -37,11 +37,9 @@
 
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,600&family=Nunito:wght@400;600;700&family=Play:wght@400;700&family=Roboto:wght@300;400;500;700&family=Ubuntu+Mono&display=swap"
-        rel="stylesheet" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,600&family=Oswald:wght@300;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @viteReactRefresh
