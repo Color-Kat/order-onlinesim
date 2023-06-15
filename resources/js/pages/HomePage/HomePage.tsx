@@ -1,4 +1,4 @@
-import Page from '@/components/PageTemplates/Page';
+import {Page} from '@modules/PageTemplates';
 
 export const HomePage = () => {
     return (

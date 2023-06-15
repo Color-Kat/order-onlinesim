@@ -5,7 +5,7 @@ interface PageProps {
     children: React.ReactNode;
 }
  
-const Page: React.FC<PageProps> = ({title, children}) => {
+export const Page: React.FC<PageProps> = ({title, children}) => {
     return ( 
         <div className="py-10 flex items-center flex-col">
             <h1 className="text-center text-xl font-bold mb-5">{title}</h1>
@@ -15,5 +15,3 @@ const Page: React.FC<PageProps> = ({title, children}) => {
         </div>
     );
 };
- 
-export default Page;

@@ -6,6 +6,7 @@
         "build": "tsc && vite build"
     },
     "dependencies": {
+        "@fullpage/react-fullpage": "^0.1.40",
         "@reduxjs/toolkit": "^1.9.5",
         "autoprefixer": "^10.4.14",
         "path": "^0.12.7",
@@ -13,7 +14,8 @@
         "react-dom": "^18.2.0",
         "react-helmet": "^6.1.0",
         "react-redux": "^8.0.5",
-        "react-router-dom": "^6.11.0"
+        "react-router-dom": "^6.11.0",
+        "swiper": "^9.4.1"
     },
     "devDependencies": {
         "@types/node": "^18.16.3",

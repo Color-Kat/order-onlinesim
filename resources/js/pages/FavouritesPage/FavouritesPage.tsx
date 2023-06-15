@@ -1,5 +1,5 @@
 import {Helmet} from "react-helmet";
-import Page from '@/components/PageTemplates/Page';
+import {Page} from '@modules/PageTemplates';
 
 
 export const FavouritesPage = () => {
