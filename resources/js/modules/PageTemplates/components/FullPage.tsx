@@ -5,6 +5,8 @@ import './fullpage.scss';
 
 export function FullPageHOC(WrappedComponent: any, options?: fullpageOptions) {
     return () => {
+
+
         return (
             <div className="lg:overflow-hidden relative w-full lg:will-change-transform">
                 <ReactFullpage
