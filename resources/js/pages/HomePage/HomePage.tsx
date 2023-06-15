@@ -1,4 +1,4 @@
-import Page from '@modules/PageTemplates/components/Page.tsx';
+import {Page} from '@modules/PageTemplates';
 import {Helmet} from "react-helmet";
 
 export const HomePage = () => {

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Title -->
-    <title>Аэродом</title>
+    <title>New project</title>
 
     <!-- KeyWords -->
-    <meta name="keywords" content="бц Аэродом, Ленинградский проспект, офис в Хорошевском районе">
+    <meta name="keywords" content="">
 
     <!--  Description  -->
-    <meta name="description" content="Аренда и продажа офисов класса А в бизнес-центре Аэродом на Севере Москвы.">
+    <meta name="description" content="">
 
     <!--  Webmanifest  -->
     <!--    <link rel="manifest" href="/manifest.webmanifest">-->
