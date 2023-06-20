@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReactController;
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::middleware('role:admin')->get('/admin', function () {
     return 'Hello, Admin';

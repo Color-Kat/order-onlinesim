@@ -1,22 +1,50 @@
-import { FunctionComponent } from "react";
+import React, {ComponentType, FunctionComponent, InputHTMLAttributes, useState} from "react";
+import {BsPerson} from "react-icons/bs";
 
-interface InputProps {
-    type?: 'text' | 'number' | 'select';
-    className?: string;
-    placeholder?: string;
-    value: string | number;
-    onChange: (e: string) => void;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    data: { [key: string]: any };
+    setData: React.Dispatch<React.SetStateAction<any>>;
+    name: string;
+    Icon?: any;
+    label?: string;
+    description?: string;
 }
 
-const Input: FunctionComponent<InputProps> = ({type, value, placeholder, onChange, className}) => {
+const Input: FunctionComponent<InputProps> = ({
+                                                  data,
+                                                  setData,
+                                                  name,
+                                                  Icon = false,
+                                                  label,
+                                                  description,
+                                                  ...props
+                                              }) => {
+
     return (
-        <input
-            type={type ?? "text"}
-            className={"border pt-2 px-4 w-full h-[42px] rounded-md bg-gray-300 text-gray-900 " + className}
-            placeholder={placeholder ?? ""}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-        />
+        <div className="relative w-full text-lg">
+            <label htmlFor={name}>
+                {label && <div className={`leading-4 ${description ? 'mb-1' : 'mb-2'}`}>{label}:</div>}
+                {description && <div className="mb-2 text-sm text-gray-100">{description}:</div>}
+
+                <input
+                    className={`w-full bg-gray-200 text-gray-700 py-2 px-4 ${Icon && 'pl-12'} h-[48px] rounded flex items-center outline-none shadow border border-app-accent autofill:color-black autofill:bg-red-500 ` + props.className}
+                    value={data[name]}
+                    name={name}
+                    id={name}
+                    onChange={
+                        (e) => setData((prev: any) => ({
+                            ...prev,
+                            [name]: e.target.value
+                        }))
+                    }
+                    {...props}
+                />
+
+                {Icon &&
+                    <Icon className="absolute left-3 text-app-accent top-1/2 -translate-y-1/2 text-2xl" />
+                }
+            </label>
+        </div>
     );
 };
 

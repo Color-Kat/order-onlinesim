@@ -11,7 +11,7 @@ export const Header = () => {
 
                 <Logo/>
 
-                <a href="https://github.com/" target="_blank" className="hover:underline">GitHub</a>
+                <Link to="/login" className="hover:underline">Войти</Link>
             </div>
         </header>
     );
