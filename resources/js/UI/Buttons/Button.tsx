@@ -26,7 +26,8 @@ export const Button: React.FC<ButtonProps> = ({
             }
         >
             {/* Tailwind class loader*/}
-            <div className="hidden bg-red-500 border-red-500"></div>
+            <div className="hidden bg-red-500 border-red-500 bg-app-accent hover:text-app-accent"></div>
+
             {children}
         </button>
     );

@@ -3,6 +3,7 @@ import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
 import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
+import {BiLockAlt} from "react-icons/bi";
 
 
 export const Login: React.FC = ({}) => {
@@ -23,7 +24,7 @@ export const Login: React.FC = ({}) => {
 
     return (
         <div className="flex items-center justify-center w-full h-full">
-            <form className="login text-center backdrop-blur bg-white/20 px-8 py-16 rounded-xl">
+            <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl">
                 <div className="text-3xl font-bold font-kids tracking-widest mb-8">
                     <h1>Войти</h1>
                 </div>
@@ -33,6 +34,7 @@ export const Login: React.FC = ({}) => {
                         data={data}
                         setData={setData}
                         name="email"
+                        type="email"
                         placeholder="Почта"
                         Icon={BsPerson}
                     />
@@ -42,11 +44,12 @@ export const Login: React.FC = ({}) => {
                         name="password"
                         type="password"
                         placeholder="Пароль"
+                        Icon={BiLockAlt}
                     />
                 </div>
 
-                <div className="mt-3 text-sm underline text-right">
-                    <Link to="/registration">
+                <div className="mt-3 text-sm underline text-right text-black">
+                    <Link to="/register">
                         Регистрация
                     </Link>
                 </div>

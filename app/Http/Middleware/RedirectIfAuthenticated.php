@@ -15,16 +15,24 @@ class RedirectIfAuthenticated
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Http\JsonResponse
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
+
             if (Auth::guard($guard)->check()) {
+                if ($request->expectsJson()) {
+                    return response()->json(['error' => 'Already authenticated.'], 200);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
+
+//            if (Auth::guard($guard)->check()) {
+//                return redirect(RouteServiceProvider::HOME);
+//            }
         }
 
         return $next($request);

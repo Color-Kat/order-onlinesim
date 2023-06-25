@@ -24,8 +24,9 @@ module.exports = {
                         '#f1f1f1',
                 },
                 animation: {
-                    'slide-up': 'slide-up 1s ease-in-out',
-                    'slide-down': 'slide-down 1s ease-in-out',
+                    'slide-up': 'slide-up .7s ease-in-out',
+                    'slide-up-slow': 'slide-up 1.2s ease-in-out',
+                    'slide-down': 'slide-down .5s ease-in-out',
                     'slide-left': 'slide-left 1s ease-in-out',
                     'slide-right': 'slide-right 1s ease-in-out',
                     'wave': 'wave 1.2s linear infinite',

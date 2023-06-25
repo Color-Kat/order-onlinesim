@@ -9,6 +9,7 @@
         "@fullpage/react-fullpage": "^0.1.40",
         "@reduxjs/toolkit": "^1.9.5",
         "autoprefixer": "^10.4.14",
+        "js-cookie": "^3.0.5",
         "path": "^0.12.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -16,9 +17,11 @@
         "react-icons": "^4.9.0",
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.11.0",
+        "react-sanctum": "^3.0.0",
         "swiper": "^9.4.1"
     },
     "devDependencies": {
+        "@types/js-cookie": "^3.0.3",
         "@types/node": "^18.16.3",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",

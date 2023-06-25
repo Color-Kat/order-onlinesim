@@ -27,7 +27,8 @@ const Input: FunctionComponent<InputProps> = ({
                 {description && <div className="mb-2 text-sm text-gray-100">{description}:</div>}
 
                 <input
-                    className={`w-full bg-gray-200 text-gray-700 py-2 px-4 ${Icon && 'pl-12'} h-[48px] rounded flex items-center outline-none shadow border border-app-accent autofill:color-black autofill:bg-red-500 ` + props.className}
+                    {...props}
+                    className={`w-full bg-white/30 backdrop-blur-xl text-gray-700 placeholder-gray-700 py-2 px-4 ${Icon && 'pl-12'} h-[48px] rounded flex items-center outline-none shadow border border-app-accent ` + props.className}
                     value={data[name]}
                     name={name}
                     id={name}
@@ -37,7 +38,6 @@ const Input: FunctionComponent<InputProps> = ({
                             [name]: e.target.value
                         }))
                     }
-                    {...props}
                 />
 
                 {Icon &&
