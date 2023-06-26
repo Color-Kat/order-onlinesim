@@ -29,15 +29,12 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-//            'password' => $this->passwordRules(),
+        ])->validate();
+
+        return User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
         ]);
-
-        dd($validator->messages());
-
-//        return User::create([
-//            'name' => $input['name'],
-//            'email' => $input['email'],
-//            'password' => Hash::make($input['password']),
-//        ]);
     }
 }

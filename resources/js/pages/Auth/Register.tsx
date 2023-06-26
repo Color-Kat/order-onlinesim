@@ -6,11 +6,14 @@ import {BsPerson} from "react-icons/bs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useSanctum} from "react-sanctum";
-import {useRegisterMutation} from "@/store/auth/auth.api.ts";
+import {useGetUserQuery, useRegisterMutation} from "@/store/auth/auth.api.ts";
+import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 
 
 export const Register: React.FC = ({}) => {
     const [register] = useRegisterMutation();
+    const {data: user, refetch: login } = useGetUserQuery();
+
     const [data, setData] = useState({
         email: '',
         name: '',
@@ -18,12 +21,30 @@ export const Register: React.FC = ({}) => {
         password_confirmation: '',
     });
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState<IValidatorErrors>({
+        errors: {},
+        message: ''
+    });
     const handleSubmit =  async (e: any) => {
         e.preventDefault();
+        setErrors({
+            errors: {},
+            message: ''
+        });
 
-        const res = await register(data);
-        console.log(res)
+        const result = await register(data);
+
+        console.log(result)
+
+        // Handle validator error
+        if ('error' in result)
+            return 'data' in result.error
+                ? setErrors((result.error.data as IValidatorErrors))
+                : false;
+
+        console.log(result.data);
+        login();
+
     }
 
     // if(user) return <Navigate to="/" />;
@@ -35,14 +56,16 @@ export const Register: React.FC = ({}) => {
                     <h1>Регистрация</h1>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-3.5">
                     <Input
                         data={data}
                         setData={setData}
                         name="name"
                         placeholder="Имя"
                         Icon={BsPerson}
+                        errorMessages={errors?.errors.name}
                     />
+
                     <Input
                         data={data}
                         setData={setData}
@@ -50,7 +73,10 @@ export const Register: React.FC = ({}) => {
                         type="email"
                         placeholder="Email"
                         Icon={FiMail}
+                        errorMessages={errors?.errors.email}
+
                     />
+
                     <Input
                         data={data}
                         setData={setData}
@@ -58,7 +84,9 @@ export const Register: React.FC = ({}) => {
                         type="password"
                         placeholder="Пароль"
                         Icon={BiLockOpenAlt}
+                        errorMessages={errors?.errors.password}
                     />
+
                     <Input
                         data={data}
                         setData={setData}
@@ -66,6 +94,7 @@ export const Register: React.FC = ({}) => {
                         type="password"
                         placeholder="Повторите пароль"
                         Icon={BiLockAlt}
+                        errorMessages={errors?.errors.password_confirmation}
                     />
                 </div>
 

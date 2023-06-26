@@ -8,15 +8,24 @@ import App from "./App.tsx";
 import '@sass/index.scss';
 import {BrowserRouter} from "react-router-dom";
 import Cookies from "js-cookie";
+import {authApi} from "@/store/auth/auth.api.ts";
 
-// Get CSRF token for API
+/**
+ * Load user data
+ */
+const loadUser = () => {
+    store.dispatch(authApi.endpoints.getUser.initiate());
+}
+
+// Get CSRF token for API and first load user data
 if(!Cookies.get('XSRF-TOKEN'))
     fetch('/sanctum/csrf-cookie', {
         headers: {
             'Accept': 'application/json'
         },
         credentials: 'include'
-    });
+    }).then(response => loadUser());
+else loadUser();
 
 createRoot(document.getElementById('app') as HTMLElement).render(
     <React.StrictMode>

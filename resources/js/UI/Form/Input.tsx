@@ -8,6 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     Icon?: any;
     label?: string;
     description?: string;
+    errorMessages?: string[];
 }
 
 const Input: FunctionComponent<InputProps> = ({
@@ -17,18 +18,20 @@ const Input: FunctionComponent<InputProps> = ({
                                                   Icon = false,
                                                   label,
                                                   description,
+                                                  errorMessages,
                                                   ...props
                                               }) => {
 
     return (
-        <div className="relative w-full text-lg">
-            <label htmlFor={name}>
-                {label && <div className={`leading-4 ${description ? 'mb-1' : 'mb-2'}`}>{label}:</div>}
-                {description && <div className="mb-2 text-sm text-gray-100">{description}:</div>}
+        <div className="w-full text-lg text-left">
 
+            {label && <label htmlFor={name} className={`text-neutral-800 leading-4 text-sm ${description ? 'mb-1' : 'mb-2'}`}>{label}:</label>}
+            {description && <div className="mb-2 text-sm text-gray-600">{description}:</div>}
+
+            <div className="relative">
                 <input
                     {...props}
-                    className={`w-full bg-white/30 backdrop-blur-xl text-gray-700 placeholder-gray-700 py-2 px-4 ${Icon && 'pl-12'} h-[48px] rounded flex items-center outline-none shadow border border-app-accent ` + props.className}
+                    className={`w-full bg-white/30 backdrop-blur-xl text-gray-700 placeholder-gray-700 py-2 px-4 ${Icon && 'pl-12'} h-[48px] rounded-md flex items-center outline-none shadow border border-app-accent ` + props.className}
                     value={data[name]}
                     name={name}
                     id={name}
@@ -43,7 +46,9 @@ const Input: FunctionComponent<InputProps> = ({
                 {Icon &&
                     <Icon className="absolute left-3 text-app-accent top-1/2 -translate-y-1/2 text-2xl" />
                 }
-            </label>
+            </div>
+
+            {errorMessages && <div className="text-red-500 text-sm">{errorMessages[0]}</div>}
         </div>
     );
 };

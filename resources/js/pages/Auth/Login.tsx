@@ -1,23 +1,42 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
 import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt} from "react-icons/bi";
+import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
+import {useGetUserQuery, useLoginMutation, useLogoutMutation} from "@/store/auth/auth.api.ts";
+import {useTSelector} from "@hooks/redux.ts";
 
 
 export const Login: React.FC = ({}) => {
+    const [login] = useLoginMutation();
+    const [logout] = useLogoutMutation();
+    // const {data: user } = useGetUserQuery();
+    const user = useTSelector(state => state.auth.user);
+
     const [data, setData] = useState({
         email: '',
         password: '',
     });
 
+    useEffect(() => {
+        console.log(user);
+        // logout();
+    }, [user]);
+
+    const [errors, setErrors] = useState<IValidatorErrors|{}>({});
     const handleSubmit =  async (e: any) => {
         e.preventDefault();
-        // const result = await login(data);
-        //
-        // if('data' in result)
-        //     dispatch(setUser(result.data));
+        setErrors({});
+
+        const result = await login(data);
+
+        // Handle validator error
+        if ('error' in result)
+            return 'data' in result.error
+                ? setErrors((result.error.data as IValidatorErrors))
+                : false;
     }
 
     // if(user) return <Navigate to="/" />;

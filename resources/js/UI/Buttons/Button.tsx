@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
         <button
             {...props}
             className={
-                `mx-auto uppercase border border-${colorClass} rounded cursor-pointer p-3.5 sm:min-w-[200px] h-[47px] flex justify-center items-center transition-colors shadow
+                `mx-auto uppercase border border-${colorClass} rounded-md cursor-pointer p-3.5 sm:min-w-[200px] h-[47px] flex justify-center items-center transition-colors shadow
                 ${filled
                     ? `bg-${colorClass} hover:bg-transparent text-white hover:text-${colorClass}`
                     : `bg-transparent hover:bg-${colorClass} text-${colorClass} hover:text-white`}
