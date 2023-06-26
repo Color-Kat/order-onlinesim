@@ -11,6 +11,30 @@ export const authApi = createApi({
     }),
     tagTypes: ['User'],
     endpoints: (builder) => ({
+        /**
+         * Get auth user and save it to slice store.
+         * Can be updated by `invalidatesTags: ["User"]`
+         */
+        getUser: builder.query<IUser, void>({
+            query: () => ({
+                url: `user`,
+                credentials: "include",
+            }),
+            providesTags: ["User"],
+            async onQueryStarted(id, {dispatch, queryFulfilled}) {
+                // Put user in slice store
+                try {
+                    const {data} = await queryFulfilled;
+                    dispatch(setUser(data))
+                } catch (e) {
+                    dispatch(setUser(null))
+                }
+            }
+        }),
+
+        /**
+         * Register new user and invalidate User tage (refetch user)
+         */
         register: builder.mutation<{ user: any, token: string }, {
             name: string,
             email: string,
@@ -24,9 +48,14 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["User"],
         }),
+
+        /**
+         * Login user and invalidate User tage (refetch user)
+         */
         login: builder.mutation<{ user: any, token: string }, {
             email: string,
             password: string,
+            remember?: boolean
         }>({
             query: (payload) => ({
                 url: `login`,
@@ -35,6 +64,10 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["User"],
         }),
+
+        /**
+         * Logout user and invalidate User tage (refetch user)
+         */
         logout: builder.mutation<void, void>({
             query: () => ({
                 url: `logout`,
@@ -42,24 +75,21 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["User"],
         }),
-        getUser: builder.query<IUser, void>({
-            query: () => ({
-                url: `user`,
-                credentials: "include",
+
+        forgotPassword: builder.mutation<void, {email: string}>({
+            query: (payload) => ({
+                url: `forgot-password`,
+                method: 'POST',
+                body: payload
             }),
-            providesTags: ["User"],
-            async onQueryStarted(id, {dispatch, queryFulfilled}) {
-                // Put user in slice store
-                const {data} = await queryFulfilled;
-                dispatch(setUser(data))
-            }
         }),
     })
 });
 
 export const {
+    useGetUserQuery,
     useRegisterMutation,
     useLoginMutation,
     useLogoutMutation,
-    useGetUserQuery
+    useForgotPasswordMutation,
 } = authApi;

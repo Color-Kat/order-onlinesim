@@ -21,7 +21,7 @@ const authSlice = createSlice({
         clearUser(state, action) {
             state.user = null;
         },
-        setUser(state, action: PayloadAction<IUser>) {
+        setUser(state, action: PayloadAction<IUser|null>) {
             state.user = action.payload;
             state.loading = false;
         }

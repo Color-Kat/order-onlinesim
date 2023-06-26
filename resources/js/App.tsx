@@ -5,6 +5,7 @@ import { FavouritesPage } from "@pages/FavouritesPage/FavouritesPage";
 import { Layout } from "@modules/Layout";
 import {Login} from "@pages/Auth/Login.tsx";
 import {Register} from "@pages/Auth/Register.tsx";
+import {ForgotPassword} from "@pages/Auth/ForgotPassword.tsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 {/*  Auth  */}
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
+                <Route path="/forgot-password" element={<ForgotPassword />}/>
 
             </Routes>
         </Layout>

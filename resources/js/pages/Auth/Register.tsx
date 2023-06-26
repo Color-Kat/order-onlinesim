@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
 import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
-import {useSanctum} from "react-sanctum";
-import {useGetUserQuery, useRegisterMutation} from "@/store/auth/auth.api.ts";
+import {useRegisterMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
+import {useUser} from "@hooks/auth.ts";
 
 
 export const Register: React.FC = ({}) => {
     const [register] = useRegisterMutation();
-    const {data: user, refetch: login } = useGetUserQuery();
+    const user = useUser();
 
     const [data, setData] = useState({
         email: '',
@@ -34,24 +34,19 @@ export const Register: React.FC = ({}) => {
 
         const result = await register(data);
 
-        console.log(result)
-
         // Handle validator error
         if ('error' in result)
             return 'data' in result.error
                 ? setErrors((result.error.data as IValidatorErrors))
                 : false;
-
-        console.log(result.data);
-        login();
-
     }
 
-    // if(user) return <Navigate to="/" />;
+    // Auth guard
+    if(user) return <Navigate to="/" />;
 
     return (
         <div className="flex items-center justify-center w-full h-full">
-            <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up animate">
+            <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up">
                 <div className="text-3xl font-bold font-kids tracking-widest mb-8 animate-slide-up-slow">
                     <h1>Регистрация</h1>
                 </div>
@@ -63,7 +58,7 @@ export const Register: React.FC = ({}) => {
                         name="name"
                         placeholder="Имя"
                         Icon={BsPerson}
-                        errorMessages={errors?.errors.name}
+                        errorMessages={errors?.errors?.name}
                     />
 
                     <Input
@@ -73,7 +68,7 @@ export const Register: React.FC = ({}) => {
                         type="email"
                         placeholder="Email"
                         Icon={FiMail}
-                        errorMessages={errors?.errors.email}
+                        errorMessages={errors?.errors?.email}
 
                     />
 
@@ -84,7 +79,7 @@ export const Register: React.FC = ({}) => {
                         type="password"
                         placeholder="Пароль"
                         Icon={BiLockOpenAlt}
-                        errorMessages={errors?.errors.password}
+                        errorMessages={errors?.errors?.password}
                     />
 
                     <Input
@@ -94,7 +89,7 @@ export const Register: React.FC = ({}) => {
                         type="password"
                         placeholder="Повторите пароль"
                         Icon={BiLockAlt}
-                        errorMessages={errors?.errors.password_confirmation}
+                        errorMessages={errors?.errors?.password_confirmation}
                     />
                 </div>
 

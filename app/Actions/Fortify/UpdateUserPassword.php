@@ -9,8 +9,6 @@ use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 class UpdateUserPassword implements UpdatesUserPasswords
 {
-    use PasswordValidationRules;
-
     /**
      * Validate and update the user's password.
      *
@@ -20,7 +18,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
     {
         Validator::make($input, [
             'current_password' => ['required', 'string', 'current_password:web'],
-            'password' => $this->passwordRules(),
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ], [
             'current_password.current_password' => __('The provided password does not match your current password.'),
         ])->validateWithBag('updatePassword');

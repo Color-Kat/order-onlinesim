@@ -25,7 +25,7 @@ module.exports = {
                 },
                 animation: {
                     'slide-up': 'slide-up .7s ease-in-out',
-                    'slide-up-slow': 'slide-up 1.2s ease-in-out',
+                    'slide-up-slow': 'slide-up 1.35s ease-in-out',
                     'slide-down': 'slide-down .5s ease-in-out',
                     'slide-left': 'slide-left 1s ease-in-out',
                     'slide-right': 'slide-right 1s ease-in-out',
@@ -39,11 +39,11 @@ module.exports = {
                         to: {opacity: 1},
                     },
                     'slide-up': {
-                        from: {opacity: 0, transform: 'translateY(25%)'},
+                        from: {opacity: 0, transform: 'translateY(15%)'},
                         to: {opacity: 1, transform: 'none'},
                     },
                     'slide-down': {
-                        from: {opacity: 0, transform: 'translateY(-25%)'},
+                        from: {opacity: 0, transform: 'translateY(-15%)'},
                         to: {opacity: 1, transform: 'none'},
                     },
                     'slide-left': {
