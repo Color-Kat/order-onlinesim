@@ -8,11 +8,12 @@ import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useLoginMutation} from "@/store/auth/auth.api.ts";
 import Checkbox from "@UI/Form/Checkbox.tsx";
 import {useUser} from "@hooks/auth.ts";
+import {Loader} from "@UI/Loaders/Loader.tsx";
 
 export const Login: React.FC = ({}) => {
     const user = useUser();
 
-    const [login] = useLoginMutation();
+    const [login, {error, isLoading}] = useLoginMutation();
 
     const [data, setData] = useState({
         email: '',
@@ -48,8 +49,16 @@ export const Login: React.FC = ({}) => {
             <form
                 className="max-w-md w-full login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up"
             >
-                <div className="text-3xl font-bold font-kids tracking-widest mb-8 animate-slide-up-slow">
-                    <h1>Войти</h1>
+                <div className=" mb-8 ">
+                    <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">Войти</h1>
+
+                    {
+                        (error as any)?.status === 429 &&
+                            <p className="text-sm text-red-500 mt-5 leading-tight">
+                                Слишком много запросов.
+                                Повторите попытку позже.
+                            </p>
+                    }
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -92,7 +101,10 @@ export const Login: React.FC = ({}) => {
                     className="mt-8 w-full"
                     onClick={handleSubmit}
                 >
-                    Войти
+                    {!isLoading
+                        ? 'Войти'
+                        : <span className="normal-case"><Loader />Загрузка...</span>
+                    }
                 </Button>
 
                <div className={`mt-8 ${errors.message ? 'animate-pulse text-base text-neutral-800' : 'text-sm text-neutral-600'}`}>

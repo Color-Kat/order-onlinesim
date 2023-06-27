@@ -1,66 +1,64 @@
 import React, {useState} from 'react';
-import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
 import {Button} from "@UI/Buttons/Button.tsx";
-import {BsPerson} from "react-icons/bs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
-import {useRegisterMutation} from "@/store/auth/auth.api.ts";
+import {useResetPasswordMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
-import {useUser} from "@hooks/auth.ts";
-import {Loader} from "@UI/Loaders/Loader.tsx";
+import {Link, useSearchParams} from "react-router-dom";
 
-export const Register: React.FC = ({}) => {
-    const [register, {isLoading}] = useRegisterMutation();
-    const user = useUser();
+
+export const PasswordReset: React.FC = ({}) => {
+    const [searchParams] = useSearchParams();
+
+    const [resetPassword] = useResetPasswordMutation();
 
     const [data, setData] = useState({
-        email: '',
-        name: '',
+        email: searchParams.get('email') ?? '',
+        token: searchParams.get('token') ?? '',
         password: '',
         password_confirmation: '',
     });
 
+    const [successMessage, setSuccessMessage] = useState('');
     const [errors, setErrors] = useState<IValidatorErrors>({
         errors: {},
         message: ''
     });
     const handleSubmit =  async (e: any) => {
         e.preventDefault();
+        setSuccessMessage('');
         setErrors({
             errors: {},
             message: ''
         });
 
-        const result = await register(data);
+        const result = await resetPassword(data);
 
         // Handle validator error
         if ('error' in result)
             return 'data' in result.error
                 ? setErrors((result.error.data as IValidatorErrors))
                 : false;
-    }
 
-    // Auth guard
-    if(user) return <Navigate to="/" />;
+        setSuccessMessage('Ваш пароль был сброшен!');
+    }
 
     return (
         <div className="flex items-center justify-center w-full h-full">
             <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up">
-                <div className="text-3xl font-bold tracking-widest mb-8 animate-slide-up-slow">
-                    <h1>Регистрация</h1>
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">Сброс пароля</h1>
+
+                    {successMessage && <div className="text-emerald-500 leading-tight mt-5">
+                        <p>{successMessage}</p>
+                        <Link to="/login" className="block underline text-lg text-neutral-700 animate-pulse pt-3">
+                            Войти
+                        </Link>
+                    </div>}
                 </div>
 
                 <div className="space-y-3.5">
-                    <Input
-                        data={data}
-                        setData={setData}
-                        name="name"
-                        placeholder="Имя"
-                        Icon={BsPerson}
-                        errorMessages={errors?.errors?.name}
-                    />
-
                     <Input
                         data={data}
                         setData={setData}
@@ -69,7 +67,7 @@ export const Register: React.FC = ({}) => {
                         placeholder="Email"
                         Icon={FiMail}
                         errorMessages={errors?.errors?.email}
-
+                        disabled
                     />
 
                     <Input
@@ -93,21 +91,12 @@ export const Register: React.FC = ({}) => {
                     />
                 </div>
 
-                <div className="mt-3 text-sm underline text-right text-black">
-                    <Link to="/login">
-                        Уже зарегистрированы?
-                    </Link>
-                </div>
-
                 <Button
                     filled={true}
                     className="mt-6 w-full"
                     onClick={handleSubmit}
                 >
-                    {!isLoading
-                        ? 'Создать аккаунт'
-                        : <span className="normal-case"><Loader />Загрузка...</span>
-                    }
+                    Обновить пароль
                 </Button>
             </form>
         </div>

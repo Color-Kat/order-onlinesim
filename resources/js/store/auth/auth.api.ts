@@ -13,7 +13,7 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         /**
          * Get auth user and save it to slice store.
-         * Can be updated by `invalidatesTags: ["User"]`
+         * Can be updated by `invalidatesTags: ["User"]`.
          */
         getUser: builder.query<IUser, void>({
             query: () => ({
@@ -33,7 +33,7 @@ export const authApi = createApi({
         }),
 
         /**
-         * Register new user and invalidate User tage (refetch user)
+         * Register new user and invalidate User tage (refetch user).
          */
         register: builder.mutation<{ user: any, token: string }, {
             name: string,
@@ -50,7 +50,7 @@ export const authApi = createApi({
         }),
 
         /**
-         * Login user and invalidate User tage (refetch user)
+         * Login user and invalidate User tage (refetch user).
          */
         login: builder.mutation<{ user: any, token: string }, {
             email: string,
@@ -66,7 +66,7 @@ export const authApi = createApi({
         }),
 
         /**
-         * Logout user and invalidate User tage (refetch user)
+         * Logout user and invalidate User tage (refetch user).
          */
         logout: builder.mutation<void, void>({
             query: () => ({
@@ -76,9 +76,29 @@ export const authApi = createApi({
             invalidatesTags: ["User"],
         }),
 
+        /**
+         * Send request to fortify forgot password route.
+         * Send Email with reset password link.
+         */
         forgotPassword: builder.mutation<void, {email: string}>({
             query: (payload) => ({
                 url: `forgot-password`,
+                method: 'POST',
+                body: payload
+            }),
+        }),
+
+        /**
+         * Update user's password by token from email reset link.
+         */
+        resetPassword: builder.mutation<void, {
+            email: string,
+            token: string,
+            password: string,
+            password_confirmation: string,
+        }>({
+            query: (payload) => ({
+                url: `reset-password`,
                 method: 'POST',
                 body: payload
             }),
@@ -92,4 +112,5 @@ export const {
     useLoginMutation,
     useLogoutMutation,
     useForgotPasswordMutation,
+    useResetPasswordMutation
 } = authApi;

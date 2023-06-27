@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace App\Models\Traits;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Storage;
 
 trait HasPhotos
 {

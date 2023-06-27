@@ -1,15 +1,18 @@
-import React, {ButtonHTMLAttributes} from 'react';
+import React, {ButtonHTMLAttributes, ReactNode} from 'react';
+import {Loader} from "@UI/Loaders/Loader.tsx";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: string;
+    children: ReactNode;
     filled?: boolean;
     colorClass?: string;
+    isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
                                                   children,
                                                   filled = true,
                                                   colorClass = 'app-accent',
+                                                  isLoading = false,
                                                   ...props
                                               }) => {
 
@@ -28,7 +31,12 @@ export const Button: React.FC<ButtonProps> = ({
             {/* Tailwind class loader*/}
             <div className="hidden bg-red-500 border-red-500 bg-app-accent hover:text-app-accent"></div>
 
-            {children}
+            {/*{children}*/}
+
+            {isLoading
+                ? <span className="normal-case"><Loader />Загрузка...</span>
+                : children
+            }
         </button>
     );
 }

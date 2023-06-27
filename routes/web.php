@@ -20,6 +20,8 @@ Route::get('/{path?}', [ReactController::class, 'index'])
     ->name('home')
 ;
 
+Route::get('/password-reset', [ReactController::class, 'index'])->name('password.reset');
+
 
 
 

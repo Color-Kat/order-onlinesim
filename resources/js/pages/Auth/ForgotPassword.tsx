@@ -11,18 +11,20 @@ import {useUser} from "@hooks/auth.ts";
 export const ForgotPassword: React.FC = ({}) => {
     const user = useUser();
 
-    const [forgotPassword] = useForgotPasswordMutation();
+    const [forgotPassword, {isLoading}] = useForgotPasswordMutation();
 
     const [data, setData] = useState({
         email: '',
     });
 
+    const [successMessage, setSuccessMessage] = useState('');
     const [errors, setErrors] = useState<IValidatorErrors>({
         errors: {},
         message: ''
     });
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setSuccessMessage('');
         setErrors({
             errors: {},
             message: ''
@@ -35,9 +37,10 @@ export const ForgotPassword: React.FC = ({}) => {
             return 'data' in result.error
                 ? setErrors((result.error.data as IValidatorErrors))
                 : false;
-    }
 
-    // TODO Route [password.reset] not defined
+        if('data' in result)
+            setSuccessMessage('Ссылка для сброса пароля была отправлена Вам на почту');
+    }
 
     return (
         <div className="flex items-center justify-center w-full h-full">
@@ -45,8 +48,15 @@ export const ForgotPassword: React.FC = ({}) => {
                 className="max-w-md w-full login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up"
             >
                 <div className="mb-8 ">
-                    <h1 className="text-3xl font-bold font-kids tracking-widest animate-slide-up-slow" >Восстановить пароль</h1>
-                    <p className="leading-tight text-sm mt-5">Мы отправим письмо с ссылкой для восстановления пароля на указанный email</p>
+                    <h1 className="text-3xl font-bold font-kids tracking-widest animate-slide-up-slow">Восстановить
+                        пароль</h1>
+                    <p className="leading-tight text-sm mt-5">
+                        Мы отправим письмо с ссылкой для восстановления пароля на указанный email
+                    </p>
+
+                    {successMessage && <p className="leading-tight text-emerald-500 mt-2">
+                        {successMessage}
+                    </p>}
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -65,15 +75,16 @@ export const ForgotPassword: React.FC = ({}) => {
                     filled={true}
                     className="mt-5 w-full"
                     onClick={handleSubmit}
+                    isLoading={isLoading}
                 >
                     Отправить письмо
                 </Button>
 
-               <div className="mt-8">
-                   <Link to="/login" className="underline text-right text-neutral-600">
-                       Войти
-                   </Link>
-               </div>
+                <div className="mt-8">
+                    <Link to="/login" className="underline text-right text-neutral-600">
+                        Войти
+                    </Link>
+                </div>
             </form>
         </div>
     );
