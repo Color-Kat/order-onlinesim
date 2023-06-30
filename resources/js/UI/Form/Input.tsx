@@ -5,11 +5,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     data: { [key: string]: any };
     setData: React.Dispatch<React.SetStateAction<any>>;
     name: string;
+
     Icon?: any;
     label?: string;
     description?: string;
     errorMessages?: string[];
 }
+
+// Maskable input https://github.com/Color-Kat/victory-park-order/blob/master/resources/js/UI/Form/Input.tsx
 
 const Input: FunctionComponent<InputProps> = ({
                                                   data,

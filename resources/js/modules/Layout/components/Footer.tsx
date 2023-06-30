@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
             <div className="container px-5 flex-col md:flex-row flex justify-between gap-5">
 
                 <div className="text-gray-800 flex-1">
-                    This project is made for deep learning of module frontend architecture
-                    and redux toolkit (RTK).
+                    This project is made for quick setup this big technology stack (laravel, react, ts, tailwind, auth and many components). <br/>
+                    Use it and rejoice!
                 </div>
 
                 <div className="text-gray-700 text-sm text-center">

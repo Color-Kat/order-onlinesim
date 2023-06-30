@@ -39,7 +39,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,600&family=Oswald:wght@300;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700;900&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,600&family=Nunito:wght@400;600;700&family=Play:wght@400;700&family=Roboto:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @viteReactRefresh
