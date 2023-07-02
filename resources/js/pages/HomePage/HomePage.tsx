@@ -14,6 +14,8 @@ import {
 import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import {useCallback, useState} from "react";
+import {DoubleDropdown, Dropdown} from "@UI/Dropdowns";
+import {BsFillTrashFill} from "react-icons/bs";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -30,7 +32,7 @@ export const HomePage = () => {
                 <link rel="canonical" href="http://127.0.0.1:8000"/>
             </Helmet>
 
-            <div className="p-10 text-center">
+            <div className="w-full p-10 text-center">
                 <div className="animate-slide-up ">
                     Hello, {user
                     ? user.name
@@ -38,71 +40,137 @@ export const HomePage = () => {
                 } ;)
                 </div>
 
-                <div className="p-10 flex items-center justify-center flex-col gap-8">
+                <div className="w-full flex justify-between items-start gap-8">
+                    <div className="p-10 flex items-center justify-center flex-col gap-8">
 
-                    <RainbowLoader/>
+                        <RainbowLoader/>
 
-                    <div className="flex gap-3">
+                        <div className="flex gap-3">
 
-                        <Button onClick={toggleLoading}>Hello</Button>
-                        <Button ButtonComponent={SuccessButton}>Success</Button>
-                    </div>
+                            <Button onClick={toggleLoading}>Hello</Button>
+                            <Button ButtonComponent={SuccessButton}>Success</Button>
+                        </div>
 
-                    <div className="flex gap-3">
-                        <LoadingButton
-                            isLoading={isLoading}
-                            ButtonComponent={PurpleButton}
-                            onClick={toggleLoading}
-                            type="submit"
-                        >Submit</LoadingButton>
+                        <div className="flex gap-3">
+                            <LoadingButton
+                                isLoading={isLoading}
+                                ButtonComponent={PurpleButton}
+                                onClick={toggleLoading}
+                                type="submit"
+                            >Submit</LoadingButton>
 
-                        <LoadingButton
-                            isLoading={isLoading}
-                            onClick={toggleLoading}
-                            ButtonComponent={BlueButton}
-                        >Send</LoadingButton>
-                    </div>
+                            <LoadingButton
+                                isLoading={isLoading}
+                                onClick={toggleLoading}
+                                ButtonComponent={BlueButton}
+                            >Send</LoadingButton>
+                        </div>
 
-                    <div className="flex gap-3">
-                        <RippleButton
-                            ButtonComponent={SuccessButton}
-                        >
-                            Ripple Effect
-                        </RippleButton>
-
-                        <LoadingButton
-                            isLoading={isLoading}
-                            onClick={toggleLoading}
-                            ButtonComponent={PinkButton}
-                        >
+                        <div className="flex gap-3">
                             <RippleButton
-                                ButtonComponent={({children}: any) => <>{children}</>}
+                                ButtonComponent={SuccessButton}
                             >
-                                Ripple + loading
+                                Ripple Effect
                             </RippleButton>
-                        </LoadingButton>
+
+                            <LoadingButton
+                                isLoading={isLoading}
+                                onClick={toggleLoading}
+                                ButtonComponent={PinkButton}
+                            >
+                                <RippleButton
+                                    ButtonComponent={({children}: any) => <>{children}</>}
+                                >
+                                    Ripple + loading
+                                </RippleButton>
+                            </LoadingButton>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <RippleButton ButtonComponent={PinkButton}>Pinky</RippleButton>
+                            <Button ButtonComponent={LimeButton}>Lime</Button>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <RippleButton ButtonComponent={GrayButton}>Gray</RippleButton>
+                            <Button ButtonComponent={WhiteButton} className="text-indigo-400 ">Mr.White?</Button>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <Button ButtonComponent={BorderedButton}>There's no borders</Button>
+                            <Button ButtonComponent={WhiteButton}>Mr.White?</Button>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <Button ButtonComponent={BorderedPurpleButton} className="bg-pink-200">Purple</Button>
+                            <Button ButtonComponent={BorderedRedButton}>Red</Button>
+                        </div>
+
                     </div>
 
-                    <div className="flex gap-3">
-                        <RippleButton ButtonComponent={PinkButton}>Pinky</RippleButton>
-                        <Button ButtonComponent={LimeButton}>Lime</Button>
-                    </div>
+                    <div className="p-10 flex items-center justify-center flex-col gap-5">
 
-                    <div className="flex gap-3">
-                        <RippleButton ButtonComponent={GrayButton}>Gray</RippleButton>
-                        <Button ButtonComponent={WhiteButton} className="text-indigo-400 ">Mr.White?</Button>
-                    </div>
+                        <div className="flex gap-3 items-end">
+                            <Dropdown
+                                title="Dropdown"
+                                items={[
+                                    {text: 'Item 1'},
+                                    {text: 'Item 2'},
+                                    {text: 'Item 3'},
+                                    {text: 'Item 4'},
+                                    {text: 'Item 5'},
+                                ]}
+                            />
 
-                    <div className="flex gap-3">
-                        <Button ButtonComponent={BorderedButton}>There's no borders</Button>
-                        <Button ButtonComponent={WhiteButton}>Mr.White?</Button>
-                    </div>
+                            <Dropdown
+                                title="Dropdown With Groups"
+                                groups={{
+                                    0: [
+                                        {text: 'group 1'},
+                                        {text: 'group 1'}
+                                    ],
+                                    2: [
+                                        {text: 'group 2',}
+                                    ],
+                                    3: [
+                                        {
+                                            text: 'click me',
+                                            onClick: () => alert("Stop clicking on me!!!"),
+                                            Icon: BsFillTrashFill
+                                        }
+                                    ]
+                                }}
+                            />
+                        </div>
 
-                    <div className="flex gap-3">
-                        <Button ButtonComponent={BorderedPurpleButton} className="bg-pink-200">Purple</Button>
-                        <Button ButtonComponent={BorderedRedButton}>Red</Button>
-                    </div>
+                        <div className="flex gap-3 justify-start w-full">
+                            <DoubleDropdown
+                                title="Double Dropdown"
+                                groups={{
+                                    0: [
+                                        {text: 'group 1'},
+                                    ],
 
+                                    2: [
+                                        {
+                                            text: 'click me',
+                                            onClick: () => alert("Stop clicking on me!!!"),
+                                            Icon: BsFillTrashFill
+                                        }
+                                    ],
+                                    3: [
+                                        {text: 'group 2',},
+                                        {text: 'group 2',}
+                                    ],
+                                    4: [
+                                        {text: 'group 4',},
+                                        {text: 'group 4',}
+                                    ],
+                                }}
+                            />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </Page>
