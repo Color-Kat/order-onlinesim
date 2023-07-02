@@ -13,7 +13,7 @@ export const BorderedPurpleButton: React.FC<ButtonProps> = ({
         <button
             {...props}
             className={classNames(
-                `relative mx-auto uppercase text-center cursor-pointer inline-flex justify-center items-center`,
+                `mx-auto uppercase text-center cursor-pointer inline-flex justify-center items-center`,
                 'text-sm rounded-lg p-0.5 w-36',
                 'relative overflow-hidden text-gray-900 group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-indigo-300/50',
                 'disabled:pointer-events-none disabled:text-gray-500'

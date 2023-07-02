@@ -20,6 +20,8 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
         props.disabled = true;
     }
 
+    // props.className += ' relative';
+
     return (
         <ButtonComponent
             {...props}

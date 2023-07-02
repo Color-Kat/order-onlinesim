@@ -5,7 +5,6 @@ import {
     PurpleButton,
     BlueButton,
     SuccessButton,
-    StandardButton,
     PinkButton,
     LimeButton,
     GrayButton,
@@ -14,7 +13,7 @@ import {
 import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import {useCallback, useState} from "react";
-import {DoubleDropdown, Dropdown} from "@UI/Dropdowns";
+import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
 
 export const HomePage = () => {
@@ -77,6 +76,7 @@ export const HomePage = () => {
                                 isLoading={isLoading}
                                 onClick={toggleLoading}
                                 ButtonComponent={PinkButton}
+                                className='relative' // For ripple effect
                             >
                                 <RippleButton
                                     ButtonComponent={({children}: any) => <>{children}</>}
@@ -113,6 +113,9 @@ export const HomePage = () => {
                         <div className="flex gap-3 items-end">
                             <Dropdown
                                 title="Dropdown"
+                                header="List"
+                                buttonClassName="bg-blue-500/100 hover:bg-blue-400"
+                                containerClassName="w-32"
                                 items={[
                                     {text: 'Item 1'},
                                     {text: 'Item 2'},
@@ -124,9 +127,11 @@ export const HomePage = () => {
 
                             <Dropdown
                                 title="Dropdown With Groups"
+                                header="Pop-pup ;)"
+                                containerClassName="bg-indigo-100"
                                 groups={{
                                     0: [
-                                        {text: 'group 1'},
+                                        {text: 'group 1', onClick: () => alert("I'm one"),},
                                         {text: 'group 1'}
                                     ],
                                     2: [
@@ -136,16 +141,18 @@ export const HomePage = () => {
                                         {
                                             text: 'click me',
                                             onClick: () => alert("Stop clicking on me!!!"),
-                                            Icon: BsFillTrashFill
+                                            Icon: BsFillTrashFill,
+                                            disabled: true
                                         }
                                     ]
                                 }}
                             />
                         </div>
 
-                        <div className="flex gap-3 justify-start w-full">
+                        <div className="flex gap-3 w-full">
                             <DoubleDropdown
                                 title="Double Dropdown"
+                                header="Choose your side"
                                 groups={{
                                     0: [
                                         {text: 'group 1'},
@@ -166,6 +173,28 @@ export const HomePage = () => {
                                         {text: 'group 4',},
                                         {text: 'group 4',}
                                     ],
+                                }}
+                            />
+
+                            <SecondaryDropdown
+                                title="Secondary"
+                                header="Header"
+                                className="ml-auto"
+                                groups={{
+                                    0: [
+                                        {text: 'group 1', onClick: () => alert("I'm one"),},
+                                        {text: 'group 1'}
+                                    ],
+                                    2: [
+                                        {text: 'group 2',}
+                                    ],
+                                    3: [
+                                        {
+                                            text: 'click me',
+                                            onClick: () => alert("Stop clicking on me!!!"),
+                                            Icon: BsFillTrashFill
+                                        }
+                                    ]
                                 }}
                             />
                         </div>

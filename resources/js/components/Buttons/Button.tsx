@@ -12,8 +12,6 @@ export const Button: React.FC<ButtonProps> = ({
                                                   ButtonComponent = StandardButton,
                                                   ...props
                                               }) => {
-
-
     return (
         <ButtonComponent
             {...props}

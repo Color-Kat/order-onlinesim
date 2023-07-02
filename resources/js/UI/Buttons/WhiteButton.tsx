@@ -13,7 +13,7 @@ export const WhiteButton: React.FC<ButtonProps> = ({
         <button
             {...props}
             className={classNames(
-                `relative mx-auto uppercase text-center cursor-pointer flex justify-center items-center`,
+                `mx-auto uppercase text-center cursor-pointer flex justify-center items-center`,
                 'text-sm shadow-md rounded-lg px-5 py-2.5 w-36',
                 'text-gray-700 bg-white hover:bg-gray-50 border broder-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-100/50',
                 'disabled:bg-white/50 disabled:text-gray-500 disabled:pointer-events-none',

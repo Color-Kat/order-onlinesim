@@ -13,13 +13,13 @@ export const RippleButton: React.FC<RippleButtonProps> = ({
                                                   ...props
                                               }) => {
 
+    props.className += ' relative';
+
     return (
-        <ButtonComponent
-            {...props}
-        >
+        <ButtonComponent {...props}>
             {/* Ripple effect */}
             {!props.disabled && <div
-                className="ripple-effect top-0 left-0 h-full w-full rounded-xl absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-500 ease-out">
+                className="ripple-effect absolute top-0 left-0 h-full w-full rounded-xl overflow-hidden transform hover:scale-x-100 hover:scale-y-100 transition duration-500 ease-out">
             </div>}
 
             {children}
