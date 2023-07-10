@@ -15,12 +15,19 @@ import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import {useCallback, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
+import {FileInput} from "@components/Inputs";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
 
     const [isLoading, setIsLoading] = useState(false);
     const toggleLoading = useCallback(() => setIsLoading(prev => !prev), []);
+
+    const [data, setData] = useState({
+        images: []
+    });
+
+    console.log(data);
 
     return (
         <Page
@@ -32,14 +39,24 @@ export const HomePage = () => {
             </Helmet>
 
             <div className="w-full p-10 text-center">
-                <div className="animate-slide-up ">
+                <div className="animate-slide-up mb-5">
                     Hello, {user
                     ? user.name
                     : 'new project'
                 } ;)
                 </div>
 
+                <FileInput
+                    data={data}
+                    setData={setData}
+                    name="images"
+
+                    buttonText="Выберите фото"
+                    dragAndDropText="Перетащите фото сюда"
+                />
+
                 <div className="w-full flex justify-between items-start gap-8">
+
                     <div className="p-10 flex items-center justify-center flex-col gap-8">
 
                         <RainbowLoader/>
@@ -109,6 +126,7 @@ export const HomePage = () => {
                     </div>
 
                     <div className="p-10 flex items-center justify-center flex-col gap-5">
+
 
                         <div className="flex gap-3 items-end">
                             <Dropdown
