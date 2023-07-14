@@ -173,21 +173,20 @@ export const HomePage = () => {
                                 header="Choose your side"
                                 groups={{
                                     0: [
-                                        {text: 'group 1'},
+                                        {text: 'group 0'},
                                     ],
-
-                                    2: [
+                                    1: [
                                         {
-                                            text: 'click me',
+                                            text: 'click me 1',
                                             onClick: () => alert("Stop clicking on me!!!"),
                                             Icon: BsFillTrashFill
                                         }
                                     ],
-                                    3: [
+                                    2: [
                                         {text: 'group 2',},
                                         {text: 'group 2',}
                                     ],
-                                    4: [
+                                    3: [
                                         {text: 'group 4',},
                                         {text: 'group 4',}
                                     ],

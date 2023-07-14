@@ -85,7 +85,7 @@ export const SecondaryDropdown: React.FC<
                     )}
                 >
                     {/* Header */}
-                    {header && <h6 className="py-1 px-2 font-semibold text-indigo-400 cursor-default">{header}</h6>}
+                    {header && <h6 className="py-1.5 px-2 font-semibold text-indigo-400 cursor-default">{header}</h6>}
 
                     {/* Iterate groups */}
                     {Object.values(groups).map((items, i) => (

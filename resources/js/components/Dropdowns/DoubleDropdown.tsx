@@ -74,20 +74,22 @@ export const DoubleDropdown: React.FC<
             >
                 <Menu.Items
                     className={classNames(
-                        "z-10 absolute right-0 origin-top-right divide-y divide-gray-200 ring-2 ring-black/5 focus:outline-none",
-                        "mt-2 w-56",
+                        "z-10 absolute right-0 origin-top-right divide-y divide-x divide-gray-200 ring-2 ring-black/5 focus:outline-none",
+                        "grid grid-cols-2",
+                        "mt-2 w-72",
                         "bg-white rounded-xl",
                         containerClassName
                     )}
                 >
                     {/* Header */}
-                    {header && <h6 className="py-1 px-2 font-semibold text-zinc-600 cursor-default">{header}</h6>}
+                    {header && <h6 className="py-1.5 px-2 font-semibold text-zinc-600 cursor-default col-span-2">{header}</h6>}
 
                     {/* Iterate groups */}
                     {Object.values(groups).map((items, i) => (
                         <div className="px-1 py-1" key={i}>
 
                             {/* Iterate group items */}
+
                             {items.map((item, i) => (
                                 <DropdownItem key={item.text + i} item={item}/>
                             ))}
