@@ -10,3 +10,7 @@
 
 4. Run project by `vite` or `npm run dev`
 5. Build project by `vite build` or `npm run build`
+
+#### Optional:
+1. Create symlink for Http/Controllers folder:
+`mklink /D C:\OpenServer\domains\laravel-template.local\app\Controllers C:\OpenServer\domains\laravel-template.local\app\Http\Controllers`
