@@ -27,7 +27,7 @@ export const HomePage = () => {
         images: []
     });
 
-    console.log(data);
+    console.log(user);
 
     return (
         <Page

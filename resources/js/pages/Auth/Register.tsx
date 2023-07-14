@@ -12,7 +12,6 @@ import {Loader} from "@UI/Loaders/Loader.tsx";
 
 export const Register: React.FC = ({}) => {
     const [register, {isLoading}] = useRegisterMutation();
-    const user = useUser();
 
     const [data, setData] = useState({
         email: '',
@@ -40,9 +39,6 @@ export const Register: React.FC = ({}) => {
                 ? setErrors((result.error.data as IValidatorErrors))
                 : false;
     }
-
-    // Auth guard
-    if(user) return <Navigate to="/" />;
 
     return (
         <div className="flex items-center justify-center w-full h-full">

@@ -4,13 +4,24 @@ export interface IUser {
     id: number;
     name: string;
     email: string;
+    email_verified_at: null|string;
+
+    role_id: Roles;
+
+    updated_at: string;
+    created_at: string;
+}
+
+export enum Roles {
+    None = 1,
+    Admin = 2
 }
 
 const initialState: {
-    loading: boolean,
+    isLoading: boolean,
     user: IUser | null,
 }  = {
-    loading: true,
+    isLoading: true,
     user: null,
 }
 
@@ -23,7 +34,7 @@ const authSlice = createSlice({
         },
         setUser(state, action: PayloadAction<IUser|null>) {
             state.user = action.payload;
-            state.loading = false;
+            state.isLoading = false;
         }
     },
 })

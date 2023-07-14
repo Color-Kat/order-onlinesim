@@ -11,8 +11,6 @@ import {useUser} from "@hooks/auth.ts";
 import {Loader} from "@UI/Loaders/Loader.tsx";
 
 export const Login: React.FC = ({}) => {
-    const user = useUser();
-
     const [login, {error, isLoading}] = useLoginMutation();
 
     const [data, setData] = useState({
@@ -40,9 +38,6 @@ export const Login: React.FC = ({}) => {
                 ? setErrors((result.error.data as IValidatorErrors))
                 : false;
     }
-
-    // Auth guard
-    if (user) return <Navigate to="/"/>;
 
     return (
         <div className="flex items-center justify-center w-full h-full">
