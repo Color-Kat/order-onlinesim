@@ -4,3 +4,5 @@ export {Select} from './Select.tsx';
 export {SecondarySelect} from './SecondarySelect.tsx';
 
 export {Autocomplete} from './Autocomplete.tsx';
+
+export {Toggle} from './Toggle.tsx';
