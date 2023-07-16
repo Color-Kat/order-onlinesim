@@ -15,7 +15,7 @@ import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import {useCallback, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
-import {FileInput, SecondarySelect, Select} from "@components/Inputs";
+import {Autocomplete, FileInput, SecondarySelect, Select} from "@components/Inputs";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -25,7 +25,8 @@ export const HomePage = () => {
 
     const [data, setData] = useState({
         images: [],
-        select: 'Option 1'
+        select: 'Option 1',
+        autocomplete: 'Anaconda'
     });
 
     console.log(data)
@@ -239,6 +240,21 @@ export const HomePage = () => {
                                 ]}
                                 containerClassName="w-full"
 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-3 w-full">
+                            <Autocomplete
+                                data={data}
+                                setData={setData}
+                                name="autocomplete"
+                                options={[
+                                    'Anaconda',
+                                    'Banana',
+                                    'Banana 2',
+                                    'Colorbit.ru'
+                                ]}
+                                containerClassName="w-full"
                             />
                         </div>
                     </div>

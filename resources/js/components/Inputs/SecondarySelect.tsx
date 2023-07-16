@@ -57,7 +57,7 @@ export const SecondarySelect: React.FC<SelectProps> = ({
                         <Listbox.Options
                             className={classNames(
                                 "absolute mt-1 max-h-60 w-full overflow-auto ring-1 ring-black ring-opacity-5 focus:outline-none",
-                                "rounded-md bg-slate-800 py-1 text-sm shadow-lg text-left",
+                                "rounded-lg bg-slate-800 py-1 text-sm shadow-lg text-left",
                                 "z-[1]"
                             )}
                         >
