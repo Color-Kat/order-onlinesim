@@ -15,7 +15,7 @@ import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import {useCallback, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
-import {FileInput} from "@components/Inputs";
+import {FileInput, SecondarySelect, Select} from "@components/Inputs";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -24,10 +24,11 @@ export const HomePage = () => {
     const toggleLoading = useCallback(() => setIsLoading(prev => !prev), []);
 
     const [data, setData] = useState({
-        images: []
+        images: [],
+        select: 'Option 1'
     });
 
-    console.log(user);
+    console.log(data)
 
     return (
         <Page
@@ -126,8 +127,6 @@ export const HomePage = () => {
                     </div>
 
                     <div className="p-10 flex items-center justify-center flex-col gap-5">
-
-
                         <div className="flex gap-3 items-end">
                             <Dropdown
                                 title="Dropdown"
@@ -216,6 +215,32 @@ export const HomePage = () => {
                             />
                         </div>
 
+                        <div className="flex flex-col gap-3 w-full">
+                            <Select
+                                data={data}
+                                setData={setData}
+                                name="select"
+                                options={[
+                                    'Option 1',
+                                    'Opinion 2',
+                                    'Onion 3'
+                                ]}
+                                containerClassName="w-full"
+                            />
+
+                            <SecondarySelect
+                                data={data}
+                                setData={setData}
+                                name="select"
+                                options={[
+                                    'Option 1',
+                                    'Opinion 2',
+                                    'Onion 3'
+                                ]}
+                                containerClassName="w-full"
+
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

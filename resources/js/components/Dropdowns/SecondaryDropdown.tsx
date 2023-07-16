@@ -52,7 +52,8 @@ export const SecondaryDropdown: React.FC<
             <div>
                 <Menu.Button
                     className={classNames(
-                        "inline-flex justify-center focus:outline-none focus:ring-2 focus:ring-white/10",
+                        "inline-flex justify-center",
+                        "focus:ring-2 focus:outline-none focus:ring-indigo-400",
                         "px-4 py-2",
                         "w-full bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm rounded-lg transition-colors duration-150 border border-gray-700",
                         buttonClassName
@@ -78,7 +79,8 @@ export const SecondaryDropdown: React.FC<
             >
                 <Menu.Items
                     className={classNames(
-                        "z-10 absolute right-0 origin-top-right divide-y divide-indigo-400/50 ring-2 ring-black/5 focus:outline-none",
+                        "z-10 absolute right-0 origin-top-right divide-y divide-indigo-400/50",
+                        "focus:ring-2 focus:outline-none focus:ring-indigo-400",
                         "mt-2 w-56",
                         "bg-gray-800 border-2 border-indigo-400/50 shadow-lg rounded-xl",
                         containerClassName
