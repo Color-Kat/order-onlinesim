@@ -72,7 +72,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                         afterLeave={() => setQuery('')}
                     >
                         <Combobox.Options
-                            className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg text-left bg-white py-1 shadow-lg text-sm"
+                            className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg text-left bg-white py-1 shadow-lg text-sm z-[1]"
                         >
                             {filteredData.length === 0 && query !== '' ? (
                                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">

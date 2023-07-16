@@ -12,10 +12,12 @@ import {
 } from "@UI/Buttons";
 import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
-import {useCallback, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
 import {Autocomplete, FileInput, SecondarySelect, Select, Toggle} from "@components/Inputs";
+import {Modal, SecondaryModal} from "@UI/Modals";
+import {Dialog} from "@headlessui/react";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -259,8 +261,71 @@ export const HomePage = () => {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-3 w-full">
+                        <div className="flex flex-wrap justify-between gap-3 w-full">
                             <Toggle data={data} setData={setData} name='agree' />
+
+                            <Modal
+                                ButtonComponent={({onClick}: any) => (
+                                    <RippleButton ButtonComponent={SuccessButton} onClick={onClick}>
+                                        Оплатить
+                                    </RippleButton>
+                                )}
+                                title="Payment successful"
+                                text="Your payment has been successfully submitted. We’ve sent you an email with all of the details of your order."
+                                actionText="Got it, thanks!"
+                                callback={() => console.log('Payment action')}
+                            />
+
+                            <Modal
+                                buttonText="Модалька"
+
+                                CustomLayout={({closeModal}) => (
+                                    <>
+                                        <Dialog.Title
+                                            as="h3"
+                                            className="text-3xl font-medium leading-6 text-indigo-900"
+                                        >
+                                            Успех
+                                        </Dialog.Title>
+
+                                        <div className="mt-4">
+                                            <p className="text-base text-indigo-500">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit minus porro reprehenderit veritatis.
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-4 flex gap-4">
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center rounded-lg border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-900 hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                onClick={closeModal}
+                                            >
+                                                Закройся
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center rounded-lg border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                onClick={closeModal}
+                                            >
+                                                Скройся
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                            />
+
+
+                            <SecondaryModal
+                                ButtonComponent={({onClick}: any) => (
+                                    <PurpleButton onClick={onClick}>
+                                        Заказать
+                                    </PurpleButton>
+                                )}
+                                title="Заказ создан"
+                                text="Ваш заказ успешно размещён. Оплатите его, и скоро мы отправим его вам!"
+                                actionText="Ок"
+                            />
                         </div>
                     </div>
                 </div>
