@@ -1,5 +1,7 @@
 export {FileInput} from './FileInput.tsx';
 
+export {RadioGroup} from './RadioGroup.tsx';
+
 export {Select} from './Select.tsx';
 export {SecondarySelect} from './SecondarySelect.tsx';
 

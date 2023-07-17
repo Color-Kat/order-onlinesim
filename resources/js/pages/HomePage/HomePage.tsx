@@ -15,7 +15,7 @@ import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
-import {Autocomplete, FileInput, SecondarySelect, Select, Toggle} from "@components/Inputs";
+import {Autocomplete, FileInput, RadioGroup, SecondarySelect, Select, Toggle} from "@components/Inputs";
 import {Modal, SecondaryModal} from "@UI/Modals";
 import {Dialog} from "@headlessui/react";
 import {Popover} from "@UI/Popover";
@@ -31,7 +31,8 @@ export const HomePage = () => {
         images: [],
         select: 'Option 1',
         autocomplete: 'Anaconda',
-        agree: true
+        agree: true,
+        radio: 2
     });
 
     console.log(data)
@@ -341,7 +342,7 @@ export const HomePage = () => {
                                     },
                                     {
                                         name: 'Второй элемент',
-                                        description: 'Create your own targeted content',
+                                        description: 'Гугл',
                                         href: 'https://google.com',
                                         icon: AiFillIeSquare,
                                     },
@@ -377,6 +378,33 @@ export const HomePage = () => {
                                     </a>
                                 )}
                             </Popover>
+
+                            <div className="flex gap-3 w-full">
+                                <RadioGroup
+                                    data={data}
+                                    setData={setData}
+                                    name="radio"
+                                    options={[
+                                        {title: 'First', description: "Don't select this!", value: 1},
+                                        {title: 'Second', description: "Don't select this!", value: 2},
+                                        {title: 'Third', description: "Don't select this!", value: 3},
+                                    ]}
+                                    containerClassName="w-full"
+                                ></RadioGroup>
+
+                                <RadioGroup
+                                    data={data}
+                                    setData={setData}
+                                    name="radio"
+                                    options={[
+                                        {title: 'First', description: "Don't select this!", value: 1},
+                                        {title: 'Second', description: "Don't select this!", value: 2},
+                                        {title: 'Third', description: "Don't select this!", value: 3},
+                                    ]}
+                                    containerClassName="w-full p-1.5 rounded-xl bg-slate-800"
+                                    textClassName="text-gray-200"
+                                ></RadioGroup>
+                            </div>
                         </div>
                     </div>
                 </div>
