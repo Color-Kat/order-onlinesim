@@ -12,12 +12,14 @@ import {
 } from "@UI/Buttons";
 import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill} from "react-icons/bs";
 import {Autocomplete, FileInput, SecondarySelect, Select, Toggle} from "@components/Inputs";
 import {Modal, SecondaryModal} from "@UI/Modals";
 import {Dialog} from "@headlessui/react";
+import {Popover} from "@UI/Popover";
+import {AiFillIeSquare} from "react-icons/ai";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -326,6 +328,55 @@ export const HomePage = () => {
                                 text="Ваш заказ успешно размещён. Оплатите его, и скоро мы отправим его вам!"
                                 actionText="Ок"
                             />
+                        </div>
+
+                        <div className="flex flex-wrap justify-between gap-3 w-full">
+                            <Popover
+                                items={[
+                                    {
+                                        name: 'Insights',
+                                        description: 'Measure actions your users take',
+                                        href: '##',
+                                        icon: AiFillIeSquare,
+                                    },
+                                    {
+                                        name: 'Второй элемент',
+                                        description: 'Create your own targeted content',
+                                        href: 'https://google.com',
+                                        icon: AiFillIeSquare,
+                                    },
+                                    {
+                                        name: 'Reports',
+                                        description: 'Keep track of your growth',
+                                        href: '##',
+                                        icon: AiFillIeSquare,
+                                    },
+                                ]}
+                            >
+                                {(item, close) => (
+                                    <a
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={close}
+                                        className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                    >
+                                        <div
+                                            className="flex h-16 w-16 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12 bg-indigo-300 rounded-md"
+                                        >
+                                            <item.icon aria-hidden="true" className="h-10 w-10 rounded-sm"/>
+                                        </div>
+
+                                        <div className="ml-4 text-left">
+                                            <p className="text-sm font-medium text-gray-900">
+                                                {item.name}
+                                            </p>
+                                            <p className="text-sm text-gray-500">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </a>
+                                )}
+                            </Popover>
                         </div>
                     </div>
                 </div>

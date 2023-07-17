@@ -27,7 +27,7 @@ const DefaultLayout = ({
         <div className="mt-4">
             <button
                 type="button"
-                className="inline-flex justify-center rounded-lg border border-transparent bg-slate-500 px-4 py-1.5 text-base font-medium text-blue-100 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-lg border border-transparent bg-slate-500 px-4 py-1.5 text-base font-medium text-blue-100 hover:bg-violet-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 onClick={callback}
             >
                 {actionText}
