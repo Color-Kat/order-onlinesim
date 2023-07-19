@@ -58,7 +58,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
 
                         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                             <HiChevronUpDown
-                                className="h-5 w-5 text-gray-400"
+                                className="h-5 w-5 text-app-accent" // text-gray-400
                                 aria-hidden="true"
                             />
                         </Combobox.Button>
@@ -72,11 +72,14 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                         afterLeave={() => setQuery('')}
                     >
                         <Combobox.Options
-                            className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg text-left bg-white py-1 shadow-lg text-sm z-[1]"
+                            className={classNames(
+                                "absolute mt-1 max-h-60 w-full overflow-auto rounded-lg text-left py-1 shadow-lg text-sm z-[1]",
+                                "bg-white/70 backdrop-blur-xl"
+                            )}
                         >
                             {filteredData.length === 0 && query !== '' ? (
                                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                                    Nothing found.
+                                    Ничего не найдено.
                                 </div>
                             ) : (
                                 filteredData.map((item: string) => (
@@ -84,7 +87,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                                         key={item}
                                         className={({active}) =>
                                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                active ? 'bg-violet-100 text-violet-900' : 'text-gray-900'
+                                                active ? 'bg-violet-100/50 text-violet-900' : 'text-gray-900'
                                             }`
                                         }
                                         value={item}

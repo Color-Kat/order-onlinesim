@@ -1,3 +1,5 @@
+export {Input, SimpleInput} from './Input';
+
 export {FileInput} from './FileInput.tsx';
 
 export {RadioGroup} from './RadioGroup.tsx';

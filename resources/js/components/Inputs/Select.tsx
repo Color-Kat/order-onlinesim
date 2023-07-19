@@ -39,10 +39,10 @@ export const Select: React.FC<SelectProps> = ({
                             "rounded-lg bg-white shadow-md text-sm"
                         )}
                     >
-                        <span className="block truncate">{data[name]}</span>
+                        <span className="block truncate text-gray-900">{data[name]}</span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <HiChevronUpDown
-                                className="h-5 w-5 text-gray-400"
+                                className="h-5 w-5 text-app-accent" // text-gray-400
                                 aria-hidden="true"
                             />
                         </span>

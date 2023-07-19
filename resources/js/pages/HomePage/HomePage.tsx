@@ -14,8 +14,8 @@ import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
-import {BsFillTrashFill} from "react-icons/bs";
-import {Autocomplete, FileInput, RadioGroup, SecondarySelect, Select, Toggle} from "@components/Inputs";
+import {BsFillTrashFill, BsPerson} from "react-icons/bs";
+import {Autocomplete, FileInput, Input, RadioGroup, SecondarySelect, Select, Toggle} from "@components/Inputs";
 import {Modal, SecondaryModal} from "@UI/Modals";
 import {Dialog} from "@headlessui/react";
 import {Popover} from "@UI/Popover";
@@ -405,6 +405,34 @@ export const HomePage = () => {
                                     textClassName="text-gray-200"
                                 ></RadioGroup>
                             </div>
+                        </div>
+
+                        <div className="flex flex-wrap justify-between gap-3 w-full">
+                            <Input
+                                data={data}
+                                setData={setData}
+                                name="lableInput"
+
+                                type="email"
+                                placeholder="Enter your email here"
+
+                                label="Name"
+                                description='Some description that describes this input.'
+
+                                errorMessages={['Неверная почта или пароль']}
+
+                                Icon={BsPerson}
+                            />
+
+                            {/*<LabelInput text={123} description={123}>*/}
+                            {/*    <WithIcon Icon={123}>*/}
+                            {/*        <Input*/}
+                            {/*            data={data}*/}
+                            {/*            setData={setData}*/}
+                            {/*            name="lableInput"*/}
+                            {/*        />*/}
+                            {/*    </WithIcon>*/}
+                            {/*</LabelInput>*/}
                         </div>
                     </div>
                 </div>

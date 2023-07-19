@@ -16,7 +16,7 @@ export const DropdownItem: React.FC<{ item: IDropdownItem }> = memo(({item}) => 
             {({active}) => (
                 <button
                     className={classNames(
-                        active ? 'bg-red-500 text-white' : 'text-gray-800',
+                        active ? 'bg-app-accent text-white' : 'text-gray-800',
                         'group flex w-full items-center rounded-lg px-2 py-2 text-sm gap-2',
                         'disabled:text-gray-400'
                     )}
