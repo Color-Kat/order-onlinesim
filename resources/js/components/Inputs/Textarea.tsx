@@ -36,7 +36,7 @@ export const Textarea: React.FC<TextareaProps> = ({
             onChange={changeHandler}
 
             className={classNames(
-                "w-full border border-gray-300 block p-2.5",
+                "w-full h-32 border border-gray-300 block p-2.5",
                 "focus:outline-none focus:ring-2 focus:ring-app-accent/50",
                 "bg-white/70 backdrop-blur-xl text-gray-900 text-sm rounded-lg",
                 "placeholder-gray-400",

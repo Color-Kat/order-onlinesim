@@ -15,7 +15,16 @@ import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill, BsPerson} from "react-icons/bs";
-import {Autocomplete, FileInput, Input, RadioGroup, SecondarySelect, Select, Toggle} from "@components/Inputs";
+import {
+    Autocomplete, Checkbox,
+    FileInput,
+    Input,
+    RadioGroup,
+    SecondarySelect,
+    Select,
+    Textarea,
+    Toggle
+} from "@components/Inputs";
 import {Modal, SecondaryModal} from "@UI/Modals";
 import {Dialog} from "@headlessui/react";
 import {Popover} from "@UI/Popover";
@@ -32,7 +41,8 @@ export const HomePage = () => {
         select: 'Option 1',
         autocomplete: 'Anaconda',
         agree: true,
-        radio: 2
+        radio: 2,
+        textarea: 123,
     });
 
     console.log(data)
@@ -65,7 +75,7 @@ export const HomePage = () => {
                     dragAndDropText="Перетащите фото сюда"
                 />
 
-                <div className="w-full flex justify-between items-start gap-8 overflow-x-auto no-scrollbar">
+                <div className="w-full flex justify-between items-start gap-8 overflow-x-aut no-scrollbar">
 
                     <div className="py-10 flex items-center justify-center flex-col gap-8">
 
@@ -136,7 +146,7 @@ export const HomePage = () => {
                     </div>
 
                     <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">
-                        123111111111111111111111111111111111111111
+
                     </div>
 
                     <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">
@@ -273,6 +283,14 @@ export const HomePage = () => {
                         <div className="flex flex-wrap justify-between gap-3 w-full">
                             <Toggle data={data} setData={setData} name='agree' />
 
+                            <Checkbox
+                                data={data}
+                                setData={setData}
+                                name="agree"
+                            >
+                                Вынужден не согласиться
+                            </Checkbox>
+
                             <Modal
                                 ButtonComponent={({onClick}: any) => (
                                     <RippleButton ButtonComponent={SuccessButton} onClick={onClick}>
@@ -335,9 +353,7 @@ export const HomePage = () => {
                                 text="Ваш заказ успешно размещён. Оплатите его, и скоро мы отправим его вам!"
                                 actionText="Ок"
                             />
-                        </div>
 
-                        <div className="flex flex-wrap justify-between gap-3 w-full">
                             <Popover
                                 items={[
                                     {
@@ -384,7 +400,9 @@ export const HomePage = () => {
                                     </a>
                                 )}
                             </Popover>
+                        </div>
 
+                        <div className="flex flex-wrap justify-between gap-3 w-full">
                             <div className="flex gap-3 w-full">
                                 <RadioGroup
                                     data={data}
@@ -430,7 +448,11 @@ export const HomePage = () => {
                                 Icon={BsPerson}
                             />
 
-
+                            <Textarea
+                                data={data}
+                                setData={setData}
+                                name="textarea"
+                            />
                         </div>
                     </div>
                 </div>

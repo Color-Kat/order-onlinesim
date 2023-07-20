@@ -7,7 +7,6 @@ import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useRegisterMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
-import {useUser} from "@hooks/auth.ts";
 import {Loader} from "@UI/Loaders/Loader.tsx";
 
 export const Register: React.FC = ({}) => {

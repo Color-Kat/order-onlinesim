@@ -43,6 +43,16 @@ export const FileInput: React.FC<FileInputProps> = ({
 
     const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
+
+        // Hover effect
+        if(dragOverRef.current)
+            dragOverRef.current.style.background = 'rgba(255, 255, 255, .4)';
+    }, []);
+
+    const handleDragEnd = useCallback(() => {
+        // Reset hover effect
+        if(dragOverRef.current)
+            dragOverRef.current.style.background = 'none';
     }, []);
 
     /**
@@ -61,6 +71,10 @@ export const FileInput: React.FC<FileInputProps> = ({
                 ]
             }));
         else  setData((prev: any) => ({...prev, [name]: [files[0]]}));
+
+        // Reset hover effect
+        if(dragOverRef.current)
+            dragOverRef.current.style.background = 'none';
     }, []);
 
     /**
@@ -88,12 +102,15 @@ export const FileInput: React.FC<FileInputProps> = ({
         <div
             className={classNames(
                 "relative flex flex-col items-center justify-center",
-                "w-full min-h-[250px] border-4 border-dashed border-violet-500 rounded-xl ",
+                'transition-colors duration-300',
+                "border-4 border-dashed border-violet-500 rounded-xl",
+                "w-full max-w-4xl mx-auto min-h-[250px]",
                 "md:p-8 p-4 text-gray-700",
                 containerClassName
             )}
             ref={dragOverRef}
             onDragOver={handleDragOver}
+            onDragLeave={handleDragEnd}
             onDrop={handleDrop}
         >
 

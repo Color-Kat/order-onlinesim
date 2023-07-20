@@ -1,5 +1,4 @@
 import React, {FunctionComponent, InputHTMLAttributes, ReactNode, useCallback} from "react";
-import {useChangeHandler} from "@components/Inputs/hooks/useChangeHandler.ts";
 
 interface CheckboxProps extends InputHTMLAttributes<any>{
     data: { [key: string]: any };
@@ -12,7 +11,7 @@ interface CheckboxProps extends InputHTMLAttributes<any>{
     className?: string;
 }
 
-const Checkbox: FunctionComponent<CheckboxProps> = ({children, name, data, setData, onChange, className, ...props}) => {
+export const Checkbox: FunctionComponent<CheckboxProps> = ({children, name, data, setData, onChange, className, ...props}) => {
     const changeHandler = onChange
         ? onChange
         : useCallback(
@@ -42,5 +41,3 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({children, name, data, setDa
         </label>
     );
 };
-
-export default Checkbox;

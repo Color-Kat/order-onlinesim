@@ -16,7 +16,6 @@ export const Popover: React.FC<PopoverProps> = memo(({
                                                     children,
                                                     containerClassName,
                                                 }) => {
-    console.log(123)
 
     return (
         <div className={classNames(containerClassName)}>
