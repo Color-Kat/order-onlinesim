@@ -38,13 +38,15 @@ export const HomePage = () => {
     console.log(data)
 
     return (
-        <Page
-            title="Hey, are you my master?"
+        <div
+            className="w-screen"
         >
             <Helmet>
                 <title>Главная</title>
                 <link rel="canonical" href="http://127.0.0.1:8000"/>
             </Helmet>
+
+            <h1 className="text-center text-xl font-bold mb-5">Hey, are you my master?</h1>
 
             <div className="w-full p-10 text-center">
                 <div className="animate-slide-up mb-5">
@@ -63,9 +65,9 @@ export const HomePage = () => {
                     dragAndDropText="Перетащите фото сюда"
                 />
 
-                <div className="w-full flex justify-between items-start gap-8">
+                <div className="w-full flex justify-between items-start gap-8 overflow-x-auto no-scrollbar">
 
-                    <div className="p-10 flex items-center justify-center flex-col gap-8">
+                    <div className="py-10 flex items-center justify-center flex-col gap-8">
 
                         <RainbowLoader/>
 
@@ -133,7 +135,11 @@ export const HomePage = () => {
 
                     </div>
 
-                    <div className="p-10 flex items-center justify-center flex-col gap-5">
+                    <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">
+                        123111111111111111111111111111111111111111
+                    </div>
+
+                    <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">
                         <div className="flex gap-3 items-end">
                             <Dropdown
                                 title="Dropdown"
@@ -424,19 +430,11 @@ export const HomePage = () => {
                                 Icon={BsPerson}
                             />
 
-                            {/*<LabelInput text={123} description={123}>*/}
-                            {/*    <WithIcon Icon={123}>*/}
-                            {/*        <Input*/}
-                            {/*            data={data}*/}
-                            {/*            setData={setData}*/}
-                            {/*            name="lableInput"*/}
-                            {/*        />*/}
-                            {/*    </WithIcon>*/}
-                            {/*</LabelInput>*/}
+
                         </div>
                     </div>
                 </div>
             </div>
-        </Page>
+        </div>
     );
 };

@@ -6,7 +6,7 @@ import {BsPerson} from "react-icons/bs";
 import {BiLockAlt} from "react-icons/bi";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useLoginMutation} from "@/store/auth/auth.api.ts";
-import Checkbox from "@UI/Form/Checkbox.tsx";
+import Checkbox from "@components/Inputs/Checkbox.tsx";
 import {useUser} from "@hooks/auth.ts";
 import {Loader} from "@UI/Loaders/Loader.tsx";
 

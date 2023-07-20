@@ -1,5 +1,7 @@
 export {Input, SimpleInput} from './Input';
 
+export {Textarea} from './Textarea.tsx';
+
 export {FileInput} from './FileInput.tsx';
 
 export {RadioGroup} from './RadioGroup.tsx';

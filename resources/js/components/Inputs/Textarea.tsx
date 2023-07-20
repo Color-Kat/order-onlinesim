@@ -1,32 +1,33 @@
-import React, {InputHTMLAttributes, useCallback} from 'react';
-import classNames from "classnames";
+import React, {useCallback} from 'react';
 import {SimpleInputProps} from "@components/Inputs/Input/types.ts";
+import classNames from "classnames";
+import {useChangeHandler} from "@components/Inputs/hooks/useChangeHandler.ts";
 
-export const SimpleInput: React.FC<SimpleInputProps> = ({
+interface TextareaProps{
+    data: { [key: string]: any };
+    setData: React.Dispatch<React.SetStateAction<any>>;
+    name: string;
+
+    onChange?: (e: any) => void;
+
+    className?: string;
+}
+
+export const Textarea: React.FC<TextareaProps> = ({
                                                       data,
                                                       setData,
                                                       name,
 
                                                       onChange,
 
-                                                      isError,
-
                                                       className,
                                                       ...props
                                                   }) => {
 
-    const changeHandler = onChange
-        ? onChange
-        : useCallback(
-            (e: any) => setData((prev: any) => ({
-                ...prev,
-                [name]: e.target.value
-            })),
-            []
-        );
+    const changeHandler = useChangeHandler(name, setData, onChange);
 
     return (
-        <input
+        <textarea
             {...props}
 
             id={name}
@@ -39,9 +40,8 @@ export const SimpleInput: React.FC<SimpleInputProps> = ({
                 "focus:outline-none focus:ring-2 focus:ring-app-accent/50",
                 "bg-white/70 backdrop-blur-xl text-gray-900 text-sm rounded-lg",
                 "placeholder-gray-400",
-                isError && "border-red-500 shadow-red-300 shadow-sm",
                 className
             )}
-        />
+        ></textarea>
     );
 }
