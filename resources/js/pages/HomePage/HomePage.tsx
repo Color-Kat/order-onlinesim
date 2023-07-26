@@ -305,8 +305,8 @@ export const HomePage = () => {
 
                             <Modal
                                 buttonText="Модалька"
-
-                                CustomLayout={({closeModal}) => (
+                            >
+                                {({closeModal}) => (
                                     <>
                                         <Dialog.Title
                                             as="h3"
@@ -340,7 +340,7 @@ export const HomePage = () => {
                                         </div>
                                     </>
                                 )}
-                            />
+                            </Modal>
 
 
                             <SecondaryModal

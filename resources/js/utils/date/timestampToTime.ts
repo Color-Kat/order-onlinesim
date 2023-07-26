@@ -1,4 +1,9 @@
-export function timestampToTime(timestamp: number) {
+/**
+ * Calculate time in format `Hours minutes` by timestamp number.
+ *
+ * @param timestamp
+ */
+export function timestampToTime(timestamp: number): string {
     let seconds = timestamp % 60;
     timestamp = (timestamp - seconds) / 60;
     let minutes = timestamp % 60;
