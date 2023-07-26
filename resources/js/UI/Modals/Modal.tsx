@@ -4,10 +4,10 @@ import classNames from "classnames";
 import {GrClose} from "react-icons/gr";
 
 const DefaultLayout = ({
-                            title,
-                            text,
+                           title,
+                           text,
                            actionText,
-                            callback
+                           callback
                        }: any) => (
     <>
         <Dialog.Title
@@ -47,20 +47,20 @@ interface ModalProps {
     buttonClassName?: string;
     modalClassName?: string;
 
-    CustomLayout?: (closeModal: any) => any;
+    children?: (closeModal: any) => any;
 }
 
 export const Modal: React.FC<ModalProps> = ({
-                                                        buttonText,
-                                                        ButtonComponent,
-                                                        title,
-                                                        text,
-                                                        actionText,
-                                                        callback,
-                                                        buttonClassName,
-                                                        modalClassName,
-                                                        CustomLayout
-                                                    }) => {
+                                                buttonText,
+                                                ButtonComponent,
+                                                title,
+                                                text,
+                                                actionText,
+                                                callback,
+                                                buttonClassName,
+                                                modalClassName,
+                                                children
+                                            }) => {
     let [isOpen, setIsOpen] = useState(false);
 
     function closeModal() {
@@ -72,7 +72,7 @@ export const Modal: React.FC<ModalProps> = ({
     }
 
     const actionClick = useCallback(() => {
-        if(callback) callback();
+        if (callback) callback();
         closeModal();
     }, []);
 
@@ -139,7 +139,7 @@ export const Modal: React.FC<ModalProps> = ({
                                     </button>
 
                                     {/* Default layout*/}
-                                    {!CustomLayout && <DefaultLayout
+                                    {!children && <DefaultLayout
                                         title={title}
                                         text={text}
                                         actionText={actionText}
@@ -147,7 +147,7 @@ export const Modal: React.FC<ModalProps> = ({
                                     />}
 
                                     {/*  Custom layout  */}
-                                    {CustomLayout && <CustomLayout closeModal={closeModal} />}
+                                    {children && <>{children(closeModal)}</>}
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

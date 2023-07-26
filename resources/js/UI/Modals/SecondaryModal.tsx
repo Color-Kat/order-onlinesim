@@ -48,7 +48,7 @@ interface ModalProps {
     buttonClassName?: string;
     modalClassName?: string;
 
-    CustomLayout?: (closeModal: any) => any;
+    children?: (closeModal: any) => any;
 }
 
 export const SecondaryModal: React.FC<ModalProps> = ({
@@ -60,7 +60,7 @@ export const SecondaryModal: React.FC<ModalProps> = ({
                                                         callback,
                                                         buttonClassName,
                                                         modalClassName,
-                                                        CustomLayout
+                                                         children
                                                     }) => {
     let [isOpen, setIsOpen] = useState(false);
 
@@ -140,7 +140,7 @@ export const SecondaryModal: React.FC<ModalProps> = ({
                                     </button>
 
                                     {/* Default layout*/}
-                                    {!CustomLayout && <DefaultLayout
+                                    {!children && <DefaultLayout
                                         title={title}
                                         text={text}
                                         actionText={actionText}
@@ -148,7 +148,7 @@ export const SecondaryModal: React.FC<ModalProps> = ({
                                     />}
 
                                     {/*  Custom layout  */}
-                                    {CustomLayout && <CustomLayout closeModal={closeModal} />}
+                                    {children && <>{children(closeModal)}</>}
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
