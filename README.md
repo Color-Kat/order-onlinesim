@@ -8,8 +8,11 @@
 3. Install dependencies:
 `composer install`, `npm install`
 
-4. Run project by `vite` or `npm run dev`
-5. Build project by `vite build` or `npm run build`
+4. Generate storage link: `php artisan storage:link`
+
+5. Run project by `vite` or `npm run dev`
+
+6. Build project by `vite build` or `npm run build`
 
 #### Optional:
 1. Create symlink for Http/Controllers folder (cmd as administrator):
