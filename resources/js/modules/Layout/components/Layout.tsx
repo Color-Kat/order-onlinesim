@@ -3,7 +3,7 @@ import {memo} from "react";
 import {Header} from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import classNames from "classnames";
+import {twJoin} from "tailwind-merge";
 
 export const Layout: React.FC<{ children: React.ReactElement }> = memo(({children}) => {
     return (
@@ -14,7 +14,7 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
             <Header/>
 
             <Main>
-                <div className={classNames(
+                <div className={twJoin(
                     "flex-1",
                     // "max-w-4xl",
                 )}>

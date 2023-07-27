@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
-import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt} from "react-icons/bi";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useLoginMutation} from "@/store/auth/auth.api.ts";
 import {Checkbox} from "@components/Inputs";
-import {Loader} from "@UI/Loaders/Loader.tsx";
+import {LoadingButton} from "@components/Buttons";
+import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 
 export const Login: React.FC = ({}) => {
     const [login, {error, isLoading}] = useLoginMutation();
@@ -90,16 +90,14 @@ export const Login: React.FC = ({}) => {
                     </div>
                 </div>
 
-                <Button
-                    filled={true}
+                <LoadingButton
                     className="mt-8 w-full"
+                    isLoading={isLoading}
                     onClick={handleSubmit}
+                    ButtonComponent={FilledRedButton}
                 >
-                    {!isLoading
-                        ? 'Войти'
-                        : <span className="normal-case"><Loader />Загрузка...</span>
-                    }
-                </Button>
+                    Войти
+                </LoadingButton>
 
                <div className={`mt-8 ${errors.message ? 'animate-pulse text-base text-neutral-800' : 'text-sm text-neutral-600'}`}>
                    <Link to="/forgot-password" className="underline text-right">

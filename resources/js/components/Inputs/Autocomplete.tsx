@@ -1,8 +1,8 @@
 import React, {Fragment, useCallback, useState} from 'react';
 import {Combobox, Transition} from "@headlessui/react";
-import classNames from "classnames";
 import {HiChevronUpDown} from "react-icons/hi2";
 import {BsCheck2} from "react-icons/bs";
+import {twJoin, twMerge} from "tailwind-merge";
 
 interface AutocompleteProps {
     data: { [key: string]: any };
@@ -37,14 +37,14 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
             );
 
     return (
-        <div className={classNames(
+        <div className={twMerge(
             "w-56",
             containerClassName
         )}>
             <Combobox value={data[name]} onChange={onChangeHandler}>
                 <div className="relative">
                     <div
-                        className={classNames(
+                        className={twJoin(
                             "relative w-full cursor-default text-left z-0",
                             "focus:outline-none focus:ring-2 focus:ring-indigo-400/50",
                             "rounded-lg bg-white shadow-md text-sm"
@@ -72,7 +72,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                         afterLeave={() => setQuery('')}
                     >
                         <Combobox.Options
-                            className={classNames(
+                            className={twJoin(
                                 "absolute mt-1 max-h-60 w-full overflow-auto rounded-lg text-left py-1 shadow-lg text-sm z-[1]",
                                 "bg-white/70 backdrop-blur-xl"
                             )}

@@ -1,6 +1,6 @@
-import React, {InputHTMLAttributes, useCallback} from 'react';
-import classNames from "classnames";
+import React, {useCallback} from 'react';
 import {SimpleInputProps} from "@components/Inputs/Input/types.ts";
+import {twMerge} from "tailwind-merge";
 
 export const SimpleInput: React.FC<SimpleInputProps> = ({
                                                       data,
@@ -34,7 +34,7 @@ export const SimpleInput: React.FC<SimpleInputProps> = ({
             value={data[name]}
             onChange={changeHandler}
 
-            className={classNames(
+            className={twMerge(
                 "w-full border border-gray-300 block p-2.5",
                 "focus:outline-none focus:ring-2 focus:ring-app-accent/50",
                 "bg-white/70 backdrop-blur-xl text-gray-900 text-sm rounded-lg",

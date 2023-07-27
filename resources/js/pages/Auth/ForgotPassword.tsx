@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
-import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useForgotPasswordMutation} from "@/store/auth/auth.api.ts";
 import {useUser} from "@hooks/auth.ts";
+import {LoadingButton} from "@components/Buttons";
+import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 
 
 export const ForgotPassword: React.FC = ({}) => {
@@ -71,14 +72,14 @@ export const ForgotPassword: React.FC = ({}) => {
                     />
                 </div>
 
-                <Button
-                    filled={true}
-                    className="mt-5 w-full"
-                    onClick={handleSubmit}
+                <LoadingButton
+                    className="mt-8 w-full"
                     isLoading={isLoading}
+                    onClick={handleSubmit}
+                    ButtonComponent={FilledRedButton}
                 >
-                    Отправить письмо
-                </Button>
+                    Войти
+                </LoadingButton>
 
                 <div className="mt-8">
                     <Link to="/login" className="underline text-right text-neutral-600">

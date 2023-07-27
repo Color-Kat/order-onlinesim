@@ -139,7 +139,7 @@ export const HomePage = () => {
                         </div>
 
                         <div className="flex gap-3">
-                            <Button ButtonComponent={BorderedPurpleButton} className="bg-pink-200">Purple</Button>
+                            <Button ButtonComponent={BorderedPurpleButton}>Purple</Button>
                             <Button ButtonComponent={BorderedRedButton}>Red</Button>
                         </div>
 
@@ -281,7 +281,13 @@ export const HomePage = () => {
                         </div>
 
                         <div className="flex flex-wrap justify-between gap-3 w-full">
-                            <Toggle data={data} setData={setData} name='agree' />
+                            <Toggle
+                                data={data}
+                                setData={setData}
+                                name='agree'
+                                // activeClassName="bg-red-500"
+                                // inactiveClassName="bg-black"
+                            />
 
                             <Checkbox
                                 data={data}

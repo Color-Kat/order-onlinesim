@@ -1,8 +1,8 @@
-import React, {Fragment, memo, useMemo} from 'react';
+import React, {Fragment, useMemo} from 'react';
 import {Menu, Transition} from "@headlessui/react";
 import {BsChevronDown} from "react-icons/bs";
-import classNames from "classnames";
 import {DropdownItem, IDropdownItem} from "@components/Dropdowns/components/DropdownItem.tsx";
+import {twMerge} from "tailwind-merge";
 
 interface DropdownProps {
     title: string;
@@ -46,10 +46,10 @@ export const Dropdown: React.FC<
     }, []);
 
     return (
-        <Menu as="div" className={classNames("relative inline-block text-left", className)}>
+        <Menu as="div" className={twMerge("relative inline-block text-left", className)}>
             <div>
                 <Menu.Button
-                    className={classNames(
+                    className={twMerge(
                         "inline-flex justify-center focus:outline-none focus:ring-2 focus:ring-black/10",
                         "px-4 py-2",
                         "w-full bg-black/20 hover:bg-black/30 text-white text-sm rounded-lg",
@@ -75,7 +75,7 @@ export const Dropdown: React.FC<
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className={classNames(
+                    className={twMerge(
                         "z-10 absolute right-0 origin-top-right divide-y divide-gray-200 ring-2 ring-black/5 focus:outline-none",
                         "mt-2 w-56",
                         "bg-white rounded-xl",

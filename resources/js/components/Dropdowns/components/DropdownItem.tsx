@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import {Menu} from "@headlessui/react";
-import classNames from "classnames";
+import {twJoin} from "tailwind-merge";
 
 export interface IDropdownItem {
     text: string;
@@ -15,7 +15,7 @@ export const DropdownItem: React.FC<{ item: IDropdownItem }> = memo(({item}) => 
         <Menu.Item>
             {({active}) => (
                 <button
-                    className={classNames(
+                    className={twJoin(
                         active ? 'bg-app-accent text-white' : 'text-gray-800',
                         'group flex w-full items-center rounded-lg px-2 py-2 text-sm gap-2',
                         'disabled:text-gray-400'

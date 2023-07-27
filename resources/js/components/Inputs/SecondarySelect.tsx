@@ -2,7 +2,7 @@ import React, {Fragment, useCallback, useState} from 'react';
 import {Listbox, Transition} from "@headlessui/react";
 import {HiChevronUpDown} from "react-icons/hi2";
 import {BsCheck2} from "react-icons/bs";
-import classNames from "classnames";
+import {twJoin, twMerge} from "tailwind-merge";
 
 interface SelectProps {
     data: { [key: string]: any };
@@ -11,6 +11,7 @@ interface SelectProps {
     options: string[];
 
     containerClassName?: string;
+    buttonClassName?: string;
 }
 
 export const SecondarySelect: React.FC<SelectProps> = ({
@@ -18,24 +19,27 @@ export const SecondarySelect: React.FC<SelectProps> = ({
                                                   setData,
                                                   name,
                                                   options,
-                                                  containerClassName
+
+                                                  containerClassName,
+                                                           buttonClassName
 }) => {
     const onChangeHandler = useCallback((value: string) => {
         setData((prev: any) => ({...prev, [name]: value}));
     }, [name]);
 
     return (
-        <div className={classNames(
+        <div className={twMerge(
             "w-56",
             containerClassName
         )}>
             <Listbox value={data[name]} onChange={onChangeHandler}>
                 <div className="relative">
                     <Listbox.Button
-                        className={classNames(
+                        className={twMerge(
                             "relative w-full cursor-default py-2 pl-3 pr-10 text-left z-0",
                             "focus:outline-none focus:ring-2 focus:ring-indigo-400/50",
-                            "rounded-lg bg-slate-800 text-gray-100 shadow-md text-sm"
+                            "rounded-lg bg-slate-800 text-gray-100 shadow-md text-sm",
+                            buttonClassName
                         )}
                     >
                         <span className="block truncate">{data[name]}</span>
@@ -55,7 +59,7 @@ export const SecondarySelect: React.FC<SelectProps> = ({
                     >
 
                         <Listbox.Options
-                            className={classNames(
+                            className={twJoin(
                                 "absolute mt-1 max-h-60 w-full overflow-auto ring-1 ring-black ring-opacity-5 focus:outline-none",
                                 "rounded-lg bg-slate-800 py-1 text-sm shadow-lg text-left",
                                 "z-[1]"
@@ -74,7 +78,7 @@ export const SecondarySelect: React.FC<SelectProps> = ({
                                     {({selected}) => (
                                         <>
                                             <span
-                                                className={classNames(
+                                                className={twJoin(
                                                     "block truncate",
                                                     selected ? 'font-medium' : 'font-normal'
                                                 )}

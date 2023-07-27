@@ -1,8 +1,7 @@
 import React, {Fragment, useCallback, useState} from 'react';
 import {Dialog, Transition} from "@headlessui/react";
-import classNames from "classnames";
-import {GrClose} from "react-icons/gr";
 import {BsX} from "react-icons/bs";
+import {twMerge} from "tailwind-merge";
 
 const DefaultLayout = ({
                             title,
@@ -86,7 +85,7 @@ export const SecondaryModal: React.FC<ModalProps> = ({
                     <button
                         type="button"
                         onClick={openModal}
-                        className={classNames(
+                        className={twMerge(
                             "text-sm font-medium",
                             "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
                             "px-4 py-2 ",
@@ -125,7 +124,7 @@ export const SecondaryModal: React.FC<ModalProps> = ({
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel
-                                    className={classNames(
+                                    className={twMerge(
                                         "relative w-full transform overflow-hidden text-left align-middle transition-all",
                                         "max-w-md rounded-2xl bg-slate-800 p-6 shadow-xl",
                                         modalClassName

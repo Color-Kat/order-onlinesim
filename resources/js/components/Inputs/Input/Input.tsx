@@ -1,8 +1,8 @@
-import React, {useCallback} from 'react';
-import classNames from "classnames";
+import React from 'react';
 import {InputProps} from "@components/Inputs/Input/types.ts";
 import {SimpleInput} from "@components/Inputs/Input/SimpleInput.tsx";
 import {BsExclamationCircleFill} from "react-icons/bs";
+import {twJoin, twMerge} from "tailwind-merge";
 
 
 
@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
 
 
     return (
-        <div className={classNames(
+        <div className={twMerge(
             "w-full text-left",
             containerClassName
         )}>
@@ -39,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
 
             {description && <div className="block text-xs text-gray-600">{description}</div>}
 
-            <div className={classNames("relative", (label || description) && 'mt-2')}>
+            <div className={twJoin("relative", (label || description) && 'mt-2')}>
                 <SimpleInput
                     data={data}
                     setData={setData}
@@ -48,7 +48,7 @@ export const Input: React.FC<InputProps> = ({
 
                     isError={!!errorMessages}
 
-                    className={classNames(
+                    className={twJoin(
                         className,
                         Icon && 'pl-12'
                     )}

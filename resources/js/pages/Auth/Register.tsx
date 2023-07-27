@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import Input from "@UI/Form/Input.tsx";
-import {Button} from "@UI/Buttons/Button.tsx";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useRegisterMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {Loader} from "@UI/Loaders/Loader.tsx";
+import {LoadingButton} from "@components/Buttons";
+import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 
 export const Register: React.FC = ({}) => {
     const [register, {isLoading}] = useRegisterMutation();
@@ -94,16 +95,14 @@ export const Register: React.FC = ({}) => {
                     </Link>
                 </div>
 
-                <Button
-                    filled={true}
-                    className="mt-6 w-full"
+                <LoadingButton
+                    className="mt-8 w-full"
+                    isLoading={isLoading}
                     onClick={handleSubmit}
+                    ButtonComponent={FilledRedButton}
                 >
-                    {!isLoading
-                        ? 'Создать аккаунт'
-                        : <span className="normal-case"><Loader />Загрузка...</span>
-                    }
-                </Button>
+                    Войти
+                </LoadingButton>
             </form>
         </div>
     );

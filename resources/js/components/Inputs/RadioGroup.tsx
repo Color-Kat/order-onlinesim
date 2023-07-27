@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
 import {RadioGroup as RadioGroupComponent} from "@headlessui/react";
-import classNames from "classnames";
-import {BsCheckCircle} from "react-icons/bs";
+import {twJoin, twMerge} from "tailwind-merge";
 
 interface RadioGroupProps {
     data: { [key: string]: any };
@@ -34,7 +33,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     }, []);
 
     return (
-        <div className={classNames(
+        <div className={twMerge(
             "w-full",
             containerClassName
         )}>
@@ -46,14 +45,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                             <RadioGroupComponent.Option
                                 key={option.title}
                                 value={option.value}
-                                className={({active, checked}) => classNames(
+                                className={({active, checked}) => twJoin(
                                     checked ? 'text-sky-500' : '',
                                     "relative flex cursor-pointer rounded-lg focus:outline-none"
                                 )}
                             >
                                 {({active, checked}) => (
                                     <div className="flex w-full items-center gap-3">
-                                        <div className={classNames(
+                                        <div className={twJoin(
                                             "shrink-0 text-white h-5 w-5",
                                             "rounded-full bg-white",
                                             checked ? 'border-4 border-indigo-500/80' : 'border-2 border-gray-400',
@@ -64,7 +63,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                                         <div className="flex items-center text-base">
                                             <RadioGroupComponent.Label
                                                 as="p"
-                                                className={classNames(
+                                                className={twJoin(
                                                     "font-medium",
                                                     textClassName
                                                         ? textClassName

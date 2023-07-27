@@ -1,5 +1,5 @@
 import React, {FunctionComponent, InputHTMLAttributes, ReactNode, useCallback} from "react";
-import classNames from "classnames";
+import {twMerge} from "tailwind-merge";
 
 interface CheckboxProps extends InputHTMLAttributes<any> {
     data: { [key: string]: any };
@@ -35,7 +35,7 @@ export const Checkbox: FunctionComponent<CheckboxProps> = ({
         );
 
     return (
-        <label htmlFor={name} className={classNames(
+        <label htmlFor={name} className={twMerge(
             "text-sm text-neutral-800 flex items-center pl-0.5",
             labelClassName
         )}>
@@ -48,7 +48,7 @@ export const Checkbox: FunctionComponent<CheckboxProps> = ({
 
                 onChange={changeHandler}
 
-                className={classNames(
+                className={twMerge(
                     "mr-2 accent-app-accent w-3.5 h-3.5",
                     className
                 )}

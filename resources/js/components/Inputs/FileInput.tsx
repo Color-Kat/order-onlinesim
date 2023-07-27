@@ -1,8 +1,7 @@
-import React, {ChangeEvent, DragEvent, HTMLInputTypeAttribute, useCallback, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, DragEvent, useCallback, useRef} from 'react';
 import {BsFillTrashFill} from "react-icons/bs";
-import {BlueButton, PinkButton} from "@UI/Buttons";
-import {RippleButton} from "@components/Buttons";
-import classNames from "classnames";
+import {PinkButton} from "@UI/Buttons";
+import {twMerge} from "tailwind-merge";
 
 interface FileInputProps extends Partial<HTMLInputElement> {
 
@@ -100,7 +99,7 @@ export const FileInput: React.FC<FileInputProps> = ({
 
     return (
         <div
-            className={classNames(
+            className={twMerge(
                 "relative flex flex-col items-center justify-center",
                 'transition-colors duration-300',
                 "border-4 border-dashed border-violet-500 rounded-xl",

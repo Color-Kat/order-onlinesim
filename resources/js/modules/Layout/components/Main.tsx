@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import classNames from "classnames";
 import {PurpleButton} from "@UI/Buttons";
+import {twJoin} from "tailwind-merge";
 
 const Main: React.FC<{ children: React.ReactElement }> =
     ({children}) => {
@@ -9,7 +9,7 @@ const Main: React.FC<{ children: React.ReactElement }> =
         return (
             <>
                 <main
-                    className={classNames(
+                    className={twJoin(
                         "flex-auto flex-shrink-0 flex justify-center w-full",
                         theme == 'light' && "bg-app bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 text-app-dark",
                         theme == 'dark' && "bg-app bg-gradient-to-tr from-black via-gray-800 to-zinc-700 text-violet-50",

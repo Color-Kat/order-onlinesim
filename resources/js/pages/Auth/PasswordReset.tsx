@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import Input from "@UI/Form/Input.tsx";
-import {Button} from "@UI/Buttons/Button.tsx";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useResetPasswordMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {Link, useSearchParams} from "react-router-dom";
+import {LoadingButton} from "@components/Buttons";
+import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 
 
 export const PasswordReset: React.FC = ({}) => {
     const [searchParams] = useSearchParams();
 
-    const [resetPassword] = useResetPasswordMutation();
+    const [resetPassword, {isLoading}] = useResetPasswordMutation();
 
     const [data, setData] = useState({
         email: searchParams.get('email') ?? '',
@@ -91,13 +92,14 @@ export const PasswordReset: React.FC = ({}) => {
                     />
                 </div>
 
-                <Button
-                    filled={true}
-                    className="mt-6 w-full"
+                <LoadingButton
+                    className="mt-8 w-full"
+                    isLoading={isLoading}
                     onClick={handleSubmit}
+                    ButtonComponent={FilledRedButton}
                 >
-                    Обновить пароль
-                </Button>
+                    Войти
+                </LoadingButton>
             </form>
         </div>
     );

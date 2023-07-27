@@ -1,7 +1,7 @@
 import React, {Fragment, memo} from 'react';
 import {Popover as PopoverComponent, Transition} from "@headlessui/react";
-import classNames from "classnames";
 import {BsChevronDown} from "react-icons/bs";
+import {twJoin} from "tailwind-merge";
 
 interface PopoverProps {
     containerClassName?: string;
@@ -18,12 +18,12 @@ export const Popover: React.FC<PopoverProps> = memo(({
                                                 }) => {
 
     return (
-        <div className={classNames(containerClassName)}>
+        <div className={twJoin(containerClassName)}>
             <PopoverComponent className="relative">
                 {({open, close}) => (
                     <>
                         <PopoverComponent.Button
-                            className={classNames(
+                            className={twJoin(
                                 open ? '' : 'text-opacity-90',
                                 "group inline-flex items-center",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
@@ -33,7 +33,7 @@ export const Popover: React.FC<PopoverProps> = memo(({
                         >
                             <span>Меню</span>
                             <BsChevronDown
-                                className={classNames(
+                                className={twJoin(
                                     open ? '' : 'text-opacity-70',
                                     "ml-2 h-5 w-5 transition duration-150 ease-in-out",
                                     "text-violet-100 group-hover:text-opacity-100"

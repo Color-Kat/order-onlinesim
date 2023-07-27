@@ -1,8 +1,8 @@
-import React, {Fragment, useCallback, useState} from 'react';
+import React, {Fragment, useCallback} from 'react';
 import {Listbox, Transition} from "@headlessui/react";
 import {HiChevronUpDown} from "react-icons/hi2";
 import {BsCheck2} from "react-icons/bs";
-import classNames from "classnames";
+import {twJoin, twMerge} from "tailwind-merge";
 
 interface SelectProps {
     data: { [key: string]: any };
@@ -11,6 +11,7 @@ interface SelectProps {
     options: string[];
 
     containerClassName?: string;
+    buttonClassName?: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -18,6 +19,8 @@ export const Select: React.FC<SelectProps> = ({
                                                   setData,
                                                   name,
                                                   options,
+
+                                                  buttonClassName,
                                                   containerClassName
 }) => {
     const onChangeHandler = useCallback((value: string) => {
@@ -25,7 +28,7 @@ export const Select: React.FC<SelectProps> = ({
     }, [name]);
 
     return (
-        <div className={classNames(
+        <div className={twMerge(
             "w-56",
             containerClassName
         )}>
@@ -33,10 +36,11 @@ export const Select: React.FC<SelectProps> = ({
                 <div className="relative">
 
                     <Listbox.Button
-                        className={classNames(
+                        className={twMerge(
                             "relative w-full cursor-default py-2 pl-3 pr-10 text-left z-0",
                             "focus:outline-none focus:ring-2 focus:ring-indigo-400/50",
-                            "rounded-lg bg-white shadow-md text-sm"
+                            "rounded-lg bg-white shadow-md text-sm",
+                            buttonClassName
                         )}
                     >
                         <span className="block truncate text-gray-900">{data[name]}</span>
@@ -56,7 +60,7 @@ export const Select: React.FC<SelectProps> = ({
                     >
 
                         <Listbox.Options
-                            className={classNames(
+                            className={twJoin(
                                 "absolute mt-1 max-h-60 w-full overflow-auto ring-1 ring-black ring-opacity-5 focus:outline-none",
                                 "rounded-lg bg-white py-1 text-sm shadow-lg text-left",
                                 "z-[1]"
@@ -75,7 +79,7 @@ export const Select: React.FC<SelectProps> = ({
                                     {({selected}) => (
                                         <>
                                             <span
-                                                className={classNames(
+                                                className={twJoin(
                                                     "block truncate",
                                                     selected ? 'font-medium' : 'font-normal'
                                                 )}
