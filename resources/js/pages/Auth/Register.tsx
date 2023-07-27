@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {Link, Navigate} from "react-router-dom";
-import Input from "@UI/Form/Input.tsx";
+import {Link} from "react-router-dom";
+import {Input} from "@components/Inputs";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useRegisterMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
-import {Loader} from "@UI/Loaders/Loader.tsx";
 import {LoadingButton} from "@components/Buttons";
 import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 

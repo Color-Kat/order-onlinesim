@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Input from "@UI/Form/Input.tsx";
+import {Input} from "@components/Inputs";
 import {BiLockAlt, BiLockOpenAlt} from "react-icons/bi";
 import {FiMail} from "react-icons/fi";
 import {useResetPasswordMutation} from "@/store/auth/auth.api.ts";

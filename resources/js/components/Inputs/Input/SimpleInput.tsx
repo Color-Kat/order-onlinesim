@@ -2,6 +2,8 @@ import React, {useCallback} from 'react';
 import {SimpleInputProps} from "@components/Inputs/Input/types.ts";
 import {twMerge} from "tailwind-merge";
 
+// Maskable input https://github.com/Color-Kat/victory-park-order/blob/master/resources/js/UI/Form/Input.tsx
+
 export const SimpleInput: React.FC<SimpleInputProps> = ({
                                                       data,
                                                       setData,

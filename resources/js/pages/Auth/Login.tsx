@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Link, Navigate} from "react-router-dom";
-import Input from "@UI/Form/Input.tsx";
+import {Link} from "react-router-dom";
+import {Input} from "@components/Inputs";
 import {BsPerson} from "react-icons/bs";
 import {BiLockAlt} from "react-icons/bi";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
