@@ -3,7 +3,7 @@ import {BsFillTrashFill} from "react-icons/bs";
 import {PinkButton} from "@UI/Buttons";
 import {twMerge} from "tailwind-merge";
 
-interface FileInputProps extends Partial<HTMLInputElement> {
+export interface FileInputProps extends Partial<HTMLInputElement> {
 
     data: { [key: string]: any };
     setData: React.Dispatch<React.SetStateAction<any>>;
@@ -114,7 +114,7 @@ export const FileInput: React.FC<FileInputProps> = ({
         >
 
             <div
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center text-center"
             >
                 <input
                     id="photoInput"
@@ -124,7 +124,7 @@ export const FileInput: React.FC<FileInputProps> = ({
                     className="hidden"
                     onChange={handleFileChange}
                 />
-                {data[name].length === 0 ? (
+                {!data[name] || data[name].length === 0 ? (
                     <>
                         <div className="w-56">
                             {dragAndDropText}

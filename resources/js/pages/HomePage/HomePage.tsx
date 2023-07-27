@@ -1,4 +1,3 @@
-import {Page} from '@modules/PageTemplates';
 import {Helmet} from "react-helmet";
 import {useTSelector} from "@hooks/redux.ts";
 import {
@@ -14,7 +13,7 @@ import {RainbowLoader} from "@UI/Loaders";
 import {LoadingButton, Button, RippleButton} from "@components/Buttons";
 import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
-import {BsFillTrashFill, BsPerson} from "react-icons/bs";
+import {BsFillTrashFill, BsMailbox, BsPerson} from "react-icons/bs";
 import {
     Autocomplete, Checkbox,
     FileInput,
@@ -29,6 +28,9 @@ import {Modal, SecondaryModal} from "@UI/Modals";
 import {Dialog} from "@headlessui/react";
 import {Popover} from "@UI/Popover";
 import {AiFillIeSquare} from "react-icons/ai";
+import {Form} from "@components/Form";
+import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {MdEmail} from "react-icons/md";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -45,7 +47,17 @@ export const HomePage = () => {
         textarea: 123,
     });
 
-    console.log(data)
+    const [form, setForm] = useState({
+        image: null,
+        name: '',
+        email: '',
+        password: '',
+        text: 'text',
+        number: 999,
+        agree: false
+    });
+
+    console.log(form)
 
     return (
         <div
@@ -143,10 +155,59 @@ export const HomePage = () => {
                             <Button ButtonComponent={BorderedRedButton}>Red</Button>
                         </div>
 
+                        <div className="flex gap-3">
+                            <Button ButtonComponent={FilledRedButton}>Filled</Button>
+                            {/*<Button ButtonComponent={BorderedRedButton}>Red</Button>*/}
+                        </div>
+
                     </div>
 
                     <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">
-
+                        <Form
+                            title="Form component"
+                            data={form}
+                            setData={setForm}
+                            fields={[
+                                {
+                                    name: 'image',
+                                    type: 'file',
+                                    containerClassName: 'min-h-32 border-red-500'
+                                },
+                                {
+                                    name: 'name',
+                                    Icon: BsPerson,
+                                    placeholder: 'Имя',
+                                },
+                                {
+                                    name: 'email',
+                                    Icon: MdEmail,
+                                    placeholder: 'Почта'
+                                },
+                                {
+                                    name: 'password',
+                                    type: 'password',
+                                    placeholder: 'Пароль'
+                                },
+                                {
+                                    name: 'text',
+                                    type: 'textarea',
+                                    placeholder: 'Текст'
+                                },
+                                {
+                                    name: 'number',
+                                    type: 'number',
+                                    label: 'Кол-во хромосом:',
+                                    description: 'Сколько их у вас?',
+                                    className: 'bg-slate-800 text-white',
+                                },
+                                {
+                                    name: 'agree',
+                                    type: 'checkbox',
+                                    children: 'Согласен взять $1 000 000 бесплатно'
+                                },
+                            ]}
+                            ButtonComponent={FilledRedButton}
+                        />
                     </div>
 
                     <div className="py-10 flex items-center justify-center flex-col gap-5 max-w-sm">

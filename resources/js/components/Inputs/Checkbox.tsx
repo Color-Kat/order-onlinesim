@@ -1,7 +1,7 @@
 import React, {FunctionComponent, InputHTMLAttributes, ReactNode, useCallback} from "react";
 import {twMerge} from "tailwind-merge";
 
-interface CheckboxProps extends InputHTMLAttributes<any> {
+export interface CheckboxProps extends InputHTMLAttributes<any> {
     data: { [key: string]: any };
     setData: React.Dispatch<React.SetStateAction<any>>;
     name: string;
