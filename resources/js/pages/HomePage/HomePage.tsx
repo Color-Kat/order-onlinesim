@@ -31,6 +31,7 @@ import {AiFillIeSquare} from "react-icons/ai";
 import {Form} from "@components/Form";
 import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
 import {MdEmail} from "react-icons/md";
+import {Paginate, usePaginate} from "@components/Paginate";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -58,7 +59,7 @@ export const HomePage = () => {
         agree: false
     });
 
-    console.log(data)
+    const {currentPage, pageCount, handlePageClick} = usePaginate(25, 5);
 
     return (
         <div
@@ -526,6 +527,14 @@ export const HomePage = () => {
                                 data={data}
                                 setData={setData}
                                 name="textarea"
+                            />
+                        </div>
+
+                        <div className="flex flex-wrap justify-between gap-3 w-full">
+                            <Paginate
+                                currentPage={currentPage}
+                                pageCount={pageCount}
+                                handlePageClick={handlePageClick}
                             />
                         </div>
                     </div>

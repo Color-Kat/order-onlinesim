@@ -26,7 +26,7 @@ export const Calendar: React.FC<CalendarProps> = memo(({
     return (
         <ReactCalendar
             locale="ru-RU"
-            className="w-full rounded-xl border-none bg-white/50 backdrop-blur-xl"
+            className="w-full rounded-xl border-none bg-white/50 backdrop-blur-xl shadow-lg"
             // tileClassName={({date}) => (twJoin(
             //     "rounded-lg",
             //     "active:bg-violet-500 focus:bg-violet-500",
