@@ -15,7 +15,7 @@ import React, {useCallback, useMemo, useState} from "react";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill, BsMailbox, BsPerson} from "react-icons/bs";
 import {
-    Autocomplete, Checkbox,
+    Autocomplete, Calendar, Checkbox,
     FileInput,
     Input,
     RadioGroup,
@@ -45,6 +45,7 @@ export const HomePage = () => {
         agree: true,
         radio: 2,
         textarea: 123,
+        date: '2005-12-06'
     });
 
     const [form, setForm] = useState({
@@ -57,7 +58,7 @@ export const HomePage = () => {
         agree: false
     });
 
-    console.log(form)
+    console.log(data)
 
     return (
         <div
@@ -207,6 +208,12 @@ export const HomePage = () => {
                                 },
                             ]}
                             ButtonComponent={FilledRedButton}
+                        />
+
+                        <Calendar
+                            data={data}
+                            setData={setData}
+                            name="date"
                         />
                     </div>
 

@@ -9,7 +9,7 @@ import {CheckboxProps} from "@components/Inputs/Checkbox.tsx";
 
 type FormField =
     string |
-    {type?: 'text' | 'textarea' | 'email' | 'password' | 'number'} & Omit<InputProps, 'data' | 'setData'> |
+    {type?: 'text' | 'textarea' | 'email' | 'password' | 'number' | 'date'} & Omit<InputProps, 'data' | 'setData'> |
     {type: 'file'} & Omit<FileInputProps, 'data' | 'setData'> |
     {type: 'checkbox'} & Omit<CheckboxProps, 'data' | 'setData'>
 ;
@@ -71,7 +71,8 @@ export const Form: React.FC<FormProps> = memo(({
                     field.type == 'text' ||
                     field.type == 'number' ||
                     field.type == 'password' ||
-                    field.type == 'email'
+                    field.type == 'email' ||
+                    field.type == 'date'
                 )
                     return <Input
                         key={field.name}

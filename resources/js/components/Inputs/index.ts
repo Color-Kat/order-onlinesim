@@ -14,3 +14,5 @@ export {SecondarySelect} from './SecondarySelect.tsx';
 export {Autocomplete} from './Autocomplete.tsx';
 
 export {Toggle} from './Toggle.tsx';
+
+export {Calendar} from './Calendar';
