@@ -70,5 +70,9 @@ module.exports = {
                 }
             },
         },
+    future: {
+        // Disable hover effect on mobile
+        hoverOnlyWhenSupported: true,
+    },
     plugins: [],
 }
