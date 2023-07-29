@@ -1,20 +1,9 @@
 import {Helmet} from "react-helmet";
 import {useTSelector} from "@hooks/redux.ts";
-import React, {useState} from "react";
-import {
-    FileInput,
-} from "@components/Inputs";
-import {Col1} from "@pages/HomePage/modules/Col1.tsx";
-import {Col2} from "@pages/HomePage/modules/Col2.tsx";
-import {Col3} from "@pages/HomePage/modules/Col3.tsx";
-import {Col4} from "@pages/HomePage/modules/Col4.tsx";
+import React from "react";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
-
-    const [data, setData] = useState({
-        images: [],
-    });
 
     return (
         <div
@@ -35,25 +24,9 @@ export const HomePage = () => {
                 } ;)
                 </div>
 
-                <FileInput
-                    data={data}
-                    setData={setData}
-                    name="images"
 
-                    buttonText="Выберите фото"
-                    dragAndDropText="Перетащите фото сюда"
-                />
 
-                <div className="w-full py-10 flex justify-between items-start gap-8 overflow-x-aut no-scrollbar">
 
-                    <Col1 />
-
-                    <Col2 />
-
-                    <Col3 />
-
-                    <Col4 />
-                </div>
             </div>
         </div>
     );

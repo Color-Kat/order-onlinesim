@@ -9,9 +9,9 @@ export const Header = () => {
     const [logout] = useLogoutMutation();
 
     return (
-        <header className="flex justify-center items-center h-16 px-5 py-1 w-full bg-gray-100 text-gray-800">
+        <header className="flex justify-center items-center h-16 px-5 py-1 shrink-0 w-full bg-gray-100 text-gray-800">
             <div className="container flex justify-evenly items-center">
-                <Link to="/favourites" className="hover:underline">Another page</Link>
+                <Link to="/test" className="hover:underline">Test</Link>
 
                 <Logo/>
 

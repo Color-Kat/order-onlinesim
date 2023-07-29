@@ -10,13 +10,14 @@ import {PasswordReset} from "@pages/Auth/PasswordReset.tsx";
 
 import {AdminRoute, AuthRoute, NotAuthRoute} from "@/utils/router";
 import {AdminIndexPage} from "@pages/Admin/AdminIndexPage.tsx";
+import {TestPage} from "@pages/TestPage/TestPage.tsx";
 
 function App() {
     return (
         <Layout>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route path="/favourites" element={<FavouritesPage/>}/>
+                <Route path="/test" element={<TestPage/>}/>
 
                 {/*  Auth  */}
                 <Route element={<NotAuthRoute />}>
