@@ -7,7 +7,7 @@ import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useLoginMutation} from "@/store/auth/auth.api.ts";
 import {Checkbox} from "@components/Inputs";
 import {LoadingButton} from "@components/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {StandardFilledButton} from "@UI/Buttons";
 
 export const Login: React.FC = ({}) => {
     const [login, {error, isLoading}] = useLoginMutation();
@@ -94,7 +94,7 @@ export const Login: React.FC = ({}) => {
                     className="mt-8 w-full"
                     isLoading={isLoading}
                     onClick={handleSubmit}
-                    ButtonComponent={FilledRedButton}
+                    ButtonComponent={StandardFilledButton}
                 >
                     Войти
                 </LoadingButton>

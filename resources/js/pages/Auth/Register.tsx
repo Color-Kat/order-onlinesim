@@ -7,7 +7,7 @@ import {FiMail} from "react-icons/fi";
 import {useRegisterMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {LoadingButton} from "@components/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {StandardFilledButton} from "@UI/Buttons";
 
 export const Register: React.FC = ({}) => {
     const [register, {isLoading}] = useRegisterMutation();
@@ -98,7 +98,7 @@ export const Register: React.FC = ({}) => {
                     className="mt-8 w-full"
                     isLoading={isLoading}
                     onClick={handleSubmit}
-                    ButtonComponent={FilledRedButton}
+                    ButtonComponent={StandardFilledButton}
                 >
                     Войти
                 </LoadingButton>

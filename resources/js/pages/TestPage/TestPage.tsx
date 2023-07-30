@@ -35,7 +35,7 @@ export const TestPage = () => {
                     dragAndDropText="Перетащите фото сюда"
                 />
 
-                <div className="w-full py-10 flex justify-between items-start gap-8 overflow-x-auto no-scrollbar">
+                <div className="w-full px-1.5 py-10 flex justify-between items-start gap-8 overflow-x-auto no-scrollbar">
 
                     <Col1 />
 

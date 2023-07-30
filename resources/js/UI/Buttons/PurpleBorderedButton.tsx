@@ -5,7 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
 }
 
-export const BorderedPurpleButton: React.FC<ButtonProps> = ({
+export const PurpleBorderedButton: React.FC<ButtonProps> = ({
                                                                 children,
                                                                 ...props
                                                             }) => {

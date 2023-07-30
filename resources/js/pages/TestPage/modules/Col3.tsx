@@ -3,7 +3,7 @@ import {RainbowLoader} from "@UI/Loaders";
 import {Button, LoadingButton, RippleButton} from "@components/Buttons";
 import {
     BlueButton,
-    BorderedButton, BorderedPurpleButton, BorderedRedButton,
+    BorderedButton, PurpleBorderedButton, RedBorderedButton,
     GrayButton,
     LimeButton,
     PinkButton,
@@ -11,7 +11,7 @@ import {
     SuccessButton,
     WhiteButton
 } from "@UI/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {RedFilledButton} from "@UI/Buttons/RedFilledButton.tsx";
 import {Form} from "@components/Form";
 import {BsPerson} from "react-icons/bs";
 import {MdEmail} from "react-icons/md";
@@ -78,7 +78,7 @@ export const Col3: React.FC<RowProps> = memo(({}) => {
                         children: 'Согласен взять $1 000 000 бесплатно'
                     },
                 ]}
-                ButtonComponent={FilledRedButton}
+                ButtonComponent={RedFilledButton}
             />
 
             <Calendar

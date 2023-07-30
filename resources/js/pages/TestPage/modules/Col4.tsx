@@ -3,7 +3,7 @@ import {RainbowLoader} from "@UI/Loaders";
 import {Button, LoadingButton, RippleButton} from "@components/Buttons";
 import {
     BlueButton,
-    BorderedButton, BorderedPurpleButton, BorderedRedButton,
+    BorderedButton, PurpleBorderedButton, RedBorderedButton,
     GrayButton,
     LimeButton,
     PinkButton,
@@ -11,7 +11,7 @@ import {
     SuccessButton,
     WhiteButton
 } from "@UI/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {RedFilledButton} from "@UI/Buttons/RedFilledButton.tsx";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill, BsPerson} from "react-icons/bs";
 import {Autocomplete, Checkbox, Input, RadioGroup, SecondarySelect, Select, Textarea, Toggle} from "@components/Inputs";

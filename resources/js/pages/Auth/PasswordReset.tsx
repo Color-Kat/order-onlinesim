@@ -6,8 +6,7 @@ import {useResetPasswordMutation} from "@/store/auth/auth.api.ts";
 import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {Link, useSearchParams} from "react-router-dom";
 import {LoadingButton} from "@components/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
-
+import {StandardFilledButton} from "@UI/Buttons";
 
 export const PasswordReset: React.FC = ({}) => {
     const [searchParams] = useSearchParams();
@@ -96,7 +95,7 @@ export const PasswordReset: React.FC = ({}) => {
                     className="mt-8 w-full"
                     isLoading={isLoading}
                     onClick={handleSubmit}
-                    ButtonComponent={FilledRedButton}
+                    ButtonComponent={StandardFilledButton}
                 >
                     Войти
                 </LoadingButton>

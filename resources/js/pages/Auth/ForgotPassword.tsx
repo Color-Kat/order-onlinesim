@@ -6,8 +6,7 @@ import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {useForgotPasswordMutation} from "@/store/auth/auth.api.ts";
 import {useUser} from "@hooks/auth.ts";
 import {LoadingButton} from "@components/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
-
+import {StandardFilledButton} from "@UI/Buttons";
 
 export const ForgotPassword: React.FC = ({}) => {
     const user = useUser();
@@ -76,7 +75,7 @@ export const ForgotPassword: React.FC = ({}) => {
                     className="mt-8 w-full"
                     isLoading={isLoading}
                     onClick={handleSubmit}
-                    ButtonComponent={FilledRedButton}
+                    ButtonComponent={StandardFilledButton}
                 >
                     Войти
                 </LoadingButton>

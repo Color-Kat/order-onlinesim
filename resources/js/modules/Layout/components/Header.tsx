@@ -1,30 +1,61 @@
-import React, {memo, useState} from 'react';
+import React, {memo, ReactNode, useCallback, useState} from 'react';
 import {Logo} from "@UI/Elements/Logo/Logo";
 import {Link, NavLink} from "react-router-dom";
 import {useTSelector} from "@hooks/redux.ts";
 import {useLogoutMutation} from "@/store/auth/auth.api.ts";
 import {BorderRightLineEffect} from "@UI/Effects";
 import {twJoin} from "tailwind-merge";
+import {Button} from "@components/Buttons";
+import {Dropdown} from "@components/Dropdowns";
 
-const HeaderNavItem: React.FC<{ title: string, link: string }> = memo(({
-                                                                           title,
-                                                                           link
-                                                                       }) => {
+const HeaderNavItem: React.FC<{ children: ReactNode, link: string }> = memo(({
+                                                                                 children,
+                                                                                 link
+                                                                             }) => {
     return (
         <NavLink to={link} className="">
             {({isActive}) => (
                 <BorderRightLineEffect as="li" active={isActive}>
-                    {title}
+                    {children}
                 </BorderRightLineEffect>
             )}
         </NavLink>
     );
 });
 
-export const Header = memo(() => {
+const AuthButton: React.FC = memo(() => {
+
     const user = useTSelector(state => state.auth.user);
     const [logout] = useLogoutMutation();
 
+    if(user) return (
+        <div className="flex items-center gap-3">
+            {user.name}
+            {/*<Dropdown*/}
+            {/*    title={user.name}*/}
+            {/*    items={[*/}
+            {/*        {*/}
+            {/*            text: '123'*/}
+            {/*        }*/}
+            {/*    ]}*/}
+            {/*/>*/}
+        </div>
+    );
+
+    return (
+        <Link to="/login">
+            <Button>Войти</Button>
+        </Link>
+    );
+
+    // {
+    //     user
+    //         ? <button onClick={() => logout()}>Выйти</button>
+    //         : <Link to="/login" className="hover:underline">Войти</Link>
+    // }
+});
+
+export const Header = memo(() => {
     // Replace javascript:void(0) path with your path
     const navigation = [
         {title: "Тест", link: "/test"},
@@ -34,98 +65,79 @@ export const Header = memo(() => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
-        <header>
-            <nav className="items-center py-1 h-16 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
-                <div className="flex justify-between">
-                    <a href="javascript:void(0)">
-                        <img
-                            src="https://www.floatui.com/logo.svg"
-                            width={120}
-                            height={50}
-                            alt="Float UI logo"
-                        />
-                    </a>
-                    <button className="text-gray-500 outline-none md:hidden"
-                            onClick={() => setShowMobileMenu(prev => !prev)}
-                    >
-                        {
-                            showMobileMenu ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            ) : (
+        <header className="flex shrink-0 w-screen bg-app">
+            <nav className="flex justify-between items-center gap-6 py-1 h-16 page-container w-full">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            )
-                        }
-                    </button>
-                </div>
-                <ul className={`flex-1 justify-between mt-12 md:flex md:mt-0 ${showMobileMenu ? '' : 'hidden'}`}>
-                    <li className="order-2 pb-5 md:pb-0">
-                        <a href="javascript:void(0)" className="py-3 px-6 rounded-md shadow-md text-white text-center bg-indigo-500 focus:shadow-none block md:inline">
-                            Sign In
-                        </a>
-                    </li>
-                    <div className="order-1 flex-1 justify-center items-center space-y-5 md:flex md:space-x-6 md:space-y-0">
-                        {
-                            navigation.map((item, idx) => (
-                                <li className="text-gray-500 hover:text-indigo-600" key={idx}>
-                                    <a href={item.link}>{item.title}</a>
-                                </li>
-                            ))
-                        }
-                    </div>
-                </ul>
-            </nav>
-        </header>
-    )
-
-    return (
-        <header>
-            <nav className="flex md:flex-row flex-col items-center justify-between py-1 px-4 sm:px-8 h-16 container mx-auto">
-
+                {/* Logo (Left) */}
                 <Logo/>
 
-
-                <ul className={twJoin(
-                    `flex-1 justify-between mt-12 flex md:mt-0 ${showMobileMenu ? '' : 'hidden'}`,
-                )}>
-                    <div
-                        className="flex-1 justify-center items-center space-y-5 md:flex md:space-x-6 md:space-y-0">
-                        {
-                            navigation.map((item) => (
-                                <HeaderNavItem {...item} key={item.link}/>
-                            ))
-                        }
-                    </div>
+                {/* Links (center) */}
+                <ul
+                    className="flex items-center gap-5"
+                >
+                    {
+                        navigation.map((item) => (
+                            <HeaderNavItem link={item.link} key={item.link}>
+                                {item.title}
+                            </HeaderNavItem>
+                        ))
+                    }
                 </ul>
 
-               <div>
-                   <div className="flex items-center">
-                       {
-                           user
-                               ? <button onClick={() => logout()}>Выйти</button>
-                               : <Link to="/login" className="hover:underline">Войти</Link>
-                       }
-                   </div>
+                {/* Auth button + burger menu (Right) */}
+                <div className="flex-center">
 
-                   <button className="text-gray-500 outline-none md:hidden"
-                           onClick={() => setShowMobileMenu(prev => !prev)}
-                   >
-                       {
-                           showMobileMenu ? (
-                               <div>open</div>
-                           ) : (
-                               <div>close</div>
-                           )
-                       }
-                   </button>
-               </div>
+                    <AuthButton />
+
+                    {/* Burger menu with animation */}
+                    <button
+                        onClick={useCallback(() => setShowMobileMenu(prev => !prev), [])}
+                        id="mobile-menu-toggle"
+                        className="md:hidden flex relative py-1 w-8 h-8 rounded-md flex-col items-center justify-evenly ml-2 focus-visible:ring-2 ring-black/20 outline-none "
+                    >
+                        <div
+                            className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute rotate-45 top-1/2' : ''}`}
+                        />
+                        <div
+                            className={`h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute w-0' : 'w-2/3'}`}
+                        />
+                        <div
+                            className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute -rotate-45 top-1/2' : ''}`}
+                        />
+                    </button>
+                </div>
             </nav>
+
+            {/*  Mobile menu  */}
+            {/*<nav*/}
+            {/*    className={`*/}
+            {/*            block md:hidden fixed top-0 ${showMobileMenu ? 'right-0' : '-right-full'} transition-all*/}
+            {/*            h-screen w-full sm:w-1/2 app-bg-dark pt-20 shadow-2xl z-20*/}
+            {/*        `}*/}
+            {/*>*/}
+            {/*    <ul className="flex flex-col pl-5 ">*/}
+            {/*        {navigation.map((item) => (*/}
+            {/*            <MobileHeaderLink name={item.link} key={i}>*/}
+            {/*                <span>{link.text}</span>*/}
+            {/*            </MobileHeaderLink>*/}
+            {/*        ))}*/}
+            {/*    </ul>*/}
+
+            {/*    <div className="mt-24">*/}
+            {/*        <div id="yandex_rtb_R-A-1834268-6"></div>*/}
+            {/*    </div>*/}
+
+            {/*    <span className="text-center w-full absolute bottom-5 text-app-dark">*/}
+            {/*        @copyright ColorBit-mining <br/> by ColorKat. <br/> All rights reserved.*/}
+            {/*    </span>*/}
+            {/*</nav>*/}
+
+            <div
+                onClick={() => setShowMobileMenu(false)}
+                className={`w-screen h-screen absolute ${showMobileMenu ? "pointer-events-auto" : "pointer-events-none"} z-10`}
+            />
         </header>
-    );
+    )
 
     return (
         <header className="flex justify-center items-center h-16 px-5 py-1 shrink-0 w-full bg-gray-100 text-gray-800">
@@ -133,12 +145,6 @@ export const Header = memo(() => {
                 <Link to="/test" className="hover:underline">Test</Link>
 
                 <Logo/>
-
-                {
-                    user
-                        ? <button onClick={() => logout()}>Выйти</button>
-                        : <Link to="/login" className="hover:underline">Войти</Link>
-                }
             </div>
         </header>
     );

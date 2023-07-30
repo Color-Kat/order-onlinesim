@@ -3,15 +3,15 @@ import {RainbowLoader} from "@UI/Loaders";
 import {Button, LoadingButton, RippleButton} from "@components/Buttons";
 import {
     BlueButton,
-    BorderedButton, BorderedPurpleButton, BorderedRedButton,
+    BorderedButton, PurpleBorderedButton, RedBorderedButton,
     GrayButton,
     LimeButton,
     PinkButton,
-    PurpleButton,
+    PurpleButton, RedButton, StandardButton,
     SuccessButton,
-    WhiteButton
+    WhiteButton, StandardFilledButton
 } from "@UI/Buttons";
-import {FilledRedButton} from "@UI/Buttons/FilledRedButton.tsx";
+import {RedFilledButton} from "@UI/Buttons/RedFilledButton.tsx";
 
 interface Col1Props {
 
@@ -27,8 +27,12 @@ export const Col1: React.FC<Col1Props> = memo(({}) => {
             <RainbowLoader/>
 
             <div className="flex gap-3">
+                <StandardButton>Standard</StandardButton>
+                <StandardFilledButton>Filled</StandardFilledButton>
+            </div>
 
-                <Button onClick={toggleLoading}>Hello</Button>
+            <div className="flex gap-3">
+                <Button onClick={toggleLoading} ButtonComponent={RedButton}>Hello</Button>
                 <Button ButtonComponent={SuccessButton}>Success</Button>
             </div>
 
@@ -84,12 +88,12 @@ export const Col1: React.FC<Col1Props> = memo(({}) => {
             </div>
 
             <div className="flex gap-3">
-                <Button ButtonComponent={BorderedPurpleButton}>Purple</Button>
-                <Button ButtonComponent={BorderedRedButton}>Red</Button>
+                <Button ButtonComponent={PurpleBorderedButton}>Purple</Button>
+                <Button ButtonComponent={RedBorderedButton}>Red</Button>
             </div>
 
             <div className="flex gap-3">
-                <Button ButtonComponent={FilledRedButton}>Filled</Button>
+                <Button ButtonComponent={RedFilledButton}>Filled</Button>
                 {/*<Button ButtonComponent={BorderedRedButton}>Red</Button>*/}
             </div>
 
