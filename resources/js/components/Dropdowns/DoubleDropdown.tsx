@@ -105,7 +105,7 @@ export const DoubleDropdown: React.FC<
                             {/* Iterate group items */}
 
                             {items.map((item, i) => (
-                                <DropdownItem key={item.text + i} item={item}/>
+                                <DropdownItem key={i} item={item}/>
                             ))}
 
                         </div>

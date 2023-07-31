@@ -1,9 +1,9 @@
-import React, {Component, memo} from "react";
+import React, {Component, memo, ReactNode} from "react";
 import {Menu} from "@headlessui/react";
 import {twJoin} from "tailwind-merge";
 
 export interface IDropdownItem {
-    text: string;
+    text?: ReactNode;
     Icon?: any;
     disabled?: boolean;
     onClick?: any;
@@ -16,7 +16,7 @@ export const DropdownItem: React.FC<{ item: IDropdownItem }> = memo(({item}) => 
     return (
         <Menu.Item>
             {({active}) => {
-                if (item.Component) return <item.Component />
+                if (item.Component) return <item.Component />;
 
                 return (
                     (

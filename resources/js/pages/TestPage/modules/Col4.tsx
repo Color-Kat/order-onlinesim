@@ -52,15 +52,15 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                     title="Dropdown With Groups"
                     header="Pop-pup ;)"
                     containerClassName="bg-indigo-100"
-                    groups={{
-                        0: [
+                    groups={[
+                        [
                             {text: 'group 1', onClick: () => alert("I'm one"),},
                             {text: 'group 1'}
                         ],
-                        2: [
+                        [
                             {text: 'group 2',}
                         ],
-                        3: [
+                        [
                             {
                                 text: 'click me',
                                 onClick: () => alert("Stop clicking on me!!!"),
@@ -68,7 +68,7 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                                 disabled: true
                             }
                         ]
-                    }}
+                    ]}
                 />
             </div>
 
@@ -76,48 +76,48 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                 <DoubleDropdown
                     title="Double Dropdown"
                     header="Choose your side"
-                    groups={{
-                        0: [
+                    groups={[
+                        [
                             {text: 'group 0'},
                         ],
-                        1: [
+                        [
                             {
                                 text: 'click me 1',
                                 onClick: () => alert("Stop clicking on me!!!"),
                                 Icon: BsFillTrashFill
                             }
                         ],
-                        2: [
+                        [
                             {text: 'group 2',},
                             {text: 'group 2',}
                         ],
-                        3: [
+                        [
                             {text: 'group 4',},
                             {text: 'group 4',}
                         ],
-                    }}
+                    ]}
                 />
 
                 <SecondaryDropdown
                     title="Secondary"
                     header="Header"
                     className="ml-auto"
-                    groups={{
-                        0: [
+                    groups={[
+                        [
                             {text: 'group 1', onClick: () => alert("I'm one"),},
                             {text: 'group 1'}
                         ],
-                        2: [
+                        [
                             {text: 'group 2',}
                         ],
-                        3: [
+                        [
                             {
                                 text: 'click me',
                                 onClick: () => alert("Stop clicking on me!!!"),
                                 Icon: BsFillTrashFill
                             }
                         ]
-                    }}
+                    ]}
                 />
             </div>
 

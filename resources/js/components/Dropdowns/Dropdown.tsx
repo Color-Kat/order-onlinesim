@@ -16,7 +16,7 @@ interface DropdownProps {
 
 type DropdownWithItemsProps = { items: IDropdownItem[] };
 
-type DropdownWithGroupsProps = { groups: { [key: number]: IDropdownItem[] } };
+type DropdownWithGroupsProps = { groups: IDropdownItem[][] };
 
 /**
  * Component of dropdown menu.
@@ -42,9 +42,9 @@ export const Dropdown: React.FC<
      }) => {
 
     // Make one group from non-grouped items list
-    const groups: { [key: string]: IDropdownItem[] } = useMemo(() => {
+    const groups: IDropdownItem[][] = useMemo(() => {
         if ('groups' in props) return props.groups;
-        else return {1: props.items} as any;
+        else return [props.items] as any;
     }, []);
 
     return (
@@ -97,15 +97,15 @@ export const Dropdown: React.FC<
                     )}
                 >
                     {/* Header */}
-                    {header && <h6 className="py-1.5 px-2 font-semibold text-indigo-400 cursor-default">{header}</h6>}
+                    {header && <h6 className="py-1.5 px-2 font-semibold text-xs text-indigo-400 cursor-default">{header}</h6>}
 
                     {/* Iterate groups */}
-                    {Object.values(groups).map((items, i) => (
+                    {groups.map((items, i) => (
                         <div className="px-1 py-1" key={i}>
 
                             {/* Iterate group items */}
                             {items.map((item, i) => (
-                                <DropdownItem key={item.text + i} item={item}/>
+                                <DropdownItem key={i} item={item}/>
                             ))}
 
                         </div>

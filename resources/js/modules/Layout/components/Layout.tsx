@@ -1,6 +1,6 @@
 import {memo} from "react";
 
-import {Header} from "./Header";
+import {Header} from "./Header/Header.tsx";
 import Main from "./Main";
 import Footer from "./Footer";
 import {twJoin} from "tailwind-merge";
