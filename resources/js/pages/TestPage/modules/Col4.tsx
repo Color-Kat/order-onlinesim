@@ -1,17 +1,9 @@
-import React, {memo, useCallback, useState} from 'react';
-import {RainbowLoader} from "@UI/Loaders";
-import {Button, LoadingButton, RippleButton} from "@components/Buttons";
+import React, {memo, useState} from 'react';
+import {RippleButton} from "@components/Buttons";
 import {
-    BlueButton,
-    BorderedButton, PurpleBorderedButton, RedBorderedButton,
-    GrayButton,
-    LimeButton,
-    PinkButton,
     PurpleButton,
     SuccessButton,
-    WhiteButton
 } from "@UI/Buttons";
-import {RedFilledButton} from "@UI/Buttons/RedFilledButton.tsx";
 import {DoubleDropdown, Dropdown, SecondaryDropdown} from "@components/Dropdowns";
 import {BsFillTrashFill, BsPerson} from "react-icons/bs";
 import {Autocomplete, Checkbox, Input, RadioGroup, SecondarySelect, Select, Textarea, Toggle} from "@components/Inputs";
@@ -214,7 +206,8 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
 
                             <div className="mt-4">
                                 <p className="text-base text-indigo-500">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit minus porro reprehenderit veritatis.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit minus porro
+                                    reprehenderit veritatis.
                                 </p>
                             </div>
 

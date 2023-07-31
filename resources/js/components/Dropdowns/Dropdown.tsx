@@ -1,11 +1,11 @@
-import React, {Fragment, useMemo} from 'react';
+import React, {Fragment, ReactNode, useMemo} from 'react';
 import {Menu, Transition} from "@headlessui/react";
 import {BsChevronDown} from "react-icons/bs";
 import {DropdownItem, IDropdownItem} from "@components/Dropdowns/components/DropdownItem.tsx";
 import {twMerge} from "tailwind-merge";
 
 interface DropdownProps {
-    title: string;
+    title: ReactNode;
     header?: string;
     className?: string;
     buttonClassName?: string;

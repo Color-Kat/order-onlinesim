@@ -4,7 +4,6 @@ import {Link, NavLink} from "react-router-dom";
 import {useTSelector} from "@hooks/redux.ts";
 import {useLogoutMutation} from "@/store/auth/auth.api.ts";
 import {BorderRightLineEffect} from "@UI/Effects";
-import {twJoin} from "tailwind-merge";
 import {Button} from "@components/Buttons";
 import {Dropdown} from "@components/Dropdowns";
 
@@ -30,15 +29,88 @@ const AuthButton: React.FC = memo(() => {
 
     if(user) return (
         <div className="flex items-center gap-3">
-            {user.name}
-            {/*<Dropdown*/}
-            {/*    title={user.name}*/}
-            {/*    items={[*/}
-            {/*        {*/}
-            {/*            text: '123'*/}
-            {/*        }*/}
-            {/*    ]}*/}
-            {/*/>*/}
+            <Dropdown
+                title={<div>{user.name}</div>}
+                buttonClassName="bg-indigo-500 hover:bg-indigo-500/90"
+                header="List"
+                containerClassName="w-32"
+                items={[
+                    {text: 'Item 1'},
+                    {text: 'Item 2'},
+                    {text: 'Item 3'},
+                    {text: 'Item 4'},
+                    {text: 'Item 5'},
+                ]}
+            />
+                {/*<Dropdown*/}
+                {/*    align="right"*/}
+                {/*    width="48"*/}
+                {/*    renderTrigger={() =>*/}
+                {/*        <span className="inline-flex rounded-md ">*/}
+                {/*        <button*/}
+                {/*            type="button"*/}
+                {/*            className="relative inline-flex items-center px-3 py-2 border border-transparent text-md leading-4 font-medium rounded-md text-gray-300 app-bg-dark hover:text-gray-200 focus:outline-none transition"*/}
+                {/*        >*/}
+                {/*            {user.name}*/}
+
+                {/*            /!* Friend notification *!/*/}
+                {/*            {user.pending_friends_from_count ?*/}
+                {/*                <div*/}
+                {/*                    className="rounded-full bg-red-500 w-[16px] h-[16px] absolute top-0 left-0 flex items-center justify-center text-gray-100 text-sm font-bold font-mono">*/}
+                {/*                    {user.pending_friends_from_count}*/}
+                {/*                </div> : null*/}
+                {/*            }*/}
+                {/*        </button>*/}
+
+                {/*        <button*/}
+                {/*            className="hidden md:flex text-sm border-2 border-transparent rounded-full transition border-red-500">*/}
+                {/*            <img*/}
+                {/*                className="h-9 w-9 rounded-full object-cover"*/}
+                {/*                src={user.profile_photo_url}*/}
+                {/*                alt={user.name}*/}
+                {/*            />*/}
+                {/*        </button>*/}
+                {/*    </span>*/}
+                {/*    }*/}
+                {/*>*/}
+                {/*    /!* <!-- Account Management --> *!/*/}
+                {/*    <div className="block px-4 py-2 text-xs md:text-sm text-black font-semibold">*/}
+                {/*        Управление аккаунтом*/}
+                {/*    </div>*/}
+
+                {/*    <DropdownLink href={route('profile.show')}>*/}
+                {/*        Профиль*/}
+                {/*    </DropdownLink>*/}
+
+                {/*    <DropdownLink href={route('leaderboard')}>*/}
+                {/*        Таблица лидеров*/}
+                {/*    </DropdownLink>*/}
+
+                {/*    <DropdownLink href={route('user.friends')}>*/}
+                {/*        <div className="relative w-max">*/}
+                {/*            Друзья*/}
+
+                {/*            /!* Friend notification *!/*/}
+                {/*            {user.pending_friends_from_count ?*/}
+                {/*                <div*/}
+                {/*                    className="rounded-full bg-red-500 w-[18px] h-[18px] absolute -top-1 -right-5 flex items-center justify-center text-base font-bold font-mono text-gray-200">*/}
+                {/*                    {user.pending_friends_from_count}*/}
+                {/*                </div> : null*/}
+                {/*            }*/}
+                {/*        </div>*/}
+                {/*    </DropdownLink>*/}
+
+                {/*    {isAdmin && (*/}
+                {/*        <DropdownLink href={route('admin.dashboard')}>*/}
+                {/*            Админ панель*/}
+                {/*        </DropdownLink>*/}
+                {/*    )}*/}
+
+                {/*    /!* <!-- Authentication --> *!/*/}
+                {/*    <div onClick={logout} className="border-gray-400 border-t-2">*/}
+                {/*        <DropdownLink>Выйти</DropdownLink>*/}
+                {/*    </div>*/}
+                {/*</Dropdown>*/}
         </div>
     );
 

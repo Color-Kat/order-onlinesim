@@ -5,7 +5,6 @@ import {IDropdownItem} from "@components/Dropdowns/components/DropdownItem.tsx";
 import {SecondaryDropdownItem} from "@components/Dropdowns/components/SecondaryDropdownItem.tsx";
 import {twMerge} from "tailwind-merge";
 
-
 interface DropdownProps {
     title: string;
     header?: string;
