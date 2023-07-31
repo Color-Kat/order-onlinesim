@@ -1,11 +1,12 @@
-import React, {Fragment, useMemo} from 'react';
+import React, {Fragment, ReactNode, useMemo} from 'react';
 import {Menu, Transition} from "@headlessui/react";
 import {BsChevronDown} from "react-icons/bs";
 import {DropdownItem, IDropdownItem} from "@components/Dropdowns/components/DropdownItem.tsx";
 import {twMerge} from "tailwind-merge";
 
 interface DropdownProps {
-    title: string;
+    title?: ReactNode;
+    ButtonComponent?: any;
     header?: string;
     className?: string;
     buttonClassName?: string;
@@ -32,8 +33,9 @@ export const DoubleDropdown: React.FC<
     (DropdownWithItemsProps | DropdownWithGroupsProps) & DropdownProps
 > = ({
          title = 'Options',
+         ButtonComponent,
          header = '',
-    className,
+         className,
          buttonClassName,
          containerClassName,
          ...props
@@ -48,20 +50,31 @@ export const DoubleDropdown: React.FC<
     return (
         <Menu as="div" className={twMerge("relative inline-block text-left", className)}>
             <div>
-                <Menu.Button
-                    className={twMerge(
-                        "inline-flex justify-center focus:outline-none focus:ring-2 focus:ring-black/10",
-                        "px-4 py-2",
-                        "w-full bg-black/20 hover:bg-black/30 text-white text-sm rounded-lg",
-                        buttonClassName
-                    )}
-                >
-                    {title}
-                    <BsChevronDown
-                        className="ml-2 -mr-1 h-5 w-5 text-violet-100 hover:text-violet-100"
-                        aria-hidden="true"
-                    />
-                </Menu.Button>
+
+                {/* Custom button */}
+                {ButtonComponent &&
+                    <Menu.Button>
+                        <ButtonComponent/>
+                    </Menu.Button>
+                }
+
+                {/* Default button */}
+                {!ButtonComponent &&
+                    <Menu.Button
+                        className={twMerge(
+                            "inline-flex justify-center focus:outline-none focus:ring-2 focus:ring-black/10",
+                            "px-4 py-2",
+                            "w-full bg-black/20 hover:bg-black/30 text-white text-sm rounded-lg",
+                            buttonClassName
+                        )}
+                    >
+                        {title}
+                        <BsChevronDown
+                            className="ml-2 -mr-1 h-5 w-5 text-violet-100 hover:text-violet-100"
+                            aria-hidden="true"
+                        />
+                    </Menu.Button>
+                }
             </div>
             <Transition
                 as={Fragment}
@@ -82,7 +95,8 @@ export const DoubleDropdown: React.FC<
                     )}
                 >
                     {/* Header */}
-                    {header && <h6 className="py-1.5 px-2 font-semibold text-zinc-600 cursor-default col-span-2">{header}</h6>}
+                    {header &&
+                        <h6 className="py-1.5 px-2 font-semibold text-zinc-600 cursor-default col-span-2">{header}</h6>}
 
                     {/* Iterate groups */}
                     {Object.values(groups).map((items, i) => (

@@ -1,12 +1,13 @@
-import React, {Fragment, memo, useMemo} from 'react';
+import React, {Fragment, ReactNode, useMemo} from 'react';
 import {Menu, Transition} from "@headlessui/react";
 import {BsChevronDown} from "react-icons/bs";
-import {IDropdownItem} from "@components/Dropdowns/components/DropdownItem.tsx";
-import {SecondaryDropdownItem} from "@components/Dropdowns/components/SecondaryDropdownItem.tsx";
+import {IDropdownItem} from "./components/DropdownItem.tsx";
+import {SecondaryDropdownItem} from "./components/SecondaryDropdownItem.tsx";
 import {twMerge} from "tailwind-merge";
 
 interface DropdownProps {
-    title: string;
+    title?: ReactNode;
+    ButtonComponent?: any;
     header?: string;
     className?: string;
     buttonClassName?: string;
@@ -33,6 +34,7 @@ export const SecondaryDropdown: React.FC<
     (DropdownWithItemsProps | DropdownWithGroupsProps) & DropdownProps
 > = ({
          title = 'Options',
+         ButtonComponent,
          header = '',
          className,
          buttonClassName,
@@ -49,21 +51,32 @@ export const SecondaryDropdown: React.FC<
     return (
         <Menu as="div" className={twMerge("relative inline-block text-left", className)}>
             <div>
-                <Menu.Button
-                    className={twMerge(
-                        "inline-flex justify-center",
-                        "focus:ring-2 focus:outline-none focus:ring-indigo-400",
-                        "px-4 py-2",
-                        "w-full bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm rounded-lg transition-colors duration-150 border border-gray-700",
-                        buttonClassName
-                    )}
-                >
-                    {title}
-                    <BsChevronDown
-                        className="ml-2 -mr-1 h-5 w-5 text-violet-100 hover:text-violet-100"
-                        aria-hidden="true"
-                    />
-                </Menu.Button>
+
+                {/* Custom button */}
+                {ButtonComponent &&
+                    <Menu.Button>
+                        <ButtonComponent/>
+                    </Menu.Button>
+                }
+
+                {/* Default button */}
+                {!ButtonComponent &&
+                    <Menu.Button
+                        className={twMerge(
+                            "inline-flex justify-center",
+                            "focus:ring-2 focus:outline-none focus:ring-indigo-400",
+                            "px-4 py-2",
+                            "w-full bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm rounded-lg transition-colors duration-150 border border-gray-700",
+                            buttonClassName
+                        )}
+                    >
+                        {title}
+                        <BsChevronDown
+                            className="ml-2 -mr-1 h-5 w-5 text-violet-100 hover:text-violet-100"
+                            aria-hidden="true"
+                        />
+                    </Menu.Button>
+                }
             </div>
 
             {/* Use transition for smooth appearance */}

@@ -16,7 +16,7 @@ export const DropdownItem: React.FC<{ item: IDropdownItem }> = memo(({item}) => 
     return (
         <Menu.Item>
             {({active}) => {
-                if (Component) return <Component />;
+                if (item.Component) return <item.Component />
 
                 return (
                     (

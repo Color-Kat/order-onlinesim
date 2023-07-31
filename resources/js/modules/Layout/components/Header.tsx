@@ -30,8 +30,11 @@ const AuthButton: React.FC = memo(() => {
     if(user) return (
         <div className="flex items-center gap-3">
             <Dropdown
-                title={<div>{user.name}</div>}
-                buttonClassName="bg-indigo-500 hover:bg-indigo-500/90"
+                // title={}
+                // buttonClassName="bg-indigo-500 hover:bg-indigo-500/90"
+                ButtonComponent={() => (
+                    <div className="flex gap-3">{user.name} <div className="h-7 w-7 bg-indigo-100 rounded-full flex items-center justify-center">C</div></div>
+                )}
                 header="List"
                 containerClassName="w-32"
                 items={[
