@@ -97,7 +97,7 @@ export const PasswordReset: React.FC = ({}) => {
                     onClick={handleSubmit}
                     ButtonComponent={StandardFilledButton}
                 >
-                    Войти
+                    Обновить пароль
                 </LoadingButton>
             </form>
         </div>

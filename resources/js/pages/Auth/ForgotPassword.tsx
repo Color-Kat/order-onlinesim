@@ -77,7 +77,7 @@ export const ForgotPassword: React.FC = ({}) => {
                     onClick={handleSubmit}
                     ButtonComponent={StandardFilledButton}
                 >
-                    Войти
+                    Отправить письмо
                 </LoadingButton>
 
                 <div className="mt-8">

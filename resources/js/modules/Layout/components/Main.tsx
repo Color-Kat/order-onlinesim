@@ -18,10 +18,10 @@ const Main: React.FC<{ children: React.ReactElement }> =
                     <div className="relative container px-2 sm:px-5 flex justify-center py-5">
                         {children}
 
-                        <PurpleButton
-                            className="!rounded-full h-12 top-5 left-5 absolute opacity-50 hover:opacity-75"
-                            onClick={() => setTheme(prev => prev == 'light' ? 'dark' : 'light')}
-                        >Theme</PurpleButton>
+                        {/*<PurpleButton*/}
+                        {/*    className="!rounded-full h-12 top-5 left-5 absolute opacity-50 hover:opacity-75"*/}
+                        {/*    onClick={() => setTheme(prev => prev == 'light' ? 'dark' : 'light')}*/}
+                        {/*>Theme</PurpleButton>*/}
                     </div>
                 </main>
             </>

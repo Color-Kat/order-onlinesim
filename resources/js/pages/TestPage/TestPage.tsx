@@ -36,8 +36,12 @@ export const TestPage = () => {
                     dragAndDropText="Перетащите фото сюда"
                 />
 
-                <FloatingScrollbar
-                    className="w-full px-1.5 py-10 flex justify-between items-start gap-8 overflow-x-auto no-scrollbar relative"
+                {/*<FloatingScrollbar*/}
+                {/*    className="relative w-full px-1.5 py-10 flex justify-between items-start gap-8 overflow-x-auto no-scrollbar"*/}
+                {/*    scrollbarClassName="fixed bottom-28"*/}
+                {/*>*/}
+                <div
+                    className="relative w-full px-1.5 py-10 flex justify-between items-start gap-8 overflow-x-auto no-scrollbar"
                 >
 
                     <Col1 />
@@ -47,7 +51,7 @@ export const TestPage = () => {
                     <Col3 />
 
                     <Col4 />
-                </FloatingScrollbar>
+                </div>
 
 
             </div>

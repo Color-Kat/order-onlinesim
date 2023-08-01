@@ -1,7 +1,9 @@
 import React, {memo, ReactNode, useEffect, useRef} from 'react';
+import {twMerge} from "tailwind-merge";
 
 interface FloatingScrollProps extends React.HTMLAttributes<HTMLDivElement>  {
     children: ReactNode;
+    scrollbarClassName?: string;
 }
 
 /**
@@ -9,6 +11,7 @@ interface FloatingScrollProps extends React.HTMLAttributes<HTMLDivElement>  {
  */
 export const FloatingScrollbar: React.FC<FloatingScrollProps> = memo(({
                                                                        children,
+                                                                          scrollbarClassName,
                                                                         ...props
                                                                    }) => {
 
@@ -18,7 +21,7 @@ export const FloatingScrollbar: React.FC<FloatingScrollProps> = memo(({
     // Set the width of scrollbar content to equal the width of the children content
     useEffect(() => {
         if(scrollableRef.current && scrollbarRef.current) {
-            scrollbarRef.current.style.width = scrollableRef.current.scrollWidth + 'px';
+            scrollbarRef.current.style.width = scrollableRef.current.scrollWidth + 40 + 'px';
         }
     }, [children, scrollableRef.current, scrollbarRef.current]);
 
@@ -39,11 +42,14 @@ export const FloatingScrollbar: React.FC<FloatingScrollProps> = memo(({
         >
             {/* Scrollbar */}
             <div
-                className="fixed bottom-5 h-5 w-[calc(100vw-40px)] -ml-5 z-10 overflow-x-scroll shadow-xl"
+                className={twMerge(
+                    "fixed bottom-5 h-5 w-[calc(100vw-40px)] -ml-5 md:block hidden z-10 overflow-x-scroll shadow-xl rounded-xl",
+                    scrollbarClassName
+                )}
                 onScroll={scroll}
             >
                 <div
-                    className="h-full bg-gray-100 shadow-md"
+                    className="h-full bg-gray-100 shadow-md rounded-xl"
                     ref={scrollbarRef}
                 ></div>
             </div>

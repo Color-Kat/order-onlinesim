@@ -100,7 +100,7 @@ export const Register: React.FC = ({}) => {
                     onClick={handleSubmit}
                     ButtonComponent={StandardFilledButton}
                 >
-                    Войти
+                    Создать аккаунт
                 </LoadingButton>
             </form>
         </div>

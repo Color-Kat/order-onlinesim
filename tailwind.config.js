@@ -72,7 +72,12 @@ module.exports = {
                 },
                 screens: {
                     'xs': '560px'
-                }
+                },
+
+                boxShadow: {
+                    'mobile-bottom-menu-1': "4.1px -5px 0 0 rgb(17,24,39)",
+                    'mobile-bottom-menu-2': "-4.1px -5px 0 0 rgb(17,24,39)",
+                },
             },
         },
     future: {

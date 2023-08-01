@@ -22,7 +22,7 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
     const [data, setData] = useState({
         select: 'Option 1',
         autocomplete: 'Anaconda',
-        agree: true,
+        agree1: true,
         radio: 2,
         textarea: 123,
         date: '2005-12-06'
@@ -167,7 +167,7 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                 <Toggle
                     data={data}
                     setData={setData}
-                    name='agree'
+                    name='agree1'
                     // activeClassName="bg-red-500"
                     // inactiveClassName="bg-black"
                 />
@@ -175,7 +175,7 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                 <Checkbox
                     data={data}
                     setData={setData}
-                    name="agree"
+                    name="agree1"
                 >
                     Вынужден не согласиться
                 </Checkbox>
