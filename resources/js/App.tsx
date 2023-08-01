@@ -11,6 +11,7 @@ import {PasswordReset} from "@pages/Auth/PasswordReset.tsx";
 import {AdminRoute, AuthRoute, NotAuthRoute} from "@/utils/router";
 import {AdminIndexPage} from "@pages/Admin/AdminIndexPage.tsx";
 import {TestPage} from "@pages/TestPage/TestPage.tsx";
+import {Page404} from "@pages/Errors/Page404/Page404.tsx";
 
 function App() {
     return (
@@ -32,6 +33,8 @@ function App() {
                 <Route element={<AdminRoute />}>
                     <Route path="/admin" element={<AdminIndexPage />}/>
                 </Route>
+
+                <Route path="*" element={<Page404 />}/>
 
             </Routes>
         </Layout>

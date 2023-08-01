@@ -25,7 +25,7 @@ export const Header = memo(() => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
-        <header className="flex shrink-0 w-screen bg-app">
+        <header className="fixed top-0 inset-x-0 flex shrink-0 w-screen bg-app z-20">
             <nav className="flex justify-between items-center gap-6 py-1 h-16 page-container w-full z-30">
 
                 {/* Logo (Left) */}

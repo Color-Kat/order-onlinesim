@@ -1,23 +1,30 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {BsBox, BsChat, BsGear, BsHouseDoor, BsPerson} from "react-icons/bs";
 import {twJoin} from "tailwind-merge";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 
 interface MobileBottomMenuProps {
 
 }
 
 export const MobileBottomMenu: React.FC<MobileBottomMenuProps> = memo(({}) => {
+    const location = useLocation();
 
     const navigation = [
         {title: "Главная", link: '/', Icon: BsHouseDoor, offset: "translate-x-0"},
         {title: "Тест", link: '/test', Icon: BsBox, offset: "translate-x-16"},
         {title: "Сообщения", link: '/chat', Icon: BsChat, offset: "translate-x-32"},
         {title: "Настройки", link: '/settings', Icon: BsGear, offset: "translate-x-48"},
-        {title: "Профиль", link: '/profile', Icon: BsPerson, offset: "translate-x-64"},
+        {title: "Профиль", link: '/profile1', Icon: BsPerson, offset: "translate-x-64"},
     ];
 
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState<null|number>(null);
+
+    useEffect(() => {
+        const index = navigation.findIndex((item) => item.link == location.pathname);
+        setActive(index !== -1 ? index : null);
+    }, [location]);
+    console.log(active)
 
     return (
         <div className="md:hidden">
@@ -34,7 +41,7 @@ export const MobileBottomMenu: React.FC<MobileBottomMenuProps> = memo(({}) => {
                             "bg-indigo-500 border-4 border-app-dark",
                             "h-16 w-16 absolute -top-6",
                             "duration-500 rounded-full will-change-transform",
-                            navigation[active].offset
+                            active !== null ? navigation[active].offset : 'hidden'
                         )}
                     >
                         {/* Rounded corner shadows */}
@@ -58,7 +65,7 @@ export const MobileBottomMenu: React.FC<MobileBottomMenuProps> = memo(({}) => {
                             <Link
                                 to={item.link}
                                 className="flex flex-col justify-center items-center text-center pt-6"
-                                onClick={() => setActive(i)}
+                                // onClick={() => setActive(i)}
                             >
                                 <span
                                     className={twJoin(

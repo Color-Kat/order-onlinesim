@@ -10,8 +10,10 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
     return (
         <div
             className={twJoin(
-                "scroll-container flex flex-col overflow-y-auto overflow-x-hidden",
-                "md:h-screen h-[calc(100vh-4.4rem)]", // For MobileBottomMenu
+                "scroll-container h-screen flex flex-col overflow-y-auto overflow-x-hidden",
+                // "md:h-screen h-[calc(100vh-4.4rem)]", // For MobileBottomMenu
+                "pt-16",// For header
+                "pb-[4.4rem] md:pb-0",// For MobileBottomMenu
                 "bg-app-dark font-inter"
             )}
         >

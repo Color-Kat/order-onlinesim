@@ -1,6 +1,7 @@
 import React, {memo} from 'react';
 import {TgIcon, VkIcon, YoutubeIcon, YtIcon} from "@UI/Icons/Social";
 import {EmailAddress, PhoneNumber} from "@UI/Elements/Contacts";
+import {Badge, GoldBadge, GreenBadge, PinkBadge, RedBadge} from "@UI/Badges";
 
 interface RowProps {
 
@@ -25,6 +26,14 @@ export const Col2: React.FC<RowProps> = memo(({}) => {
             <div>
                 <PhoneNumber />
                 <EmailAddress />
+            </div>
+
+            <div className="flex flex-wrap gap-3 bg-white w-full rounded-xl p-3">
+                <Badge>Standard</Badge>
+                <GreenBadge>Good</GreenBadge>
+                <PinkBadge>Great</PinkBadge>
+                <RedBadge>Bad</RedBadge>
+                <GoldBadge>Brilliant</GoldBadge>
             </div>
 
         </div>
