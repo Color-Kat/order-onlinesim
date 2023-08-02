@@ -24,7 +24,6 @@ export const MobileBottomMenu: React.FC<MobileBottomMenuProps> = memo(({}) => {
         const index = navigation.findIndex((item) => item.link == location.pathname);
         setActive(index !== -1 ? index : null);
     }, [location]);
-    console.log(active)
 
     return (
         <div className="md:hidden">

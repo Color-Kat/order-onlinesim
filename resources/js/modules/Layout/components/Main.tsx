@@ -15,7 +15,7 @@ const Main: React.FC<{ children: React.ReactElement }> =
                         // theme == 'dark' && "bg-app bg-gradient-to-tr from-black via-gray-800 to-zinc-700 text-violet-50",
                     )}
                 >
-                    <div className="relative container px-2 sm:px-5 flex justify-center py-5">
+                    <div className="relative container px-2 sm:px-5 flex justify-center">
                         {children}
 
                         {/*<PurpleButton*/}
