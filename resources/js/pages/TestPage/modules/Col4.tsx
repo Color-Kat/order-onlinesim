@@ -195,7 +195,7 @@ export const Col4: React.FC<RowProps> = memo(({}) => {
                 <Modal
                     buttonText="Модалька"
                 >
-                    {({closeModal}) => (
+                    {(closeModal) => (
                         <>
                             <Dialog.Title
                                 as="h3"

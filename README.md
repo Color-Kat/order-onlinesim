@@ -20,3 +20,6 @@
 
 #### Tailwind color combinations
 1. bg-gray-900 + text-white + text-gray-300 text-indigo-400 
+
+#### Tailwind tricks
+`bg-gdray-900` + `<div className="absolute inset-0 max-w-md mx-auto h-72 blur-[118px]" style={{ background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.26) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)" }}></div>`

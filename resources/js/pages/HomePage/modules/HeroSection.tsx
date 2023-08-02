@@ -1,23 +1,15 @@
-import React, {memo, useState} from "react";
-import {BsChevronRight} from "react-icons/bs";
+import React, {memo} from "react";
 import {FaAngleRight} from "react-icons/fa";
-import {Link} from "react-router-dom";
 import {H1} from "@UI/Typography";
 import {FilledLink, TextLink} from "@UI/Links";
 
-interface HeroSectionProps {
+import heroImage from '../assets/hero-screen.png';
 
-}
-
-export const HeroSection: React.FC<HeroSectionProps> = memo(({}) => {
-    const [a, setA] = useState(0);
-    console.log(a)
+export const HeroSection: React.FC = memo(({}) => {
     return (
         <section className="">
-            <div className="max-w-screen-xl mx-auto px-4 py-16 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex">
-
+            <div className="page-container md:pt-16 md:pb-10 sm:py-20 pt-8 pb-16 lg:gap-12 gap-6 text-gray-600 overflow-hidden md:flex">
                 <div className="flex-none space-y-5 max-w-xl">
-
                     <a
                         href="https://colorbit.ru"
                         target="_blank"
@@ -32,7 +24,7 @@ export const HeroSection: React.FC<HeroSectionProps> = memo(({}) => {
                         </p>
                     </a>
 
-                    <H1 onClick={() => setA(prev => prev+1)}>
+                    <H1>
                         Разрабатывайте приложения легко
                     </H1>
 
@@ -52,10 +44,10 @@ export const HeroSection: React.FC<HeroSectionProps> = memo(({}) => {
                     </div>
                 </div>
 
-                <div className="flex-1 hidden md:block">
+                <div className="flex-1 hidden lg:flex items-center">
                     <img
-                        src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png"
-                        className="w-full mx-auto sm:w-10/12 lg:w-full"
+                        src={heroImage}
+                        className="w-full mx-auto md:w-10/12 lg:w-full"
                     />
                 </div>
             </div>
