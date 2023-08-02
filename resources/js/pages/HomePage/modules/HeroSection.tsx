@@ -1,35 +1,64 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from "react";
+import {BsChevronRight} from "react-icons/bs";
+import {FaAngleRight} from "react-icons/fa";
+import {Link} from "react-router-dom";
+import {H1} from "@UI/Typography";
+import {FilledLink, TextLink} from "@UI/Links";
 
 interface HeroSectionProps {
 
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = memo(({}) => {
-
+    const [a, setA] = useState(0);
+    console.log(a)
     return (
-        <div className="">
-            <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex md:px-8">
-                <div className="space-y-4 flex-1 sm:text-center lg:text-left">
-                    <h1 className="text-white font-bold text-4xl xl:text-5xl">
-                        One page Template for
-                        <span className="text-indigo-400"> Digital agency</span>
-                    </h1>
-                    <p className="text-gray-300 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum
+        <section className="">
+            <div className="max-w-screen-xl mx-auto px-4 py-16 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex">
+
+                <div className="flex-none space-y-5 max-w-xl">
+
+                    <a
+                        href="https://colorbit.ru"
+                        target="_blank"
+                        className="inline-flex gap-x-6 items-center rounded-full p-1 pr-6 border text-sm font-medium duration-150 hover:bg-white"
+                    >
+                        <span className="inline-block rounded-full px-3 py-1 bg-indigo-600 text-white">
+                            Спонсор
+                        </span>
+                        <p className="flex items-center gap-1">
+                            Colorbit.ru - симулятор майнинга
+                            <FaAngleRight/>
+                        </p>
+                    </a>
+
+                    <H1 onClick={() => setA(prev => prev+1)}>
+                        Разрабатывайте приложения легко
+                    </H1>
+
+                    <p>
+                        Готовый шаблон сайта на стеке Ts, React, Tailwind, vite, PHP, Laravel <br/>
+                        со всем необходимым, и даже больше, <br/> чтобы вы могли творить удивительные вещи!
                     </p>
-                    <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-                        <a href="javascript:void(0)" className="px-7 py-3 w-full bg-white text-gray-800 text-center rounded-md shadow-md block sm:w-auto">
-                            Get started
-                        </a>
-                        <a href="javascript:void(0)" className="px-7 py-3 w-full bg-gray-700 text-gray-200 text-center rounded-md block sm:w-auto">
-                            Try it out
-                        </a>
+
+                    <div className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize">
+                        <FilledLink to="/test">
+                            <span className="hidden sm:block">Смотреть</span> компоненты
+                        </FilledLink>
+
+                        <TextLink to="/">
+                            А это для красоты
+                        </TextLink>
                     </div>
                 </div>
-                <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">
-                    <img src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png" className="w-full mx-auto sm:w-10/12  lg:w-full" />
+
+                <div className="flex-1 hidden md:block">
+                    <img
+                        src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png"
+                        className="w-full mx-auto sm:w-10/12 lg:w-full"
+                    />
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 });
