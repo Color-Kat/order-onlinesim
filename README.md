@@ -18,6 +18,9 @@
 1. Create symlink for Http/Controllers folder (cmd as administrator):
 `mklink /D C:\OpenServer\domains\laravel-template.local\app\Controllers C:\OpenServer\domains\laravel-template.local\app\Http\Controllers`
 
+2. Bundle analyze:
+`npx vite-bundle-visualizer`
+
 #### Tailwind color combinations
 1. bg-gray-900 + text-white + text-gray-300 text-indigo-400 
 
