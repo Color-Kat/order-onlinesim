@@ -4,13 +4,14 @@ import React from "react";
 import {HeroSection} from "@pages/HomePage/modules/HeroSection.tsx";
 import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
 import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
+import {Page} from "@modules/PageTemplates";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
 
     return (
-        <div
-            className="w-screen"
+        <Page
+            className="w-screen pt-0"
         >
             <Helmet>
                 <title>Главная</title>
@@ -22,6 +23,6 @@ export const HomePage = () => {
             <FeaturesSection />
 
             <CTASection />
-        </div>
+        </Page>
     );
 };

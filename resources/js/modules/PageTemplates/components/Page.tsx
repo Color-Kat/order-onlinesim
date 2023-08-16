@@ -1,14 +1,20 @@
 import React from "react";
+import {twMerge} from "tailwind-merge";
 
 interface PageProps {
-    title: string;
     children: React.ReactNode;
+    className?: string;
 }
- 
-export const Page: React.FC<PageProps> = ({title, children}) => {
+
+/**
+ * Page component adds paddings for pretty content displaying.
+ */
+export const Page: React.FC<PageProps> = ({children, className}) => {
     return ( 
-        <div className="py-10 flex items-center flex-col">
-            <h1 className="text-center text-xl font-bold mb-5">{title}</h1>
+        <div className={twMerge(
+            'pt-5 pb-16',
+            className
+        )}>
 
             {children}
 

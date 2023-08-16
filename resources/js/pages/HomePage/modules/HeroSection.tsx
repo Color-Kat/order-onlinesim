@@ -5,6 +5,7 @@ import {FilledLink, TextLink} from "@UI/Links";
 
 import heroImage from '../assets/hero-screen.png';
 
+// https://floatui.com/components/heroes
 export const HeroSection: React.FC = memo(({}) => {
     return (
         <section className="">

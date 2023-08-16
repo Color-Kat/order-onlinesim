@@ -2,7 +2,7 @@ import {memo} from "react";
 
 import {Header} from "./Header/Header.tsx";
 import Main from "./Main";
-import Footer from "./Footer";
+import {SimpleFooter} from "./SimpleFooter.tsx";
 import {twJoin} from "tailwind-merge";
 import {MobileBottomMenu} from "@modules/Layout/components/MobileBottomMenu.tsx";
 import {Banner} from "@UI/Banners";
@@ -33,7 +33,7 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
 
             <Header/>
 
-            <div className="scroll-container overflow-y-auto overflow-x-hidden flex flex-col flex-auto "> {/* Header at the top of the page */}
+            <div className="scroll-container overflow-y-auto overflow-x-hidden flex flex-col flex-auto"> {/* Header at the top of the page */}
                 <Main>
                     <div className={twJoin(
                         // "flex-1",
@@ -43,7 +43,7 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
                     </div>
                 </Main>
 
-                <Footer/>
+                <SimpleFooter/>
             </div>
 
             <MobileBottomMenu />

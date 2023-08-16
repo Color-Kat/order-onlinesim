@@ -8,6 +8,7 @@ interface HeroSectionProps {
 
 }
 
+// https://floatui.com/components/feature-sections
 export const FeaturesSection: React.FC<HeroSectionProps> = memo(({}) => {
 
     const features = [

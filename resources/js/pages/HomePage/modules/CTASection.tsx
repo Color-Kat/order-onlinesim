@@ -5,9 +5,8 @@ interface CTASectionProps {
 
 }
 
+// https://floatui.com/components/cta-sections
 export const CTASection: React.FC<CTASectionProps> = memo(({}) => {
-    
-    
     return (
         <section className="pb-8 pt-32">
             <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
