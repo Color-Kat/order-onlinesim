@@ -3,6 +3,7 @@ import {useTSelector} from "@hooks/redux.ts";
 import React from "react";
 import {HeroSection} from "@pages/HomePage/modules/HeroSection.tsx";
 import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
+import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -19,6 +20,8 @@ export const HomePage = () => {
             <HeroSection />
 
             <FeaturesSection />
+
+            <CTASection />
         </div>
     );
 };
