@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import {FaAngleRight} from "react-icons/fa";
 import {H1} from "@UI/Typography";
-import {FilledLink, TextLink} from "@UI/Links";
+import {FilledArrowLink, TextArrowLink} from "@UI/Links";
 
 import heroImage from '../assets/hero-screen.png';
 
@@ -35,13 +35,13 @@ export const HeroSection: React.FC = memo(({}) => {
                     </p>
 
                     <div className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize">
-                        <FilledLink to="/test">
+                        <FilledArrowLink to="/test">
                             <span className="hidden sm:block">Смотреть</span> компоненты
-                        </FilledLink>
+                        </FilledArrowLink>
 
-                        <TextLink to="/">
+                        <TextArrowLink to="/">
                             А это для красоты
-                        </TextLink>
+                        </TextArrowLink>
                     </div>
                 </div>
 

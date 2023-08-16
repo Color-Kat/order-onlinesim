@@ -5,7 +5,7 @@ import {FaAngleRight} from "react-icons/fa";
 import {shallowEqual} from "react-redux";
 import {twMerge} from "tailwind-merge";
 
-export const TextLink: React.FC<ILinkProps> = memo(({
+export const SecondaryTextLink: React.FC<ILinkProps> = memo(({
                                                         children,
                                                         to,
                                                         className,
@@ -16,7 +16,7 @@ export const TextLink: React.FC<ILinkProps> = memo(({
         <Link
             to={to}
             className={twMerge(
-                "text-gray-500 hover:text-gray-800 py-2 px-4 font-medium duration-150",
+                "text-indigo-600 hover:text-indigo-500 hover:underline py-2 px-4 font-medium duration-150",
                 className
             )}
             {...props}

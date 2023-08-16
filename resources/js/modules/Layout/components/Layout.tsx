@@ -35,12 +35,7 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
 
             <div className="scroll-container overflow-y-auto overflow-x-hidden flex flex-col flex-auto"> {/* Header at the top of the page */}
                 <Main>
-                    <div className={twJoin(
-                        // "flex-1",
-                        // "max-w-4xl",
-                    )}>
-                        {children}
-                    </div>
+                    {children}
                 </Main>
 
                 <SimpleFooter/>

@@ -32,7 +32,7 @@ export const SimpleFooter: React.FC = memo(() => {
                 <Logo className="h-16" />
                 <p className="leading-relaxed mt-2 text-[15px]">
                     Это вариант футера для небольших проектов, где всего несколько страниц.
-                    Также в шаблоне есть другой футер для более крупных проектов.
+                    Также в шаблоне есть другой футер для более крупных приложений.
                 </p>
             </div>
 
@@ -51,10 +51,10 @@ export const SimpleFooter: React.FC = memo(() => {
 
             {/* Rights, made by */}
             <div className="mt-8 items-center justify-between sm:flex">
-                <div className="sm:mt-0 w-full flex justify-between items-end">
+                <div className="sm:mt-0 w-full flex justify-between md:items-end md:flex-row flex-col-reverse">
                     <div className="mt-4">&copy; 2023 Color-template All rights reserved.</div>
 
-                    <div className="flex gap- flex-col">
+                    <div className="flex flex-col">
                         <div>
                             Made by <a href="https://vk.com/color_kat" target="_blank" className="underline">
                                 @ColorKat

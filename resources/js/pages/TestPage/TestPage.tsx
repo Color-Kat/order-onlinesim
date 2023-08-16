@@ -8,10 +8,8 @@ import {Col1} from "./modules/Col1.tsx";
 import {Col2} from "./modules/Col2.tsx";
 import {Col3} from "./modules/Col3.tsx";
 import {Col4} from "./modules/Col4.tsx";
-import {FloatingScrollbar} from "@components/Scrolls";
 
 export const TestPage = () => {
-    const user = useTSelector(state => state.auth.user);
 
     const [data, setData] = useState({
         images: [],

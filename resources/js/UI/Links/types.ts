@@ -3,7 +3,6 @@ import {LinkProps} from "react-router-dom";
 
 export interface ILinkProps extends Omit<LinkProps, 'to'>{
     children: ReactNode;
-    to?: string;
-    href?: string;
+    to: string;
     className?: string;
 }

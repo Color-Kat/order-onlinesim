@@ -1,11 +1,9 @@
 import React, {memo} from 'react';
 import {ILinkProps} from "./types.ts";
 import {Link} from "react-router-dom";
-import {FaAngleRight} from "react-icons/fa";
-import {shallowEqual} from "react-redux";
 import {twMerge} from "tailwind-merge";
 
-export const TextLink: React.FC<ILinkProps> = memo(({
+export const ButtonLink: React.FC<ILinkProps> = memo(({
                                                         children,
                                                         to,
                                                         className,
@@ -16,7 +14,7 @@ export const TextLink: React.FC<ILinkProps> = memo(({
         <Link
             to={to}
             className={twMerge(
-                "text-gray-500 hover:text-gray-800 py-2 px-4 font-medium duration-150",
+                "inline-block py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none duration-150",
                 className
             )}
             {...props}

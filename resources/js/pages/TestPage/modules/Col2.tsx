@@ -2,6 +2,16 @@ import React, {memo} from 'react';
 import {TgIcon, VkIcon, YoutubeIcon, YtIcon} from "@UI/Icons/Social";
 import {EmailAddress, PhoneNumber} from "@UI/Elements/Contacts";
 import {Badge, GoldBadge, GreenBadge, PinkBadge, RedBadge} from "@UI/Badges";
+import {StandardFilledButton} from "@UI/Buttons";
+import {
+    BorderedLink,
+    ButtonLink,
+    FilledArrowLink,
+    SecondaryButtonLink,
+    SecondaryTextLink,
+    TextArrowLink,
+    TextLink
+} from "@UI/Links";
 
 interface RowProps {
 
@@ -34,6 +44,26 @@ export const Col2: React.FC<RowProps> = memo(({}) => {
                 <PinkBadge>Great</PinkBadge>
                 <RedBadge>Bad</RedBadge>
                 <GoldBadge>Brilliant</GoldBadge>
+            </div>
+
+            <div className="flex gap-3">
+                <FilledArrowLink to="/test">Arrow link</FilledArrowLink>
+                <TextArrowLink to="https://colorbit.ru" target="_blank">Играть</TextArrowLink>
+            </div>
+
+            <div className="flex gap-3">
+                <ButtonLink to="/test">ButtonLink</ButtonLink>
+                <SecondaryButtonLink to="https://vk.com/colorbit.mining" target="_blank">SecondaryButtonLink</SecondaryButtonLink>
+            </div>
+
+            <div className="flex gap-3">
+                <TextLink to="/" >Обычная ссылка</TextLink>
+                <SecondaryTextLink to="/">Ссылка в Сибирь</SecondaryTextLink>
+            </div>
+
+            <div className="flex gap-3 rounded-xl bg-white w-full py-3 px-3">
+
+                <BorderedLink to="/">Learn more</BorderedLink>
             </div>
 
         </div>

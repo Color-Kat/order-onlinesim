@@ -45,7 +45,7 @@ export const PasswordReset: React.FC = ({}) => {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full h-full py-48">
             <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">Сброс пароля</h1>
