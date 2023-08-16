@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 
 export const MegaphoneIcon = memo(() => (
     <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
@@ -9,10 +9,31 @@ export const MegaphoneIcon = memo(() => (
 ));
 
 interface BannerProps {
+    text: string;
+    learnMoreText?: string;
+    link?: string;
 
+    show?: boolean;
+    callback?: () => void;
 }
 
-export const Banner: React.FC<BannerProps> = memo(({}) => {
+export const Banner: React.FC<BannerProps> = memo(({
+                                                       text,
+    link,
+                                                       learnMoreText = 'Узнать подробнее',
+
+                                                       show = true,
+                                                       callback = null
+                                                   }) => {
+    const [isShow, setIsShow] = useState(show);
+
+    const closeBanner = () => {
+        if (callback) callback();
+
+        setIsShow(false);
+    };
+
+    if (!isShow) return null;
 
     return (
         <div className="bg-indigo-600">
@@ -22,17 +43,20 @@ export const Banner: React.FC<BannerProps> = memo(({}) => {
                         <MegaphoneIcon/>
                     </div>
                     <p className="flex items-center justify-between py-2 font-medium">
-                        Мы запустили нашу собственную игру!
-                        <a
-                            href="https://colorbit.ru"
+                        {text}
+                        {link && <a
+                            href={link}
                             className="ml-2 font-semibold underline duration-150 hover:text-indigo-100"
                             target="_blank"
                         >
-                            Узнать подробнее
-                        </a>
+                            {learnMoreText}
+                        </a>}
                     </p>
                 </div>
-                <button className="p-2 rounded-lg duration-150 hover:bg-indigo-500 ring-offset-2 focus:ring">
+                <button
+                    className="p-2 rounded-lg duration-150 hover:bg-indigo-500 ring-offset-2 focus:ring"
+                    onClick={closeBanner}
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
                         <path
                             d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>

@@ -23,7 +23,13 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
 
             {/*<div className="relative flex h-32 w-full bg-red-500"></div>*/}
 
-            <Banner />
+            {/* Top banner */}
+            <Banner
+                text="Мы запустили нашу собственную игру!"
+                link="https://colorbit.ru"
+                show={!localStorage.getItem('hide-banner-1') ?? false }
+                callback={() => localStorage.setItem('hide-banner-1', '1')}
+            />
 
             <Header/>
 
