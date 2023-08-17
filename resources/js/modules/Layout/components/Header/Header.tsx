@@ -15,6 +15,7 @@ export const Header = memo(() => {
     const navigation = [
         {title: "Тест", link: "/test"},
         {title: "Главная", link: "/"},
+        {title: "Snap-scroll", link: "/snap-scroll"},
     ];
 
     const location = useLocation();
