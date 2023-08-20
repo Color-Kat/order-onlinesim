@@ -21,6 +21,9 @@ yesterday.setDate(yesterday.getDate() - 1);
 // Yesterday string in format d-m-yyyy
 const yesterdayString = formatDate(yesterday, 'd-m-Y');
 
+// Current year
+const currentYear = new Date().getFullYear();
+
 // Add days to today date
 const addDays = (days: number) => {
     const date = new Date();
@@ -44,6 +47,7 @@ export {
     tomorrowString,
     yesterday,
     yesterdayString,
+    currentYear,
 
     addDays,
     addMonths

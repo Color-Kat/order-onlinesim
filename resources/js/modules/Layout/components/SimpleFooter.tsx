@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import {Logo} from "@UI/Elements/Logo/Logo.tsx";
+import {currentYear} from "@/utils/date/dates.ts";
 
 export const SimpleFooter: React.FC = memo(() => {
     const navigation = [
@@ -52,7 +53,7 @@ export const SimpleFooter: React.FC = memo(() => {
             {/* Rights, made by */}
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="sm:mt-0 w-full flex justify-between md:items-end md:flex-row flex-col-reverse">
-                    <div className="mt-4">&copy; 2023 Color-template All rights reserved.</div>
+                    <div className="mt-4">&copy; {currentYear} Color template All rights reserved.</div>
 
                     <div className="flex flex-col">
                         <div>

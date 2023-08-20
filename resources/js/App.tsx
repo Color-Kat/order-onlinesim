@@ -1,14 +1,13 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import {HomePage} from "@pages/HomePage/HomePage";
-import {FavouritesPage} from "@pages/FavouritesPage/FavouritesPage";
 import {Layout} from "@modules/Layout";
 import {Login} from "@pages/Auth/Login.tsx";
 import {Register} from "@pages/Auth/Register.tsx";
 import {ForgotPassword} from "@pages/Auth/ForgotPassword.tsx";
 import {PasswordReset} from "@pages/Auth/PasswordReset.tsx";
 
-import {AdminRoute, AuthRoute, NotAuthRoute} from "@/utils/router";
+import {AdminRoute, AuthRoute, NotAuthRoute} from "@components/Router";
 import {AdminIndexPage} from "@pages/Admin/AdminIndexPage.tsx";
 import {TestPage} from "@pages/TestPage/TestPage.tsx";
 import {Page404} from "@pages/Errors/Page404/Page404.tsx";

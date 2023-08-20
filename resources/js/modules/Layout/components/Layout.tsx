@@ -1,4 +1,4 @@
-import {memo, useState} from "react";
+import {memo, useEffect, useState} from "react";
 
 import {Header} from "./Header/Header.tsx";
 import Main from "./Main";
@@ -7,6 +7,7 @@ import {twJoin} from "tailwind-merge";
 import {MobileBottomMenu} from "@modules/Layout/components/MobileBottomMenu.tsx";
 import {Banner} from "@UI/Banners";
 import {LayoutContext} from "@modules/Layout/LayoutContext.tsx";
+import {Footer} from "@modules/Layout/components/Footer.tsx";
 
 export const Layout: React.FC<{ children: React.ReactElement }> = memo(({children}) => {
     const [showFooter, setShowFooter] = useState(true);
@@ -47,7 +48,8 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
                     </Main>
 
                     {showFooter && // Footer can be hide on page with full page scroll
-                        <SimpleFooter/>
+                        // <SimpleFooter/>
+                        <Footer />
                     }
                 </div>
 

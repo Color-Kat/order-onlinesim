@@ -2,7 +2,7 @@ import React from 'react';
 import {useTSelector} from "@hooks/redux.ts";
 import {Navigate, Outlet} from "react-router-dom";
 import {Roles} from "@/store/auth/auth.slice.ts";
-import {LoadingPage} from "@/utils/router/LoadingPage.tsx";
+import {LoadingPage} from "@components/router/LoadingPage.tsx";
 
 interface PrivateRoutesProps {
     auth?: boolean;

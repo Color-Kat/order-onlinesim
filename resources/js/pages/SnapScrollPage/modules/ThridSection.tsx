@@ -4,8 +4,6 @@ interface FirstSectionProps {
 }
 
 export const ThirdSection: React.FC<FirstSectionProps> = memo(({}) => {
-
-
     return (
         <div
             className="relative section h-full px-5 flex items-center justify-center"
