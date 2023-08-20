@@ -12,6 +12,9 @@ import {
     TextArrowLink,
     TextLink
 } from "@UI/Links";
+import {ThreeDotMenu} from "@components/ThreeDotMenu";
+import {BiEditAlt} from "react-icons/bi";
+import {BsEye, BsFillTrashFill, BsTrashFill} from "react-icons/bs";
 
 interface RowProps {
 
@@ -62,8 +65,53 @@ export const Col2: React.FC<RowProps> = memo(({}) => {
             </div>
 
             <div className="flex gap-3 rounded-xl bg-white w-full py-3 px-3">
-
                 <BorderedLink to="/">Learn more</BorderedLink>
+            </div>
+
+            <div className="flex gap-3 w-full">
+                <div className="flex-1 flex justify-between items-center p-3 rounded-xl bg-white shadow-lg">
+                    <div className="text-medium">Items</div>
+
+                    <ThreeDotMenu
+                        header="Управление"
+                        items={[
+                            {
+                                text: 'Просмотр',
+                                Icon: BsEye,
+                            },
+                            {
+                                text: 'Редактировать',
+                                Icon: BiEditAlt,
+                            },
+                            {
+                                text: 'Удалить',
+                                Icon: BsTrashFill,
+                                className: 'hover:bg-red-500'
+                            },
+                        ]}
+                    />
+                </div>
+
+                <div className="flex-1 flex justify-between items-center p-3 rounded-xl bg-white shadow-lg">
+                    <div className="text-medium">Groups</div>
+
+                    <ThreeDotMenu
+                        groups={[
+                            [
+                                {text: 'group 1', onClick: () => alert("I'm one"),},
+                                {text: 'group 1'}
+                            ],
+                            [{text: 'group 2', disabled: true}],
+                            [
+                                {
+                                    text: 'click me',
+                                    onClick: () => alert("Stop clicking on me!!!"),
+                                    Icon: BsFillTrashFill,
+                                }
+                            ]
+                        ]}
+                    />
+                </div>
             </div>
 
         </div>
