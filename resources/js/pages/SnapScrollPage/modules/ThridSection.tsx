@@ -8,8 +8,9 @@ export const ThirdSection: React.FC<FirstSectionProps> = memo(({}) => {
 
     return (
         <div
-            className="relative section w-full h-full lg:px-5 md:px-16 px-5 flex items-center justify-center"
+            className="relative section h-full px-5 flex items-center justify-center"
             data-anchor="page-3"
+            id="page-3-anchor"
         >
             <div className="flex flex-col gap-5">
                 <h1 className="font-metapro lg:text-8xl md:text-6xl xs:text-5xl text-4xl text-center font-bold lg:mb-16 mb-8">

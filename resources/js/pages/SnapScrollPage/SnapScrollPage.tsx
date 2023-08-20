@@ -1,5 +1,5 @@
 import {Helmet} from "react-helmet";
-import React from "react";
+import React, {memo} from "react";
 import {FullPageHOC, Page} from "@modules/PageTemplates";
 import {FirstSection} from "@pages/SnapScrollPage/modules/FirstSection.tsx";
 import {fullpageApi} from "@fullpage/react-fullpage";
@@ -10,7 +10,7 @@ interface IFullPage {
     fullpageApi: fullpageApi;
 }
 
-export const SnapScrollPage= FullPageHOC(({fullpageApi}: IFullPage) => {
+const SnapScroll= FullPageHOC(({fullpageApi}: IFullPage) => {
     return (
         <>
             <Helmet>
@@ -23,7 +23,6 @@ export const SnapScrollPage= FullPageHOC(({fullpageApi}: IFullPage) => {
             <SecondSection />
 
             <ThirdSection />
-
         </>
     );
 }, {
@@ -33,4 +32,14 @@ export const SnapScrollPage= FullPageHOC(({fullpageApi}: IFullPage) => {
         'page-3',
     ].filter(Boolean),
     credits: {}
+});
+
+
+
+export const SnapScrollPage: React.FC = memo(({}) => {
+    return (
+        <div className="w-screen h-full">
+            <SnapScroll />
+        </div>
+    );
 });

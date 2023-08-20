@@ -5,6 +5,7 @@ import './fullpage.scss';
 import {useLayoutContext} from "@modules/Layout";
 import {useBeforeUnload, useLocation} from "react-router-dom";
 import {useComponentWillMount} from "@hooks/useComponentWillMount.ts";
+import {twJoin} from "tailwind-merge";
 
 /**
  * FullPageHOC is wrapper for entire page component that contains in root list of full page sections.
@@ -19,11 +20,15 @@ export function FullPageHOC(WrappedComponent: any, options: {anchors: string[]} 
     return () => {
         const {setShowFooter} = useLayoutContext();
 
-        setShowFooter(false); // Hide footer
-
+        useEffect(() => {
+            // TODO footer show\hide
+            setShowFooter(false); // Hide footer
+        }, []);
 
         return (
-            <div className="lg:overflow-hidden relative w-full h-full lg:will-change-transform">
+            <div className={twJoin(
+                "overflow-hidden relative w-full h-full",
+            )}>
                 <ReactFullpage
                     licenseKey = {'YOUR_KEY_HERE'}
                     scrollingSpeed = {700} /* Options here */
