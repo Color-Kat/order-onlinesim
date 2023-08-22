@@ -22,7 +22,7 @@ export const StandardButton: React.FC<ButtonProps> = ({
             className={twMerge(
                 `mx-auto uppercase cursor-pointer flex justify-center items-center`,
                 'text-sm shadow-md rounded-lg px-5 py-2.5 w-36',
-                'focus:outline-none text-white bg-app-accent hover:bg-app-primary focus:ring-4 focus:ring-app-primary/30',
+                'focus:outline-none text-white bg-app-accent hover:bg-app-primary duration-100 focus:ring-4 focus:ring-app-primary/30',
                 'disabled:bg-red-500 disabled:hover:bg-red-600',
                 props.className
             )}

@@ -11,7 +11,7 @@ export const H1: React.FC<ITypographyElement> = memo(({
     return (
         <h1
             className={twJoin(
-                "text-4xl text-gray-800 font-extrabold sm:text-5xl",
+                "text-4xl text-indigo-50 font-extrabold sm:text-5xl",
                 className
             )}
             {...props}

@@ -16,7 +16,7 @@ export const TextArrowLink: React.FC<ILinkProps> = memo(({
         <Link
             to={to}
             className={twMerge(
-                "flex items-center justify-center gap-x-1 py-2 px-4 text-gray-700 hover:text-gray-900 font-medium duration-150 md:inline-flex",
+                "flex items-center justify-center gap-x-1 py-2 px-4 text-gray-300 hover:text-gray-400 font-medium duration-150 md:inline-flex",
                 className
             )}
             {...props}

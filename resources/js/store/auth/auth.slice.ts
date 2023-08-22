@@ -20,9 +20,11 @@ export enum Roles {
 const initialState: {
     isLoading: boolean,
     user: IUser | null,
+    isAuth: boolean
 }  = {
     isLoading: true,
     user: null,
+    isAuth: false
 }
 
 const authSlice = createSlice({
@@ -31,10 +33,12 @@ const authSlice = createSlice({
     reducers: {
         clearUser(state, action) {
             state.user = null;
+            state.isAuth = false;
         },
         setUser(state, action: PayloadAction<IUser|null>) {
             state.user = action.payload;
             state.isLoading = false;
+            state.isAuth = !!action.payload;
         }
     },
 })

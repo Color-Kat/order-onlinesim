@@ -13,20 +13,19 @@ module.exports = {
             extend: {
                 colors: {
                     'app':
-                        '#f7f5ff',
+                        '#374151',
                     'app-dark':
-                        '#e7e7ff',
+                        '#111827',
                     'app-gray':
-                        '#777777',
+                        'red',
                     'app-light':
-                        '#f1f1f1',
+                        '#e5e7eb',
                     'app-primary':
-                        '#818cf8',
+                        '#2563eb',
                     'app-secondary':
                         '#2467cc',
                     'app-accent':
-                        '#6366f1',
-
+                        '#1d4ed8',
                 },
                 animation: {
                     'slide-up': 'slide-up .7s ease-in-out',

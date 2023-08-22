@@ -14,7 +14,7 @@ export const FilledArrowLink: React.FC<ILinkProps> = memo(({
             <Link
                 to={to}
                 className={twMerge(
-                    "flex items-center justify-center gap-1 py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex",
+                    "flex items-center justify-center gap-1 py-2 px-4 text-white font-medium bg-blue-700 duration-150 hover:bg-blue-600 active:bg-gray-900 rounded-full md:inline-flex",
                     className
                 )}
                 {...props}

@@ -27,7 +27,7 @@ export const SimpleFooter: React.FC = memo(() => {
     ];
 
     return (
-        <footer className="text-gray-500 bg-white px-4 py-5 w-screen md:px-8">
+        <footer className="text-indigo-100 bg-app px-4 py-5 w-screen md:px-8">
             {/* Text */}
             <div className="max-w-xl sm:mx-auto sm:text-center">
                 <Logo className="h-16" />
@@ -41,7 +41,7 @@ export const SimpleFooter: React.FC = memo(() => {
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
                 {
                     navigation.map((item, i) => (
-                        <li className="hover:text-gray-800" key={i}>
+                        <li className="hover:text-blue-200" key={i}>
                             <a href={item.link}>
                                 {item.title}
                             </a>

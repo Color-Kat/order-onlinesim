@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {PurpleButton} from "@UI/Buttons";
 import {twJoin} from "tailwind-merge";
+import {useTSelector} from "@hooks/redux.ts";
+import {RainbowLoader} from "@UI/Loaders";
 
 const Main: React.FC<{ children: React.ReactElement }> =
     ({children}) => {
-        const [theme, setTheme] = useState('light');
+        const {isLoading} = useTSelector(state => state.auth);
+        // const [theme, setTheme] = useState('light');
 
         return (
             <>
@@ -15,7 +18,11 @@ const Main: React.FC<{ children: React.ReactElement }> =
                         // theme == 'dark' && "bg-app bg-gradient-to-tr from-black via-gray-800 to-zinc-700 text-violet-50",
                     )}
                 >
-                    {children}
+                    {
+                        isLoading
+                            ? <RainbowLoader />
+                            : <>{children}</>
+                    }
 
                     {/*<PurpleButton*/}
                     {/*    className="!rounded-full h-12 top-5 left-5 absolute opacity-50 hover:opacity-75"*/}
