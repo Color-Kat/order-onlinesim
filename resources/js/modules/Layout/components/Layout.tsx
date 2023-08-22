@@ -42,14 +42,15 @@ export const Layout: React.FC<{ children: React.ReactElement }> = memo(({childre
                 <Header/>
 
                 <div
-                    className="scroll-container overflow-y-auto overflow-x-hidden flex flex-col flex-auto"> {/* Header at the top of the page */}
+                    className="scroll-container overflow-y-auto overflow-x-hidden flex flex-col flex-auto"
+                > {/* Header at the top of the page */}
                     <Main>
                         {children}
                     </Main>
 
                     {showFooter && // Footer can be hide on page with full page scroll
-                        // <SimpleFooter/>
-                        <Footer />
+                        <SimpleFooter/>
+                        // <Footer />
                     }
                 </div>
 

@@ -13,9 +13,9 @@ export const Header = memo(() => {
 
     // Replace javascript:void(0) path with your path
     const navigation = [
-        {title: "Тест", link: "/test"},
         {title: "Главная", link: "/"},
-        {title: "Snap-scroll", link: "/snap-scroll"},
+        {title: "История", link: "/history"},
+        {title: "Финансы", link: "/finance"},
     ];
 
     const location = useLocation();

@@ -2,12 +2,13 @@ import {BsArrowLeft} from "react-icons/bs";
 import {useBack} from "@hooks/navigation.ts";
 
 import illustration_404 from '../assets/404.png';
+import {BigPage, Page} from "@modules/PageTemplates";
 
 export const Page404 = () => {
     const back = useBack();
 
     return (
-        <div className="max-w-screen-xl h-full mx-auto px-4 flex items-center justify-start md:px-8">
+        <BigPage className="max-w-screen-xl h-full mx-auto px-4 flex items-center justify-start md:px-8 pt-24">
             <div
                 className="max-w-lg mx-auto flex-1 flex-row-reverse gap-12 items-center justify-between md:max-w-none md:flex">
                 <div className="flex-1 max-w-lg">
@@ -31,6 +32,6 @@ export const Page404 = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </BigPage>
     )
 }

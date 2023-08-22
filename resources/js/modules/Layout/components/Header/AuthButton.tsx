@@ -31,21 +31,17 @@ export const AuthButton: React.FC = memo(() => {
             groups={[
                 [
                     {
-                        text: 'Друзья',
-                        onClick: () => navigate('/friends')
+                        text: 'Account',
+                        onClick: () => navigate('/account')
                     },
-                    {
-                        text: 'Профиль',
-                        onClick: () => navigate('/profile')
-                    },
-                    {
-                        text: 'Настройки',
-                        onClick: () => navigate('/settings')
-                    }
+                    // {
+                    //     text: 'Настройки',
+                    //     onClick: () => navigate('/settings')
+                    // }
                 ],
                 // The last group
                 [{
-                    text: 'Выйти',
+                    text: 'Log out',
                     onClick: logout
                 }]
             ]}
@@ -54,7 +50,7 @@ export const AuthButton: React.FC = memo(() => {
 
     return (
         <Link to="/login">
-            <Button>Войти</Button>
+            <Button>Login</Button>
         </Link>
     );
 

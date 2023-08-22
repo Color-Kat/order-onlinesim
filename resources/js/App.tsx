@@ -13,9 +13,15 @@ import {TestPage} from "@pages/TestPage/TestPage.tsx";
 import {Page404} from "@pages/Errors/Page404/Page404.tsx";
 import {SnapScrollPage} from "@pages/SnapScrollPage/SnapScrollPage.tsx";
 
+import './i18n.ts';
+import {useTranslation} from "react-i18next";
+
 function App() {
+    const {t} = useTranslation();
+
     return (
         <Layout>
+            {t('title')}
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/test" element={<TestPage/>}/>

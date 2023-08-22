@@ -5,24 +5,24 @@ import {currentYear} from "@/utils/date/dates.ts";
 export const SimpleFooter: React.FC = memo(() => {
     const navigation = [
         {
-            link: '',
-            title: 'О нас'
+            link: '/policy',
+            title: 'Policy'
+        },
+        {
+            link: 'terms',
+            title: 'Terms and conditions'
+        },
+        {
+            link: '/api',
+            title: 'API'
         },
         {
             link: '',
-            title: 'Наша команда'
+            title: 'About us'
         },
         {
-            link: '',
-            title: 'Условия'
-        },
-        {
-            link: '',
-            title: 'Политика'
-        },
-        {
-            link: '',
-            title: 'Поддержка'
+            link: 'request-new-service',
+            title: 'Request new service'
         },
     ];
 
@@ -53,18 +53,13 @@ export const SimpleFooter: React.FC = memo(() => {
             {/* Rights, made by */}
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="sm:mt-0 w-full flex justify-between md:items-end md:flex-row flex-col-reverse">
-                    <div className="mt-4">&copy; {currentYear} Color template All rights reserved.</div>
+                    <div className="mt-4">&copy; {currentYear} Color template. All rights reserved.</div>
 
                     <div className="flex flex-col">
                         <div>
                             Made by <a href="https://vk.com/color_kat" target="_blank" className="underline">
                                 @ColorKat
                             </a>.
-                        </div>
-                        <div>
-                            Powered by <a href="https://colorbit.ru" target="_blank" className="underline">
-                                Colorbit.ru
-                            </a>
                         </div>
                     </div>
                 </div>
