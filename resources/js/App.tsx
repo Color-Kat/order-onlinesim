@@ -14,14 +14,22 @@ import {Page404} from "@pages/Errors/Page404/Page404.tsx";
 import {SnapScrollPage} from "@pages/SnapScrollPage/SnapScrollPage.tsx";
 
 import './i18n.ts';
+import {FAQPage} from "@pages/FAQPage/FAQPage.tsx";
+import {useTranslation} from "react-i18next";
 
 function App() {
+    // For load language
+    const {t, } = useTranslation();
+
     return (
         <Layout>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
+
+                <Route path="/faq" element={<FAQPage/>}/>
+
                 <Route path="/test" element={<TestPage/>}/>
-                <Route path="/snap-scroll" element={<SnapScrollPage/>}/>
+                {/*<Route path="/snap-scroll" element={<SnapScrollPage/>}/>*/}
 
                 {/*  Auth  */}
                 <Route element={<NotAuthRoute/>}>

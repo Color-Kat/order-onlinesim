@@ -14,5 +14,9 @@ i18next
         backend: {
             loadPath: '/storage/lang/{{lng}}.json'
         },
+        returnObjects: true,
         debug: true,
+        react: {
+            useSuspense: true
+        }
     });

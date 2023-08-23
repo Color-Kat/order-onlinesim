@@ -6,7 +6,6 @@ import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
 import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
 import {Page} from "@modules/PageTemplates";
 import {ListOfServices} from "@pages/HomePage/modules/ListOfServices.tsx";
-import {FaqSection} from "@pages/HomePage/modules/FAQSection.tsx";
 import {ListOfCountries} from "@pages/HomePage/modules/ListOfCountries.tsx";
 import {H2} from "@UI/Typography";
 import {ICountry} from "@components/Cards/CountryCard.tsx";
@@ -147,8 +146,6 @@ export const HomePage = () => {
             />
 
             <FeaturesSection />
-
-            <FaqSection />
 
             <CTASection />
         </Page>
