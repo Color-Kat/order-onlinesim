@@ -36,7 +36,7 @@ export const Checkbox: FunctionComponent<CheckboxProps> = ({
 
     return (
         <label htmlFor={name} className={twMerge(
-            "text-sm text-neutral-800 flex items-center pl-0.5 select-none",
+            "text-sm text-blue-100 flex items-center pl-0.5 select-none",
             labelClassName
         )}>
 

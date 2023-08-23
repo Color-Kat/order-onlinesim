@@ -8,6 +8,7 @@ import {useLoginMutation} from "@/store/auth/auth.api.ts";
 import {Checkbox} from "@components/Inputs";
 import {LoadingButton} from "@components/Buttons";
 import {StandardFilledButton} from "@UI/Buttons";
+import {Helmet} from "react-helmet";
 
 export const Login: React.FC = ({}) => {
     const [login, {error, isLoading}] = useLoginMutation();
@@ -40,17 +41,23 @@ export const Login: React.FC = ({}) => {
 
     return (
         <div className="flex items-center justify-center w-full h-full py-48">
+            <Helmet>
+                <title>Login</title>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/login"}/>
+            </Helmet>
+
             <form
                 className="max-w-md w-full login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up"
             >
                 <div className=" mb-8 ">
-                    <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">Войти</h1>
+                    <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">
+                        Login
+                    </h1>
 
                     {
                         (error as any)?.status === 429 &&
                             <p className="text-sm text-red-500 mt-5 leading-tight">
-                                Слишком много запросов.
-                                Повторите попытку позже.
+                                Too many requests. Try again later.
                             </p>
                     }
                 </div>
@@ -61,7 +68,7 @@ export const Login: React.FC = ({}) => {
                         setData={setData}
                         name="email"
                         type="email"
-                        placeholder="Почта"
+                        placeholder="Email"
                         Icon={BsPerson}
                         errorMessages={errors?.errors?.email}
                     />
@@ -70,7 +77,7 @@ export const Login: React.FC = ({}) => {
                         setData={setData}
                         name="password"
                         type="password"
-                        placeholder="Пароль"
+                        placeholder="Password"
                         Icon={BiLockAlt}
                         errorMessages={errors?.errors?.password}
                     />
@@ -81,11 +88,11 @@ export const Login: React.FC = ({}) => {
                             setData={setData}
                             name="remember"
                         >
-                            Запомнить меня
+                            Remember me
                         </Checkbox>
 
-                        <Link to="/register" className="text-sm underline text-right text-black">
-                            Регистрация
+                        <Link to="/register" className="text-sm underline text-right text-blue-100">
+                            Registration
                         </Link>
                     </div>
                 </div>
@@ -96,12 +103,12 @@ export const Login: React.FC = ({}) => {
                     onClick={handleSubmit}
                     ButtonComponent={StandardFilledButton}
                 >
-                    Войти
+                    Login
                 </LoadingButton>
 
-               <div className={`mt-8 ${errors.message ? 'animate-pulse text-base text-neutral-800' : 'text-sm text-neutral-600'}`}>
+               <div className={`mt-8 ${errors.message ? 'animate-pulse text-base text-slate-300' : 'text-sm text-slate-300'}`}>
                    <Link to="/forgot-password" className="underline text-right">
-                       Забыли пароль?
+                       Forgot password?
                    </Link>
                </div>
             </form>

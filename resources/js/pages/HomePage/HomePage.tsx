@@ -127,7 +127,7 @@ export const HomePage = () => {
         >
             <Helmet>
                 <title>Главная</title>
-                <link rel="canonical" href="http://127.0.0.1:8000"/>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL}/>
             </Helmet>
 
             <HeroSection />

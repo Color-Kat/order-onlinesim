@@ -39,8 +39,8 @@ export const SimpleInput: React.FC<SimpleInputProps> = ({
             className={twMerge(
                 "w-full border-2 border-blue-400 block py-2 px-2.5",
                 "focus:outline-none focus:ring-2 focus:ring-app-accent/50",
-                "bg-blue-100/90 focus:bg-blue-100 text-gray-900 text-base rounded-xl",
-                "placeholder-gray-500",
+                "bg-slate-200 text-gray-900 text-base rounded-xl",
+                "placeholder-slate-600",
                 isError && "border-red-500 shadow-red-300 shadow-sm",
                 className
             )}

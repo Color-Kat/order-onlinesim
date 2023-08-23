@@ -7,6 +7,7 @@ import {IValidatorErrors} from "@/types/laravelEntities/IValidatorErrors.ts";
 import {Link, useSearchParams} from "react-router-dom";
 import {LoadingButton} from "@components/Buttons";
 import {StandardFilledButton} from "@UI/Buttons";
+import {Helmet} from "react-helmet";
 
 export const PasswordReset: React.FC = ({}) => {
     const [searchParams] = useSearchParams();
@@ -46,6 +47,11 @@ export const PasswordReset: React.FC = ({}) => {
 
     return (
         <div className="flex items-center justify-center w-full h-full py-48">
+            <Helmet>
+                <title>Password reset</title>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/password-reset"}/>
+            </Helmet>
+
             <form className="login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold tracking-widest animate-slide-up-slow">Сброс пароля</h1>

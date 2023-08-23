@@ -20,12 +20,12 @@ module.exports = {
                         'red',
                     'app-light':
                         '#e5e7eb',
+                    'app-accent':
+                        '#1d4ed8',
                     'app-primary':
                         '#2563eb',
                     'app-secondary':
-                        '#2467cc',
-                    'app-accent':
-                        '#1d4ed8',
+                        '#3b82f6',
                 },
                 animation: {
                     'slide-up': 'slide-up .7s ease-in-out',

@@ -45,7 +45,7 @@ export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
                         setData={setData}
                         name="search"
                         placeholder="Поиск"
-                        className="w-56"
+                        className="w-56 bg-blue-100"
                     />
                 </div>
 

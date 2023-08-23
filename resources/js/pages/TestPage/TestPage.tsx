@@ -21,7 +21,7 @@ export const TestPage = () => {
         >
             <Helmet>
                 <title>Тест компонентов</title>
-                <link rel="canonical" href="http://127.0.0.1:8000/test"/>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/test"}/>
             </Helmet>
 
             <div className="w-full p-10 text-center">

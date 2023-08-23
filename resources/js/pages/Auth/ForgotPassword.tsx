@@ -7,6 +7,7 @@ import {useForgotPasswordMutation} from "@/store/auth/auth.api.ts";
 import {useUser} from "@hooks/auth.ts";
 import {LoadingButton} from "@components/Buttons";
 import {StandardFilledButton} from "@UI/Buttons";
+import {Helmet} from "react-helmet";
 
 export const ForgotPassword: React.FC = ({}) => {
     const user = useUser();
@@ -44,12 +45,18 @@ export const ForgotPassword: React.FC = ({}) => {
 
     return (
         <div className="flex items-center justify-center w-full h-full py-48">
+            <Helmet>
+                <title>Forgot password?</title>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/forgot-password"}/>
+            </Helmet>
+
             <form
                 className="max-w-md w-full login text-center backdrop-blur-2xl bg-white/10 shadow-2xl shadow-black/10 md:px-16 md:py-20 px-8 py-16 rounded-3xl animate-slide-up"
             >
                 <div className="mb-8 ">
-                    <h1 className="text-3xl font-bold font-kids tracking-widest animate-slide-up-slow">Восстановить
-                        пароль</h1>
+                    <h1 className="text-3xl font-bold font-kids tracking-widest animate-slide-up-slow">
+                        Восстановить пароль
+                    </h1>
                     <p className="leading-tight text-sm mt-5">
                         Мы отправим письмо с ссылкой для восстановления пароля на указанный email
                     </p>
@@ -81,7 +88,7 @@ export const ForgotPassword: React.FC = ({}) => {
                 </LoadingButton>
 
                 <div className="mt-8">
-                    <Link to="/login" className="underline text-right text-neutral-600">
+                    <Link to="/login" className="underline text-right text-slate-300">
                         Войти
                     </Link>
                 </div>

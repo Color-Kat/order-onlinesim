@@ -15,7 +15,7 @@ const SnapScroll= FullPageHOC(({fullpageApi}: IFullPage) => {
         <>
             <Helmet>
                 <title>Snap Scroll</title>
-                <link rel="canonical" href="http://127.0.0.1:8000/snap-scroll"/>
+                <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/snap-scroll"}/>
             </Helmet>
 
             <FirstSection />

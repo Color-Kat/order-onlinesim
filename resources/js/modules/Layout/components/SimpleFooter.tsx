@@ -9,7 +9,7 @@ export const SimpleFooter: React.FC = memo(() => {
             title: 'Policy'
         },
         {
-            link: 'terms',
+            link: '/terms',
             title: 'Terms and conditions'
         },
         {
@@ -17,12 +17,12 @@ export const SimpleFooter: React.FC = memo(() => {
             title: 'API'
         },
         {
-            link: '',
-            title: 'About us'
+            link: '/request-new-service',
+            title: 'Request new service'
         },
         {
-            link: 'request-new-service',
-            title: 'Request new service'
+            link: '/faq',
+            title: 'FAQ'
         },
     ];
 
