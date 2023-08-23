@@ -47,7 +47,7 @@ module.exports = {
                         to: {opacity: 1, transform: 'none'},
                     },
                     'slide-down': {
-                        from: {opacity: 0, transform: 'translateY(-15%)'},
+                        from: {opacity: 0, transform: 'translateY(-20px)'},
                         to: {opacity: 1, transform: 'none'},
                     },
                     'slide-left': {

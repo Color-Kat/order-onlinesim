@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Title -->
-    <title>New project</title>
+    <title>{{env('APP_NAME')}}</title>
 
     <!-- KeyWords -->
     <meta name="keywords" content="">

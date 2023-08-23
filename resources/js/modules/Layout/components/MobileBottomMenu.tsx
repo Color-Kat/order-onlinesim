@@ -31,7 +31,7 @@ export const MobileBottomMenu: React.FC<MobileBottomMenuProps> = memo(({}) => {
             <div className={twJoin(
                 "max-h-[4.4rem] rounded-t-xl flex justify-center",
                 "fixed bottom-0 left-1/2 -translate-x-1/2 xs:w-[calc(100vw-10px)] w-screen",
-                "bg-white shadow-md",
+                "bg-app shadow-md",
             )}>
                 <ul className="flex relative">
                     {/* Bubble */}

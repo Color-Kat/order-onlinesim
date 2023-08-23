@@ -8,14 +8,14 @@ import {useLogoutMutation} from "@/store/auth/auth.api.ts";
 import {useTSelector} from "@hooks/redux.ts";
 
 export const Header = memo(() => {
-    const {user, isLoading} = useTSelector(state => state.auth);
+    const {user, isLoading, isAuth} = useTSelector(state => state.auth);
     const [logout] = useLogoutMutation();
 
     // Replace javascript:void(0) path with your path
     const navigation = [
-        {title: "Главная", link: "/"},
-        {title: "История", link: "/history"},
-        {title: "Финансы", link: "/finance"},
+        {title: "Главная", link: "/", display: isAuth},
+        {title: "История", link: "/history", display: isAuth},
+        {title: "Финансы", link: "/finance", display: isAuth},
     ];
 
     const location = useLocation();
@@ -26,7 +26,7 @@ export const Header = memo(() => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
-        <header className="inset-x-0 flex shrink-0 w-screen bg-app z-20">
+        <header className="inset-x-0 flex shrink-0 w-screen bg-app z-20 animate-slide-down">
             <nav className="flex justify-between items-center gap-6 py-1 h-16 page-container w-full z-30">
 
                 {/* Logo (Left) */}
@@ -38,7 +38,7 @@ export const Header = memo(() => {
                 >
                     {
                         navigation.map((item) => (
-                            <HeaderNavItem link={item.link} key={item.link}>
+                            <HeaderNavItem link={item.link} display={item.display} key={item.link}>
                                 {item.title}
                             </HeaderNavItem>
                         ))
@@ -54,7 +54,7 @@ export const Header = memo(() => {
                     <button
                         onClick={useCallback(() => setShowMobileMenu(prev => !prev), [])}
                         id="mobile-menu-toggle"
-                        className="md:hidden flex relative py-1 w-8 h-8 rounded-md flex-col items-center justify-evenly ml-2 focus-visible:ring-2 ring-black/20 outline-none"
+                        className="md:hidden flex relative p-1 w-9 h-9 rounded-md flex-col items-center justify-evenly bg-indigo-50 ml-5 focus-visible:ring-2 ring-black/20 outline-none"
                     >
                         <div
                             className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute rotate-45 top-1/2' : ''}`}
@@ -78,16 +78,12 @@ export const Header = memo(() => {
                     "h-screen w-full sm:w-1/2 bg-app-dark pt-20 shadow-2xl z-20"
                 )}
             >
-                <ul className="flex flex-col justify-evenly w-full pr-20 pt-32 gap-16 text-2xl font-semibold text-slate-700">
+                <ul className="flex flex-col justify-evenly w-full pr-20 pt-32 gap-16 text-2xl font-semibold text-slate-400">
                     {navigation.map((item, i) => (
-                        <MobileHeaderLink link={item.link} key={i}>
+                        <MobileHeaderLink link={item.link} display={item.display} key={i}>
                             {item.title}
                         </MobileHeaderLink>
                     ))}
-
-                    {user && <div onClick={() => logout()}>
-                        Выйти
-                    </div>}
                 </ul>
 
                 {/*<div className="mt-24">*/}

@@ -5,7 +5,7 @@ import {HeroSection} from "@pages/HomePage/modules/HeroSection.tsx";
 import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
 import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
 import {Page} from "@modules/PageTemplates";
-import {LogoGridSection} from "@pages/HomePage/modules/LogoGridSection.tsx";
+import {ListOfServices} from "@pages/HomePage/modules/ListOfServices.tsx";
 import {FaqSection} from "@pages/HomePage/modules/FAQSection.tsx";
 
 export const HomePage = () => {
@@ -22,11 +22,11 @@ export const HomePage = () => {
 
             <HeroSection />
 
+            <ListOfServices />
+
             <FeaturesSection />
 
             <FaqSection />
-
-            <LogoGridSection />
 
             <CTASection />
         </Page>

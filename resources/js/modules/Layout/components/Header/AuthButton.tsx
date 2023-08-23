@@ -50,7 +50,7 @@ export const AuthButton: React.FC = memo(() => {
 
     return (
         <Link to="/login">
-            <Button>Login</Button>
+            <Button className="py-1.5 w-24 md:w-36 md:py-2.5 md:mr-0 sm:mr-5 mr-2.5">Login</Button>
         </Link>
     );
 

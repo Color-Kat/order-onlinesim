@@ -11,9 +11,9 @@ export const HeroSection: React.FC = memo(({}) => {
     const { isAuth} = useTSelector(state => state.auth);
 
     return (
-        <section className="">
+        <section className="mb-8">
             <div className="page-container md:pt-16 md:pb-10 sm:py-20 pt-8 pb-16 lg:gap-12 gap-6 text-blue-100 overflow-hidden md:flex">
-                <div className="flex-none max-w-xl my-auto">
+                <div className="flex-none max-w-xl my-auto animate-slide-down">
                     {/*<a*/}
                     {/*    href="https://colorbit.ru"*/}
                     {/*    target="_blank"*/}
@@ -28,20 +28,20 @@ export const HeroSection: React.FC = memo(({}) => {
                     {/*    </p>*/}
                     {/*</a>*/}
 
-                    <H1>
+                    <H1 className="">
                         Receiving sms online <br/>
                         to a virtual number
                     </H1>
 
                     <p className="mt-10 mb-6">
                         {isAuth
-                            ? 'Выберите страну и сервис, для которого вы хотите приобрести номер'
+                            ? 'Select the country of the number and the service for which you want to receive an sms'
                             : 'You need to log in to buy a virtual number. Then you will be able to use numbers for receiving sms for any service you want.'
 
                         }
                     </p>
 
-                    <div className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize">
+                    <div className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize animate-slide-up-slow">
                         <FilledArrowLink to="/login">
                             Login
                         </FilledArrowLink>

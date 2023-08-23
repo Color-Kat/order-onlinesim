@@ -1,22 +1,22 @@
 import React, {memo} from 'react';
 import {ITypographyElement} from "./types.tsx";
-import {twJoin, twMerge} from "tailwind-merge";
+import {twJoin} from "tailwind-merge";
 
-export const H3: React.FC<ITypographyElement> = memo(({
+export const H2: React.FC<ITypographyElement> = memo(({
                                                           children,
                                                           className,
                                                           ...props
                                                       }) => {
 
     return (
-        <h3
-            className={twMerge(
-                "text-2xl sm:text-3xl text-blue-100 font-semibold",
+        <h2
+            className={twJoin(
+                "text-3xl sm:text-4xl text-blue-100 font-bold",
                 className
             )}
             {...props}
         >
             {children}
-        </h3>
+        </h2>
     );
 });
