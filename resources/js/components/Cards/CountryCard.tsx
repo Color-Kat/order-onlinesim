@@ -12,15 +12,20 @@ export interface ICountry {
 
 interface CountryCardProps {
     country: ICountry;
+    isActive: boolean;
     onClick?: (id: number) => void;
 }
 
-export const CountryCard: React.FC<CountryCardProps> = memo(({country, onClick}) => {
+export const CountryCard: React.FC<CountryCardProps> = memo(({
+                                                                 country,
+                                                                 isActive,
+                                                                 onClick
+}) => {
     return (
         <li
             className={twJoin(
                 "relative rounded-xl py-2 pl-3 pr-2 w-56 cursor-pointer",
-                country.isActive ? "bg-blue-600/50" :"bg-blue-600/30 hover:bg-blue-600/50"
+                isActive ? "bg-blue-600/50" :"bg-blue-600/30 hover:bg-blue-600/50"
             )}
             onClick={() => onClick ? onClick(country.id) : null}
         >

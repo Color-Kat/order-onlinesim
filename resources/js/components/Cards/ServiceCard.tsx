@@ -12,17 +12,18 @@ export interface IService {
 
 interface ServiceCardProps {
     service: IService;
+    isActive: boolean;
     onClick?: (id: number) => void;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, onClick}) => {
+export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isActive, onClick}) => {
 
 
     return (
         <li
             className={twJoin(
                 "relative rounded-xl py-2 pl-3 pr-2 w-56 cursor-pointer",
-                service.isActive ? "bg-blue-600/50" :"bg-blue-600/30 hover:bg-blue-600/50"
+                isActive ? "bg-blue-600/50" :"bg-blue-600/30 hover:bg-blue-600/50"
             )}
             onClick={() => onClick ? onClick(service.id) : null}
         >

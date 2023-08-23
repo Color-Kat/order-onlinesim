@@ -5,124 +5,28 @@ import {ServiceCard} from "@components/Cards";
 import {IService} from "@components/Cards/ServiceCard.tsx";
 
 interface ListOfServicesProps {
-
+    services: {[key: number]: IService};
+    activeId: number;
+    setActiveId: (id: number) => void;
 }
 
-const services: IService[] = [
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        availablePhones: 100,
-        price: 10,
-        isActive: true
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 1,
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        price: 10,
-        availablePhones: 100
-    },
-    {
-        id: 2,
-        name: 'Telegram',
-        image: '/storage/serviceLogos/telegram.svg',
-        price: 10,
-        availablePhones: 100
-    },
-];
-
-export const ListOfServices: React.FC<ListOfServicesProps> = memo(({}) => {
+export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
+                                                                       services,
+                                                                       activeId,
+                                                                       setActiveId
+}) => {
     const [data, setData] = useState({
         search: ''
     });
 
     const sortedServices = useMemo(() => {
-        if(!data.search) return services;
+        if(!data.search) return Object.values(services);
 
-        return services.filter(service => service.name.toLowerCase().includes(data.search.toLowerCase()));
+        return Object.values(services).filter(service => service.name.toLowerCase().includes(data.search.toLowerCase()));
     }, [data.search]);
 
     const clickServiceHandle = useCallback((id: number) => {
-        //
+        setActiveId(id);
     }, []);
 
     return (
@@ -148,7 +52,12 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({}) => {
                     <ul className="flex gap-3 flex-wrap items-center justify-center relaive">
                         {sortedServices.map((service, i) => {
                             return (
-                                <ServiceCard service={service} onClick={clickServiceHandle} key={i}/>
+                                <ServiceCard
+                                    service={service}
+                                    isActive={service.id === activeId}
+                                    onClick={clickServiceHandle}
+                                    key={i}
+                                />
                             );
                         })}
                     </ul>

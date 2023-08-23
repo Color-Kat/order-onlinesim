@@ -6,54 +6,28 @@ import {IService} from "@components/Cards/ServiceCard.tsx";
 import {ICountry} from "@components/Cards/CountryCard.tsx";
 
 interface ListOfCountriesProps {
-
+    countries: { [key: number]: ICountry };
+    activeId: number;
+    setActiveId: (id: number) => void;
 }
 
-const countries: ICountry[] = [
-    {
-        id: 1,
-        name: 'Russia',
-        image: '/storage/flags/ru.svg',
-        availablePhones: 100,
-        price: 20.4,
-    },
-    {
-        id: 2,
-        name: 'Germany',
-        image: '/storage/flags/de.svg',
-        availablePhones: 100,
-        price: 15,
-    },
-    {
-        id: 3,
-        name: 'USA',
-        image: '/storage/flags/us.svg',
-        availablePhones: 100,
-        price: 15,
-        isActive: true
-    },
-    {
-        id: 4,
-        name: 'China',
-        image: '/storage/flags/cn.svg',
-        availablePhones: 100,
-        price: 35,
-    },
-];
-
-export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({}) => {
+export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
+                                                                         countries,
+                                                                         activeId,
+                                                                         setActiveId
+                                                                     }) => {
     const [data, setData] = useState({
         search: ''
     });
 
     const sortedCountries = useMemo(() => {
-        if(!data.search) return countries;
+        if (!data.search) return Object.values(countries);
 
-        return countries.filter(country => country.name.toLowerCase().includes(data.search.toLowerCase()));
+        return Object.values(countries).filter(country => country.name.toLowerCase().includes(data.search.toLowerCase()));
     }, [data.search]);
 
     const clickCountryHandle = useCallback((id: number) => {
-        //
+        setActiveId(id);
     }, []);
 
     return (
@@ -79,7 +53,12 @@ export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({}) => {
                     <ul className="flex gap-3 flex-wrap items-center justify-center relaive">
                         {sortedCountries.map((country, i) => {
                             return (
-                                <CountryCard country={country} onClick={clickCountryHandle} key={i}/>
+                                <CountryCard
+                                    country={country}
+                                    isActive={country.id === activeId}
+                                    onClick={clickCountryHandle}
+                                    key={i}
+                                />
                             );
                         })}
                     </ul>
