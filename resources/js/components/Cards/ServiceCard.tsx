@@ -6,6 +6,7 @@ export interface IService {
     name: string;
     image: string;
     availablePhones: number;
+    price: number,
     isActive?: boolean;
 }
 
@@ -30,7 +31,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, onClick})
                 <img className="w-7 h-7 ml-5" src={service.image} alt={service.name}/>
             </div>
 
-            <div className="text-blue-300 text-sm">Available: {service.availablePhones}</div>
+            <div className="flex items-center justify-between">
+                <div className="text-blue-300 text-sm">Available: {service.availablePhones}</div>
+                <div className="text-blue-50 font-medium text-base mt-1">
+                    <span className="text-xs text-blue-200">From</span> {service.price} ₽
+                </div>
+            </div>
         </li>
     );
 });

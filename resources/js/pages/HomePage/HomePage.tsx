@@ -7,6 +7,8 @@ import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
 import {Page} from "@modules/PageTemplates";
 import {ListOfServices} from "@pages/HomePage/modules/ListOfServices.tsx";
 import {FaqSection} from "@pages/HomePage/modules/FAQSection.tsx";
+import {ListOfCountries} from "@pages/HomePage/modules/ListOfCountries.tsx";
+import {H2} from "@UI/Typography";
 
 export const HomePage = () => {
     const user = useTSelector(state => state.auth.user);
@@ -22,7 +24,11 @@ export const HomePage = () => {
 
             <HeroSection />
 
+            <H2 className="page-container mb-5 font-bold">Configure your phone number:</H2>
+
             <ListOfServices />
+
+            <ListOfCountries />
 
             <FeaturesSection />
 

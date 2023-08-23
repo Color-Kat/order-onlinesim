@@ -11,7 +11,7 @@ export const H3: React.FC<ITypographyElement> = memo(({
     return (
         <h3
             className={twMerge(
-                "text-2xl sm:text-3xl text-blue-100 font-semibold",
+                "text-2xl sm:text-3xl text-blue-200 font-medium",
                 className
             )}
             {...props}
