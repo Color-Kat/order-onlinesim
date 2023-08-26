@@ -1,14 +1,7 @@
 import React, {memo} from 'react';
 import {twJoin} from "tailwind-merge";
+import {ICountry} from "@/types/ICountry.ts";
 
-export interface ICountry {
-    id: number;
-    name: string;
-    image: string;
-    availablePhones: number;
-    price: number;
-    isActive?: boolean;
-}
 
 interface CountryCardProps {
     country: ICountry;

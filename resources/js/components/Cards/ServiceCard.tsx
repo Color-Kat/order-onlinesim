@@ -1,14 +1,6 @@
-import React, {memo} from 'react';
+import React, {memo, useMemo} from 'react';
 import {twJoin} from "tailwind-merge";
-
-export interface IService {
-    id: number;
-    name: string;
-    image: string;
-    availablePhones: number;
-    price: number,
-    isActive?: boolean;
-}
+import {IService} from "@/types/IService.ts";
 
 interface ServiceCardProps {
     service: IService;
@@ -18,12 +10,25 @@ interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isActive, onClick}) => {
 
+    const availablePhones = useMemo(() => {
+        return Object.values(service.countries).reduce(
+            (acc, country) => acc + country.availablePhones,
+            0
+        );
+    }, []);
+
+    const minPrice = useMemo(() => {
+        return Object.values(service.countries).reduce(
+            (acc, country) => acc < country.price ? acc : country.price,
+            Infinity
+        );
+    }, []);
 
     return (
         <li
             className={twJoin(
                 "relative rounded-xl py-2 pl-3 pr-2 w-56 cursor-pointer",
-                isActive ? "bg-blue-600/50" :"bg-blue-600/30 hover:bg-blue-600/50"
+                isActive ? "bg-blue-600/50" : "bg-blue-600/30 hover:bg-blue-600/50"
             )}
             onClick={() => onClick ? onClick(service.id) : null}
         >
@@ -33,9 +38,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isActive,
             </div>
 
             <div className="flex items-center justify-between">
-                <div className="text-blue-300 text-sm">Available: {service.availablePhones}</div>
+                <div className="text-blue-300 text-sm">Available: {availablePhones}</div>
                 <div className="text-blue-50 font-medium text-base mt-1">
-                    <span className="text-xs text-blue-200">From</span> {service.price} ₽
+                    <span className="text-xs text-blue-200">From</span> {minPrice} ₽
                 </div>
             </div>
         </li>

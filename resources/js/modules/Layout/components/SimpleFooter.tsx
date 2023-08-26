@@ -13,16 +13,16 @@ export const SimpleFooter: React.FC = memo(() => {
             title: 'Terms and conditions'
         },
         {
+            link: '/faq',
+            title: 'FAQ'
+        },
+        {
             link: '/api',
             title: 'API'
         },
         {
             link: '/request-new-service',
             title: 'Request new service'
-        },
-        {
-            link: '/faq',
-            title: 'FAQ'
         },
     ];
 

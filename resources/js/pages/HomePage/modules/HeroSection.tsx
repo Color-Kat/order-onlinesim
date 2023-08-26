@@ -1,5 +1,4 @@
-import React, {memo, Suspense} from "react";
-import {FaAngleRight} from "react-icons/fa";
+import React, {memo} from "react";
 import {H1} from "@UI/Typography";
 import {FilledArrowLink, TextArrowLink} from "@UI/Links";
 
@@ -11,10 +10,11 @@ export const HeroSection: React.FC = memo(({}) => {
     const {isAuth} = useTSelector(state => state.auth);
 
     return (
-        <section className="mb-8">
+        <section className="">
             <div
-                className="page-container md:pt-16 md:pb-10 sm:py-20 pt-8 pb-16 lg:gap-12 gap-6 text-blue-100 overflow-hidden md:flex">
-                <div className="flex-none max-w-xl my-auto animate-slide-down">
+                className="page-container md:pt-16 md:pb-6 sm:py-20 pt-8 pb-16 lg:gap-12 gap-6 text-blue-100 overflow-hidden md:flex"
+            >
+                <div className="flex-none lg:max-w-2xl max-w-xl my-auto animate-slide-down">
                     {/*<a*/}
                     {/*    href="https://colorbit.ru"*/}
                     {/*    target="_blank"*/}
@@ -30,21 +30,21 @@ export const HeroSection: React.FC = memo(({}) => {
                     {/*</a>*/}
 
                     <H1 className="">
-                        Receiving sms online <br/>
-                        to a virtual number
+                        Get online SMS to virtual numbers easy and fast
                     </H1>
 
                     <p className="mt-10 mb-6">
                         {isAuth
                             ? 'Select the country of the number and the service for which you want to receive sms. Then press the buy button to get your virtual phone number and you will be able to receive sms to this number within 20 minutes.'
-                            : 'You need to log in to buy a virtual number. Then you will be able to use numbers for receiving sms for any service you want.'
+                            : 'It takes less than a minute to register account, buy number, use it and receive SMS.'
 
                         }
                     </p>
 
                     {!isAuth &&
                         <div
-                            className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize animate-slide-up-slow">
+                            className="flex items-center gap-x-3 sm:text-sm first-letter:capitalize animate-slide-up-slow"
+                        >
                             <FilledArrowLink to="/login">
                                 Login
                             </FilledArrowLink>

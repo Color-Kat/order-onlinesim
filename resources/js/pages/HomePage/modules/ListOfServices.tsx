@@ -2,7 +2,7 @@ import React, {memo, useCallback, useMemo, useState} from 'react';
 import {H3} from "@UI/Typography";
 import {SimpleInput} from "@components/Inputs";
 import {ServiceCard} from "@components/Cards";
-import {IService} from "@components/Cards/ServiceCard.tsx";
+import {IService} from "@/types/IService.ts";
 
 interface ListOfServicesProps {
     services: {[key: number]: IService};
@@ -24,6 +24,8 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
 
         return Object.values(services).filter(service => service.name.toLowerCase().includes(data.search.toLowerCase()));
     }, [data.search]);
+
+    console.log(sortedServices);
 
     const clickServiceHandle = useCallback((id: number) => {
         setActiveId(id);
@@ -56,7 +58,7 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
                                     service={service}
                                     isActive={service.id === activeId}
                                     onClick={clickServiceHandle}
-                                    key={i}
+                                    key={service.id}
                                 />
                             );
                         })}
