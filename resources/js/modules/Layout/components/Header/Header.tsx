@@ -13,10 +13,10 @@ export const Header = memo(() => {
 
     // Replace javascript:void(0) path with your path
     const navigation = [
-        {title: "Главная", link: "/", display: isAuth},
-        {title: "Мои номера", link: "/my-numbers", display: isAuth},
-        {title: "История", link: "/history", display: isAuth},
-        {title: "Финансы", link: "/finance", display: isAuth},
+        {title: "Home", link: "/", display: isAuth},
+        {title: "My numbers", link: "/my-numbers", display: isAuth},
+        {title: "History", link: "/history", display: isAuth},
+        {title: "Finance", link: "/finance", display: isAuth},
     ];
 
     const location = useLocation();
@@ -48,10 +48,6 @@ export const Header = memo(() => {
 
                 {/* Auth button + burger menu (Right) */}
                 <div className="flex-center">
-
-                    <div className="bg-red-500 h-full">
-                        123
-                    </div>
 
                     <AuthButton />
 

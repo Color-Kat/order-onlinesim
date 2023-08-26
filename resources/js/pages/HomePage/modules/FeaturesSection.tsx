@@ -61,9 +61,9 @@ export const FeaturesSection: React.FC<HeroSectionProps> = memo(({}) => {
     ];
 
     return (
-        <section className="">
+        <section className="mt-16">
             <div className="page-container">
-                <H3 className="mb-8 text-slate-300">Our advantages:</H3>
+                <H3 className="mb-8 text-slate-300 text-center">Our advantages</H3>
 
                 <Features features={features} secondary />
             </div>

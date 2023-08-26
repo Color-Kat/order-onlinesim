@@ -1,6 +1,6 @@
 import {Helmet} from "react-helmet";
 import {useTSelector} from "@hooks/redux.ts";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {HeroSection} from "@pages/HomePage/modules/HeroSection.tsx";
 import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
 import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
@@ -11,6 +11,7 @@ import {H2} from "@UI/Typography";
 
 import {IService} from "@/types/IService.ts";
 import {ICountry} from "@/types/ICountry.ts";
+import {OrderNumber} from "@pages/HomePage/modules/OrderNumber.tsx";
 
 
 let services: { [key: number]: IService } = {
@@ -20,7 +21,7 @@ let services: { [key: number]: IService } = {
         name: 'Vkontakte',
         image: '/storage/serviceLogos/vk.svg',
         countries: {
-            Russia: {
+            1: {
                 id: 1,
                 code: 'RU',
                 short_name: 0,
@@ -29,8 +30,8 @@ let services: { [key: number]: IService } = {
                 price: 10,
                 availablePhones: 1000
             },
-            USA: {
-                id: 1,
+            2: {
+                id: 2,
                 code: 'US',
                 short_name: 12,
                 name: 'USA',
@@ -46,8 +47,8 @@ let services: { [key: number]: IService } = {
         name: 'Telegram',
         image: '/storage/serviceLogos/telegram.svg',
         countries: {
-            USA: {
-                id: 1,
+            2: {
+                id: 2,
                 code: 'US',
                 short_name: 12,
                 name: 'USA',
@@ -55,43 +56,17 @@ let services: { [key: number]: IService } = {
                 price: 100,
                 availablePhones: 23
             },
-            China: {
-                id: 1,
-                code: 'CH',
+            3: {
+                id: 3,
+                code: 'CN',
                 short_name: 3,
                 name: 'China',
-                image: '/storage/flags/ch.svg',
+                image: '/storage/flags/cn.svg',
                 price: 50,
                 availablePhones: 15
             },
         },
     },
-    3: {
-        id: 3,
-        short_name: 'vk',
-        name: 'Vkontakte',
-        image: '/storage/serviceLogos/vk.svg',
-        countries: {
-            Russia: {
-                id: 1,
-                code: 'RU',
-                short_name: 0,
-                name: 'Russia',
-                image: '/storage/flags/ru.svg',
-                price: 10,
-                availablePhones: 1000
-            },
-            USA: {
-                id: 1,
-                code: 'US',
-                short_name: 12,
-                name: 'USA',
-                image: '/storage/flags/us.svg',
-                price: 100,
-                availablePhones: 23
-            },
-        },
-    }
 };
 
 services[3] = {...services[2], id: 3};
@@ -101,36 +76,36 @@ services[6] = {...services[1], id: 6};
 services[7] = {...services[2], id: 7};
 services[8] = {...services[1], id: 8};
 
-const countries: { [key: number]: ICountry } = {
-    1: {
-        id: 1,
-        code: 'RU',
-        short_name: 1,
-        name: 'Russia',
-        image: '/storage/flags/ru.svg',
-    },
-    2: {
-        id: 2,
-        code: 'DE',
-        short_name: 10,
-        name: 'Germany',
-        image: '/storage/flags/de.svg',
-    },
-    3: {
-        id: 3,
-        code: 'US',
-        short_name: 12,
-        name: 'USA',
-        image: '/storage/flags/us.svg',
-    },
-    4: {
-        id: 4,
-        code: 'CH',
-        short_name: 3,
-        name: 'China',
-        image: '/storage/flags/cn.svg',
-    },
-};
+// const countries: { [key: number]: ICountry } = {
+//     1: {
+//         id: 1,
+//         code: 'RU',
+//         short_name: 1,
+//         name: 'Russia',
+//         image: '/storage/flags/ru.svg',
+//     },
+//     2: {
+//         id: 2,
+//         code: 'DE',
+//         short_name: 10,
+//         name: 'Germany',
+//         image: '/storage/flags/de.svg',
+//     },
+//     3: {
+//         id: 3,
+//         code: 'US',
+//         short_name: 12,
+//         name: 'USA',
+//         image: '/storage/flags/us.svg',
+//     },
+//     4: {
+//         id: 4,
+//         code: 'CH',
+//         short_name: 3,
+//         name: 'China',
+//         image: '/storage/flags/cn.svg',
+//     },
+// };
 
 export const HomePage = () => {
     const {user, isAuth} = useTSelector(state => state.auth);
@@ -139,18 +114,18 @@ export const HomePage = () => {
         countryId: number,
         serviceId: number,
     }>({
-        countryId: 3,
+        countryId: 0,
         serviceId: 0,
     });
 
     const setActiveServiceId = useCallback((id: number) => {
+        setActiveCountryId(0); // Reset country
         setOrderData(prev => ({...prev, serviceId: id}));
     }, []);
 
     const setActiveCountryId = useCallback((id: number) => {
         setOrderData(prev => ({...prev, countryId: id}));
     }, []);
-
     return (
         <Page
             className="w-screen pt-0"
@@ -162,7 +137,7 @@ export const HomePage = () => {
 
             {!isAuth && <HeroSection/>}
 
-            <H2 className="page-container my-8 font-bold">Configure your phone number:</H2>
+            <H2 className="page-container my-12 font-bold">Configure your phone number:</H2>
 
             <ListOfServices
                 services={services}
@@ -170,15 +145,24 @@ export const HomePage = () => {
                 setActiveId={setActiveServiceId}
             />
 
-            <ListOfCountries
-                countries={countries}
-                activeId={orderData.countryId}
-                setActiveId={setActiveCountryId}
-            />
+            {orderData.serviceId !== 0 &&
+                <ListOfCountries
+                    countries={services[orderData.serviceId].countries}
+                    activeId={orderData.countryId}
+                    setActiveId={setActiveCountryId}
+                />
+            }
+
+            {orderData.countryId !== 0 &&
+                <OrderNumber
+                    country={services[orderData.serviceId].countries[orderData.countryId]}
+                    service={services[orderData.serviceId]}
+                />
+            }
 
             <FeaturesSection/>
 
-            <CTASection/>
+            {/*<CTASection/>*/}
         </Page>
     );
 };
