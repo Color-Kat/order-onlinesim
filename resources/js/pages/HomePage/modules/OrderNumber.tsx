@@ -5,7 +5,8 @@ import {CountryCard} from "@components/Cards";
 import {ICountry} from "@/types/ICountry.ts";
 import {IService} from "@/types/IService.ts";
 import {BsCash} from "react-icons/bs";
-import {Button} from "@components/Buttons";
+import {Button, LoadingButton} from "@components/Buttons";
+import {useNavigate} from "react-router-dom";
 
 interface PlaceOrderProps {
     country: IService["countries"][number];
@@ -16,7 +17,18 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                                                                 country,
                                                                 service
                                                             }) => {
+    const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(false);
+    const handleOrder = () => {
+        setIsLoading(true);
+        console.log('order is placed');
+
+        setTimeout(() => {
+            setIsLoading(false);
+            navigate('/my-numbers');
+        }, 2000);
+    }
 
     return (
         <section className="mb-20 px-8 flex gap-10 justify-between max-w-screen-xl mx-auto">
@@ -52,9 +64,13 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                         <div className="font-semibold text-lg">{country.price} ₽</div>
                     </div>
 
-                    <Button className="w-full mx-0">
+                    <LoadingButton
+                        className="w-full mx-0"
+                        onClick={handleOrder}
+                        isLoading={isLoading}
+                    >
                         Order
-                    </Button>
+                    </LoadingButton>
                 </div>
             </div>
         </section>

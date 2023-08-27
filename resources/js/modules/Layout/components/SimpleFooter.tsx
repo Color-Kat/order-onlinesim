@@ -1,6 +1,7 @@
 import React, {memo} from 'react';
 import {Logo} from "@UI/Elements/Logo/Logo.tsx";
 import {currentYear} from "@/utils/date/dates.ts";
+import {Link} from "react-router-dom";
 
 export const SimpleFooter: React.FC = memo(() => {
     const navigation = [
@@ -42,9 +43,9 @@ export const SimpleFooter: React.FC = memo(() => {
                 {
                     navigation.map((item, i) => (
                         <li className="hover:text-blue-200" key={i}>
-                            <a href={item.link}>
+                            <Link to={item.link}>
                                 {item.title}
-                            </a>
+                            </Link>
                         </li>
                     ))
                 }

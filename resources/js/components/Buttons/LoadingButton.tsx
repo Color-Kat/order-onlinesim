@@ -26,7 +26,7 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
         <ButtonComponent
             {...props}
         >
-            {isLoading && <><Loader />Загрузка</>}
+            {isLoading && <><Loader />Loading</>}
             {!isLoading && children}
         </ButtonComponent>
     );

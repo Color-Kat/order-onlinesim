@@ -54,8 +54,6 @@ export const FAQPage = () => {
 
     const {t, } = useTranslation();
 
-    console.log(t('FAQPage'));
-
     const faqsList: {
         question: string,
         answer: string
