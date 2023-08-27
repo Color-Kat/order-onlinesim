@@ -27,7 +27,7 @@ export const AuthButton: React.FC = memo(() => {
     if (user) return (
         <>
 
-            <div className="mx-5 hover:text-blue-50 cursor-pointer">
+            <div className="mr-5 md:mr-2.5 lg:mr-5 hover:text-blue-50 cursor-pointer">
                 550₽
             </div>
 

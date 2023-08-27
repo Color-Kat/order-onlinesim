@@ -24,11 +24,11 @@
   //scrollbar-width: thin;
 
   scrollbar-width: auto;
-  scrollbar-color: #5B5B5B #0f172a;
+  scrollbar-color: #2563eb #1e293b;
   // overflow: overlay;
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 
     @media screen and (max-width: 768px) {
       & {
@@ -48,12 +48,13 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #5B5B5B;
+    //background-color: rgba(37, 99, 235, 0.5);
+    background-color: #475569;
     border-radius: 5px;
 
     &:hover {
-      background-color: #737373;
-      box-shadow: 0 35px 20px #CC3824, 0 -35px 20px #CC3824;
+      background-color: rgba(37, 99, 235, 0.8);
+      //box-shadow: 0 35px 20px #3b82f6, 0 -35px 20px #3b82f6;
     }
   }
 }

@@ -30,7 +30,7 @@ export const SimpleFooter: React.FC = memo(() => {
     return (
         <footer className="text-indigo-100 bg-app px-4 py-5 w-screen md:px-8">
             {/* Text */}
-            <div className="max-w-xl sm:mx-auto sm:text-center">
+            <div className="max-w-xl mx-auto text-center">
                 <Logo className="h-16" />
                 <p className="leading-relaxed mt-2 text-[15px]">
                     Get online SMS to virtual numbers easy and fast.
