@@ -7,6 +7,8 @@ import {IService} from "@/types/IService.ts";
 import {BsCash} from "react-icons/bs";
 import {Button, LoadingButton} from "@components/Buttons";
 import {useNavigate} from "react-router-dom";
+import {useTSelector} from "@hooks/redux.ts";
+import {ButtonLink, FilledArrowLink} from "@UI/Links";
 
 interface PlaceOrderProps {
     country: IService["countries"][number];
@@ -18,9 +20,12 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                                                                 service
                                                             }) => {
     const navigate = useNavigate();
+    const {isAuth} = useTSelector(state => state.auth);
 
     const [isLoading, setIsLoading] = useState(false);
     const handleOrder = () => {
+        if(!isAuth) return;
+
         setIsLoading(true);
         console.log('order is placed');
 
@@ -48,7 +53,7 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                     </H3>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                {isAuth && <div className="flex flex-col gap-3">
                     <div className="flex items-center">
                         <img className="w-9 h-9 mr-5 rounded-lg" src={country.image} alt={country.name}/>
                         <div className="font-semibold text-lg">{country.name}</div>
@@ -71,7 +76,17 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                     >
                         Order
                     </LoadingButton>
-                </div>
+                </div>}
+
+                {!isAuth && <div className="flex flex-col gap-3">
+                    <div className="text-lg text-slate-300 mb-2">
+                        Sorry, but you need to log in to your account to buy virtual numbers.
+                    </div>
+
+                    <FilledArrowLink to="/login">
+                        Login
+                    </FilledArrowLink>
+                </div>}
             </div>
         </section>
     );
