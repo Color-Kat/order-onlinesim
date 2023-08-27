@@ -83,5 +83,7 @@ module.exports = {
         // Disable hover effect on mobile
         hoverOnlyWhenSupported: true,
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 }
