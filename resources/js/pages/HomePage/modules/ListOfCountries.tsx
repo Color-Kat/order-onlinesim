@@ -1,8 +1,7 @@
-import React, {memo, useCallback, useMemo, useState} from 'react';
+import React, {ForwardedRef, forwardRef, memo, useCallback, useMemo, useState} from 'react';
 import {H3} from "@UI/Typography";
 import {SimpleInput} from "@components/Inputs";
 import {CountryCard} from "@components/Cards";
-import {ICountry} from "@/types/ICountry.ts";
 import {IService} from "@/types/IService.ts";
 
 interface ListOfCountriesProps {
@@ -12,10 +11,10 @@ interface ListOfCountriesProps {
 }
 
 export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
-                                                                         countries,
-                                                                         activeId,
-                                                                         setActiveId
-                                                                     }) => {
+                                                                                    countries,
+                                                                                    activeId,
+                                                                                    setActiveId
+                                                                                }) => {
     const [data, setData] = useState({
         search: ''
     });
@@ -31,10 +30,10 @@ export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
     }, []);
 
     return (
-        <section className="mb-20 max-w-screen-xl mx-auto px-4 md:px-8">
+        <section className="mb-20 max-w-screen-xl mx-auto sm:px-8 px-2">
             {/*<H3>List of services.</H3>*/}
 
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-2">
                 <H3 className="text-xl">
                     Choose a country
                 </H3>

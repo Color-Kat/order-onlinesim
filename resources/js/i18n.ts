@@ -9,14 +9,15 @@ i18next
     .use(LanguageDetector)
     .use(I18NextHttpBackend)
     .init({
-        // lng: "ru",
+        lng: "ru",
         fallbackLng: 'en',
         backend: {
-            loadPath: '/storage/lang/{{lng}}.json'
+            loadPath: '/storage/lang/{{lng}}.json',
+            // wait: true
         },
         returnObjects: true,
         debug: true,
-        react: {
-            useSuspense: true
-        }
+        // react: {
+        //     useSuspense: true
+        // }
     });

@@ -1,6 +1,6 @@
 import {Helmet} from "react-helmet";
 import {useTSelector} from "@hooks/redux.ts";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {HeroSection} from "@pages/HomePage/modules/HeroSection.tsx";
 import {FeaturesSection} from "@pages/HomePage/modules/FeaturesSection.tsx";
 import {CTASection} from "@pages/HomePage/modules/CTASection.tsx";
@@ -110,6 +110,19 @@ services[8] = {...services[1], id: 8};
 export const HomePage = () => {
     const {user, isAuth} = useTSelector(state => state.auth);
 
+    /* --- Smooth scrolling --- */
+    // Refs for smooth scrolling to the next section
+    const listOfServicesRef = useRef<HTMLDivElement>(null);
+    const listOfCountriesRef = useRef<HTMLDivElement>(null);
+    const orderNumberRef = useRef<HTMLDivElement>(null);
+
+    const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+        if (ref.current) {
+            ref.current.scrollIntoView({behavior: 'smooth', block: "start"});
+        }
+    };
+    /* --- Smooth scrolling --- */
+
     const [orderData, setOrderData] = useState<{
         countryId: number,
         serviceId: number,
@@ -118,14 +131,17 @@ export const HomePage = () => {
         serviceId: 0,
     });
 
-    const setActiveServiceId = useCallback((id: number) => {
+    const setActiveServiceId = (id: number) => {
         setActiveCountryId(0); // Reset country
         setOrderData(prev => ({...prev, serviceId: id}));
-    }, []);
+        scrollToSection(listOfCountriesRef);
+    };
 
-    const setActiveCountryId = useCallback((id: number) => {
+    const setActiveCountryId = (id: number) => {
         setOrderData(prev => ({...prev, countryId: id}));
-    }, []);
+        scrollToSection(orderNumberRef);
+    };
+
     return (
         <Page
             className="w-screen pt-0"
@@ -145,20 +161,31 @@ export const HomePage = () => {
                 setActiveId={setActiveServiceId}
             />
 
-            {orderData.serviceId !== 0 &&
-                <ListOfCountries
-                    countries={services[orderData.serviceId].countries}
-                    activeId={orderData.countryId}
-                    setActiveId={setActiveCountryId}
-                />
-            }
 
-            {orderData.countryId !== 0 &&
-                <OrderNumber
-                    country={services[orderData.serviceId].countries[orderData.countryId]}
-                    service={services[orderData.serviceId]}
-                />
-            }
+            <div
+                ref={listOfCountriesRef}
+                className={orderData.serviceId === 0 ? 'opacity-0' : 'opacity-100' + ' scroll-mt-5'}
+            >
+                {orderData.serviceId !== 0 &&
+                    <ListOfCountries
+                        countries={services[orderData.serviceId].countries}
+                        activeId={orderData.countryId}
+                        setActiveId={setActiveCountryId}
+                    />
+                }
+            </div>
+
+            <div
+                ref={orderNumberRef}
+                className={orderData.countryId === 0 ? 'opacity-0' : 'opacity-100' + ' scroll-mt-5'}
+            >
+                {orderData.countryId !== 0 &&
+                    <OrderNumber
+                        country={services[orderData.serviceId].countries[orderData.countryId]}
+                        service={services[orderData.serviceId]}
+                    />
+                }
+            </div>
 
             <FeaturesSection/>
 

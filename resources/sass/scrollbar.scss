@@ -24,7 +24,7 @@
   //scrollbar-width: thin;
 
   scrollbar-width: auto;
-  scrollbar-color: #5B5B5B #737373;
+  scrollbar-color: #5B5B5B #0f172a;
   // overflow: overlay;
 
   &::-webkit-scrollbar {
@@ -38,7 +38,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: #121212;
+    background: #1e293b;
 
     @media screen and (max-width: 768px) {
       & {

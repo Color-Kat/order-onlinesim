@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useMemo, useState} from 'react';
+import React, {ForwardedRef, forwardRef, memo, useCallback, useMemo, useState} from 'react';
 import {H3} from "@UI/Typography";
 import {SimpleInput} from "@components/Inputs";
 import {CountryCard} from "@components/Cards";
@@ -19,6 +19,7 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                                                                 country,
                                                                 service
                                                             }) => {
+
     const navigate = useNavigate();
     const {isAuth} = useTSelector(state => state.auth);
 
@@ -36,9 +37,9 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
     }
 
     return (
-        <section className="mb-20 px-8 flex gap-10 justify-between max-w-screen-xl mx-auto">
+        <section className="mb-20 sm:px-8 px-2 flex gap-10 justify-between max-w-screen-xl mx-auto">
 
-            <div className="text-slate-400 text-lg max-w-xl">
+            <div className="text-slate-400 text-lg max-w-xl md:block hidden">
                 <p>
                     Now you need to pay for the virtual number and we will send you the number. <br/>
                     It will be displayed on the My numbers page.
@@ -46,11 +47,19 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
                 </p>
             </div>
 
-            <div className="w-max bg-blue-600/30 rounded-xl sm:p-5 p-3 max-w-[380px]">
+            <div className="w-full bg-blue-600/30 rounded-xl sm:p-5 p-3 max-w-[380px] mx-auto shrink-0">
                 <div className="flex items-center justify-between mb-5">
-                    <H3 className="text-xl sm:text-2xl">
-                        Order a virtual phone number
-                    </H3>
+                    {/*<H3 className="text-xl sm:text-2xl">*/}
+                    {/*    {isAuth*/}
+                    {/*        ? 'Order a virtual phone number'*/}
+                    {/*        : 'You are not signed in'*/}
+                    {/*    }*/}
+                    {/*</H3>*/}
+
+                    {isAuth
+                        ? <H3 className="text-xl sm:text-2xl">Order a virtual phone number</H3>
+                        : <H3 className="text-xl sm:text-2xl text-red-500">You are not signed in</H3>
+                    }
                 </div>
 
                 {isAuth && <div className="flex flex-col gap-3">
@@ -80,7 +89,7 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
 
                 {!isAuth && <div className="flex flex-col gap-3">
                     <div className="text-lg text-slate-300 mb-2">
-                        Sorry, but you need to log in to your account to buy virtual numbers.
+                        Sorry, but to order a number first you need to Sign up / Log in
                     </div>
 
                     <FilledArrowLink to="/login">

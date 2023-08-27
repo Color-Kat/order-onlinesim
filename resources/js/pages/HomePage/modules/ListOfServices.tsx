@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useMemo, useState} from 'react';
+import React, {ForwardedRef, forwardRef, memo, useCallback, useMemo, useState} from 'react';
 import {H3} from "@UI/Typography";
 import {SimpleInput} from "@components/Inputs";
 import {ServiceCard} from "@components/Cards";
@@ -11,10 +11,10 @@ interface ListOfServicesProps {
 }
 
 export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
-                                                                       services,
-                                                                       activeId,
-                                                                       setActiveId
-                                                                   }) => {
+                                                                           services,
+                                                                           activeId,
+                                                                           setActiveId
+                                                                       }) => {
     const [data, setData] = useState({
         search: ''
     });
@@ -30,9 +30,9 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
     }, []);
 
     return (
-        <section className="mb-12 max-w-screen-xl mx-auto px-4 md:px-8">
+        <section className="mb-12 max-w-screen-xl mx-auto sm:px-8 px-2">
 
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-2">
                 <H3 className="text-xl">
                     Choose a service
                 </H3>

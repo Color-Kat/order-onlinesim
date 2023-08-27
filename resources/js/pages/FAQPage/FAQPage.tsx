@@ -52,12 +52,14 @@ const FaqsCard = ({faqsList}: {faqsList: {question: string, answer: string}}) =>
 
 export const FAQPage = () => {
 
-    const {t, } = useTranslation();
+    const {t } = useTranslation();
 
     const faqsList: {
         question: string,
         answer: string
     }[] = t('FAQPage') as any;
+
+    console.log(faqsList ? faqsList: 231);
 
     return (
         <Page
@@ -82,7 +84,7 @@ export const FAQPage = () => {
 
                 <div className="mt-14 max-w-2xl mx-auto">
                     {
-                        faqsList.map((item, i) => (
+                        Object.values(faqsList).map((item, i) => (
                             <FaqsCard
                                 key={i}
                                 faqsList={item}

@@ -17,13 +17,12 @@ const AvatarButton = memo(({user}: { user: IUser }) => (
 ));
 
 export const AuthButton: React.FC = memo(() => {
+    const navigate = useNavigate();
 
     const {user, isLoading} = useTSelector(state => state.auth);
     const [logout] = useLogoutMutation();
 
-    const navigate = useNavigate();
-
-    if (isLoading) return null;
+    if (isLoading) return <div></div>;
 
     if (user) return (
         <>
@@ -61,10 +60,4 @@ export const AuthButton: React.FC = memo(() => {
             <Button className="py-1.5 w-24 md:w-36 md:py-2.5 md:mr-0 sm:mr-5 mr-2.5">Login</Button>
         </Link>
     );
-
-    // {
-    //     user
-    //         ? <button onClick={() => logout()}>Выйти</button>
-    //         : <Link to="/login" className="hover:underline">Войти</Link>
-    // }
 });

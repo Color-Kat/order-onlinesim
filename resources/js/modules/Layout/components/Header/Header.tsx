@@ -8,7 +8,7 @@ import {useLogoutMutation} from "@/store/auth/auth.api.ts";
 import {useTSelector} from "@hooks/redux.ts";
 
 export const Header = memo(() => {
-    const {user, isLoading, isAuth} = useTSelector(state => state.auth);
+    const {isAuth} = useTSelector(state => state.auth);
     const [logout] = useLogoutMutation();
 
     // Replace javascript:void(0) path with your path
@@ -49,24 +49,26 @@ export const Header = memo(() => {
                 {/* Auth button + burger menu (Right) */}
                 <div className="flex-center">
 
-                    <AuthButton />
+                    <AuthButton/>
 
                     {/* Burger menu with animation */}
-                    <button
-                        onClick={useCallback(() => setShowMobileMenu(prev => !prev), [])}
-                        id="mobile-menu-toggle"
-                        className="md:hidden flex relative p-1 w-9 h-9 rounded-md flex-col items-center justify-evenly bg-indigo-50 ml-5 focus-visible:ring-2 ring-black/20 outline-none"
-                    >
-                        <div
-                            className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute rotate-45 top-1/2' : ''}`}
-                        />
-                        <div
-                            className={`h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute w-0' : 'w-2/3'}`}
-                        />
-                        <div
-                            className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute -rotate-45 top-1/2' : ''}`}
-                        />
-                    </button>
+                    {isAuth &&
+                        <button
+                            onClick={() => setShowMobileMenu(prev => !prev)}
+                            id="mobile-menu-toggle"
+                            className="md:hidden flex relative p-1 w-9 h-9 rounded-md flex-col items-center justify-evenly bg-indigo-50 ml-5 focus-visible:ring-2 ring-black/20 outline-none"
+                        >
+                            <div
+                                className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute rotate-45 top-1/2' : ''}`}
+                            />
+                            <div
+                                className={`h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute w-0' : 'w-2/3'}`}
+                            />
+                            <div
+                                className={`w-2/3 h-0.5 rounded-full bg-app-accent transition-all ${showMobileMenu ? 'absolute -rotate-45 top-1/2' : ''}`}
+                            />
+                        </button>
+                    }
                 </div>
             </nav>
 
@@ -101,16 +103,6 @@ export const Header = memo(() => {
                 onClick={() => setShowMobileMenu(false)}
                 className={`w-screen h-screen absolute ${showMobileMenu ? "pointer-events-auto" : "pointer-events-none"} z-10`}
             />
-        </header>
-    )
-
-    return (
-        <header className="flex justify-center items-center h-16 px-5 py-1 shrink-0 w-full bg-gray-100 text-gray-800">
-            <div className="container flex justify-evenly items-center">
-                <Link to="/test" className="hover:underline">Test</Link>
-
-                <Logo/>
-            </div>
         </header>
     );
 });

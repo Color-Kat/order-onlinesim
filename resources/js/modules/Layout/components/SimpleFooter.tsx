@@ -33,8 +33,7 @@ export const SimpleFooter: React.FC = memo(() => {
             <div className="max-w-xl sm:mx-auto sm:text-center">
                 <Logo className="h-16" />
                 <p className="leading-relaxed mt-2 text-[15px]">
-                    Это вариант футера для небольших проектов, где всего несколько страниц.
-                    Также в шаблоне есть другой футер для более крупных приложений.
+                    Get online SMS to virtual numbers easy and fast.
                 </p>
             </div>
 
