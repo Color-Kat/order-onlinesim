@@ -40,11 +40,11 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
         <section className="mb-20 sm:px-8 px-2 flex gap-10 justify-between max-w-screen-xl mx-auto">
 
             <div className="text-slate-400 text-lg max-w-xl md:block hidden">
-                <p>
-                    Now you need to pay for the virtual number and we will send you the number. <br/>
-                    It will be displayed on the My numbers page.
-                    There you can see the list of sms messages.
-                </p>
+                {/*<p>*/}
+                {/*    Now you need to pay for the virtual number and we will send you the number. <br/>*/}
+                {/*    It will be displayed on the My numbers page.*/}
+                {/*    There you can see the list of sms messages.*/}
+                {/*</p>*/}
             </div>
 
             <div className="w-full bg-blue-600/30 rounded-xl sm:p-5 p-3 max-w-[380px] mx-auto shrink-0">

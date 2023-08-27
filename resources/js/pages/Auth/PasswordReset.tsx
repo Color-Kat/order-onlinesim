@@ -46,7 +46,7 @@ export const PasswordReset: React.FC = ({}) => {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full py-48">
+        <div className="flex items-center justify-center w-full h-full lg:py-48 py-16 px-2">
             <Helmet>
                 <title>Password reset</title>
                 <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/password-reset"}/>
@@ -58,7 +58,7 @@ export const PasswordReset: React.FC = ({}) => {
 
                     {successMessage && <div className="text-emerald-500 leading-tight mt-5">
                         <p>{successMessage}</p>
-                        <Link to="/login" className="block underline text-lg text-neutral-700 animate-pulse pt-3">
+                        <Link to="/login" className="block underline text-lg text-slate-300 animate-pulse pt-3">
                             Войти
                         </Link>
                     </div>}

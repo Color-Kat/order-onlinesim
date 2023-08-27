@@ -153,14 +153,19 @@ export const HomePage = () => {
 
             {!isAuth && <HeroSection/>}
 
-            <H2 className="page-container my-12 font-bold">Configure your phone number:</H2>
+            <H2 className="page-container mt-12 font-bold leading-snug">
+                Choose Service {'->'} Choose Country {'->'} Click Order
+            </H2>
+
+            {/*<div className="page-container text-slate-400 text-base mt-12">*/}
+            {/*   */}
+            {/*</div>*/}
 
             <ListOfServices
                 services={services}
                 activeId={orderData.serviceId}
                 setActiveId={setActiveServiceId}
             />
-
 
             <div
                 ref={listOfCountriesRef}
@@ -187,7 +192,7 @@ export const HomePage = () => {
                 }
             </div>
 
-            <FeaturesSection/>
+            {!isAuth && <FeaturesSection/>}
 
             {/*<CTASection/>*/}
         </Page>

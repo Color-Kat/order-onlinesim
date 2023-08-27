@@ -30,7 +30,7 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
     }, []);
 
     return (
-        <section className="mb-12 max-w-screen-xl mx-auto sm:px-8 px-2">
+        <section className="mb-12 mt-10 max-w-screen-xl mx-auto sm:px-8 px-2">
 
             <div className="flex items-center justify-between sm:flex-row flex-col gap-2">
                 <H3 className="text-xl">

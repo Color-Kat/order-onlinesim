@@ -41,7 +41,7 @@ export const Register: React.FC = ({}) => {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full py-48">
+        <div className="flex items-center justify-center w-full h-full lg:py-48 py-16 px-2">
             <Helmet>
                 <title>Register</title>
                 <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/register"}/>

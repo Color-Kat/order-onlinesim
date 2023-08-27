@@ -21,10 +21,10 @@ const FaqsCard = ({faqsList}: {faqsList: {question: string, answer: string}}) =>
 
     return (
         <div
-            className="space-y-3 mt-5 overflow-hidden border-b"
+            className="space-y-3 mt-5 overflow-hidden border-b border-slate-600"
         >
             <h4
-                className="cursor-pointer pb-5 flex items-center justify-between text-lg text-blue-100 font-medium"
+                className="cursor-pointer pb-5 flex items-center justify-between text-lg text-blue-100 font-bold"
                 onClick={handleOpenAnswer}
             >
                 {faqsList.question}
@@ -41,7 +41,7 @@ const FaqsCard = ({faqsList}: {faqsList: {question: string, answer: string}}) =>
                 style={isOpen ? {height: answerHeight} : {height: '0px'}}
             >
                 <div>
-                    <p className="text-slate-300">
+                    <p className="text-slate-400">
                         {faqsList.answer}
                     </p>
                 </div>
@@ -77,9 +77,9 @@ export const FAQPage = () => {
                         FAQ
                     </H1>
 
-                    <H2>
-                        Frequently asked questions
-                    </H2>
+                    {/*<H2>*/}
+                    {/*    Frequently asked questions*/}
+                    {/*</H2>*/}
                 </div>
 
                 <div className="mt-14 max-w-2xl mx-auto">
