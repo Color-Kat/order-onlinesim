@@ -29,7 +29,7 @@ export const Terms = () => {
                 <link rel="canonical" href={import.meta.env.VITE_APP_URL + "/terms"}/>
             </Helmet>
 
-            <ReactMarkdown className="markdown text-blue-100">
+            <ReactMarkdown className="markdown text-blue-200">
                 {termsContent}
             </ReactMarkdown>
         </BigPage>
