@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Countries\CreateCountryRequest;
 use App\Repositories\CountriesRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class CountriesController extends Controller
         ], 200);
     }
 
-    public function create(Request $request) {
+    public function create(CreateCountryRequest $request) {
         try {
             $country = $this->countriesRepository->createCountry($request->all());
 

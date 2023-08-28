@@ -9,7 +9,7 @@ import {BlueButton} from "@UI/Buttons";
 
 export const AdminCountries: React.FC = ({}) => {
     const {data: countries} = useGetAllCountriesQuery();
-    const [createCountry] = useCreateCountryMutation();
+    const [createCountry, {data, error}] = useCreateCountryMutation();
 
     const [newCountry, setNewCountry] = useState({
         name: '',
@@ -18,10 +18,11 @@ export const AdminCountries: React.FC = ({}) => {
     });
 
     const handleCreateCountry = useCallback(async () => {
-        const result = await createCountry(newCountry);
-
-        console.log(result);
+        await createCountry(newCountry);
     }, [newCountry]);
+
+    console.log(data, error);
+
 
     console.log(countries);
 
@@ -30,6 +31,10 @@ export const AdminCountries: React.FC = ({}) => {
 
             <div className="flex flex-col gap-2 border-b border-slate-600 pb-5">
                 <H3>Add new country</H3>
+
+                <div className="text-red-500 text-sm">
+                    {(error as any)?.data?.message}
+                </div>
 
                 <div className="flex gap-5 items-center mt-2">
                     <Input
@@ -52,6 +57,7 @@ export const AdminCountries: React.FC = ({}) => {
                         data={newCountry}
                         setData={setNewCountry}
                         name="short_name"
+                        type="number"
                         placeholder="Country numeric code"
                         className="py-1.5"
                     />

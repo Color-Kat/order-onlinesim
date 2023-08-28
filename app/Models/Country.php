@@ -11,6 +11,16 @@ class Country extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['image'];
+
+    /**
+     * Accessor for the country flag.
+     * @return string
+     */
+    public function getImageAttribute() {
+        return asset('storage/flags/' . $this->code . '.svg');
+    }
+
     /**
      * Retrieve the services associated with the current country.
      *

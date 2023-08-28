@@ -9,7 +9,6 @@ export const adminCountriesApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: '/api/admin/',
         prepareHeaders: prepareAuthHeader,
-        // credentials: 'include', // This allows server to set cookies
     }),
     tagTypes: ['Countries'],
     endpoints: (builder) => ({
@@ -29,6 +28,7 @@ export const adminCountriesApi = createApi({
             query: (payload) => ({
                 url: `countries/create`,
                 method: 'POST',
+                keepUnusedData: false,
                 body: payload
             }),
             invalidatesTags: ["Countries"]
