@@ -9,6 +9,8 @@ class Service extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /**
      * Retrieves the countries associated with the service.
      *

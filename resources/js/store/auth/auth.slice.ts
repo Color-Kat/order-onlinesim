@@ -7,6 +7,7 @@ export interface IUser {
     email_verified_at: null|string;
 
     role_id: Roles;
+    isAdmin: boolean;
 
     updated_at: string;
     created_at: string;
