@@ -8,7 +8,7 @@ import {ForgotPassword} from "@pages/Auth/ForgotPassword.tsx";
 import {PasswordReset} from "@pages/Auth/PasswordReset.tsx";
 
 import {AdminRoute, AuthRoute, NotAuthRoute} from "@components/Router";
-import {AdminIndexPage} from "@pages/Admin/AdminIndexPage.tsx";
+import {AdminPage} from "@pages/Admin/AdminPage.tsx";
 import {TestPage} from "@pages/TestPage/TestPage.tsx";
 import {Page404} from "@pages/Errors/Page404/Page404.tsx";
 import {SnapScrollPage} from "@pages/SnapScrollPage/SnapScrollPage.tsx";
@@ -18,6 +18,7 @@ import {FAQPage} from "@pages/FAQPage/FAQPage.tsx";
 import {useTranslation} from "react-i18next";
 import {Policy} from "@pages/Documents/Policy.tsx";
 import {Terms} from "@pages/Documents/Terms.tsx";
+import {AdminCountries} from "@pages/Admin/AdminCountries.tsx";
 
 function App() {
     // For load language
@@ -46,7 +47,11 @@ function App() {
 
                 {/*  Admin Page  */}
                 <Route element={<AdminRoute/>}>
-                    <Route path="/admin" element={<AdminIndexPage/>}/>
+                    <Route path="/admin" element={<AdminPage/>}>
+                        <Route index element={null}/>
+                        <Route path="countries" element={<AdminCountries/>}/>
+                        <Route path="prices" element={<AdminCountries/>}/>
+                    </Route>
                 </Route>
 
                 <Route path="*" element={<Page404/>}/>

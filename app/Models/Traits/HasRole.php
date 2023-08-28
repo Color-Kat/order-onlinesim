@@ -9,7 +9,6 @@ use App\Models\Role;
  *
  * One to many inverse relationship for using roles
  */
-
 trait HasRole
 {
     /**
@@ -24,7 +23,8 @@ trait HasRole
      * @param mixed ...$roles
      * @return bool
      */
-    public function hasRole(... $roles ) {
+    public function hasRole(...$roles)
+    {
         foreach ($roles as $role) {
             if ($this->role && $this->role->slug === $role) {
                 return true;
@@ -33,7 +33,8 @@ trait HasRole
         return false;
     }
 
-    public function getIsAdminAttribute() {
+    public function getIsAdminAttribute()
+    {
         return $this->hasRole('admin');
     }
 }

@@ -17,6 +17,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use AuthEmailTrait;
     use HasRole;
 
+    protected $appends = ['isAdmin'];
+
     /**
      * The attributes that are mass assignable.
      *

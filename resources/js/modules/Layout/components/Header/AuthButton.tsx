@@ -40,6 +40,10 @@ export const AuthButton: React.FC = memo(() => {
                             text: 'Account',
                             onClick: () => navigate('/account')
                         },
+                        user.isAdmin && {
+                            text: 'Admin Panel',
+                            onClick: () => navigate('/admin')
+                        },
                         // {
                         //     text: 'Настройки',
                         //     onClick: () => navigate('/settings')

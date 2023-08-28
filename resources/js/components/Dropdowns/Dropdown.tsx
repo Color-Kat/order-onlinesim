@@ -14,9 +14,9 @@ interface DropdownProps {
     itemClassName?: string;
 }
 
-type DropdownWithItemsProps = { items: IDropdownItem[] };
+type DropdownWithItemsProps = { items: (IDropdownItem|false)[] };
 
-type DropdownWithGroupsProps = { groups: IDropdownItem[][] };
+type DropdownWithGroupsProps = { groups: (IDropdownItem|false)[][] };
 
 /**
  * Component of dropdown menu.
@@ -104,9 +104,10 @@ export const Dropdown: React.FC<
                         <div className="px-1 py-1" key={i}>
 
                             {/* Iterate group items */}
-                            {items.map((item, i) => (
-                                <DropdownItem key={i} item={item}/>
-                            ))}
+                            {items.map((item, i) => {
+                                if(!item) return null;
+                                return <DropdownItem key={i} item={item}/>;
+                            })}
 
                         </div>
                     ))}
