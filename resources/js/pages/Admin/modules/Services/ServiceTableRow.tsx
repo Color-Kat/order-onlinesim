@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {IService} from "@/types/IService.ts";
 import {ICountry} from "@/types/ICountry.ts";
 import {BsDashLg, BsPlusLg} from "react-icons/bs";
@@ -6,11 +6,27 @@ import {EditableDiv} from "@components/Inputs/Input/EditableDiv.tsx";
 import {Toggle} from "@components/Inputs";
 import {Modal} from "@UI/Modals";
 import {ServiceCountriesTable} from "@pages/Admin/modules/Services/ServiceCountriesTable.tsx";
+import {arrayToObjectWithId} from "@/utils/arrays/arrayToObjectWithId.ts";
+
+export interface IEditServiceData {
+    id: number;
+    name: string;
+    short_name: string;
+    image: null | string;
+    is_active: boolean;
+    countries: {
+        [key: string | number]: (ICountry & {
+            price: number;
+            _availablePhones: number;
+            is_active: boolean;
+        })
+    };
+}
 
 export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[] }> = ({
-                                                                                     service,
-                                                                                     countries
-                                                                                 }) => {
+                                                                                            service,
+                                                                                            countries
+                                                                                        }) => {
     // const [deleteCountry, {error: deleteError}] = useDeleteCountryMutation();
     // const [updateCountry, {error: updateError}] = useUpdateCountryMutation();
 
@@ -29,44 +45,87 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
     }, []);
     /* --- Edit mode --- */
 
+    const serviceCountries = useMemo(() => {
+        return arrayToObjectWithId(service.countries);
+    }, [service.countries]);
+
     /* ---- Edit Service Data --- */
     // Change price of all countries at once
-    const [commonPrice, setCommonPrice] = useState({commonPrice: 7});
-    const [editServiceData, setEditServiceData] = useState({
+    const [commonPrice, setCommonPrice] = useState({commonPrice: 0});
+    const [editServiceData, setEditServiceData] = useState<IEditServiceData>({
         id: service.id,
         name: service.name,
         short_name: service.short_name,
         image: null,
         is_active: service.is_active,
-        countries: Object.values(service.countries).map(country => ({
-            id: country.id,
-            price: country.pivot.price,
+        countries: arrayToObjectWithId(countries.map(country => {
+            // Merge all countries and the countries that attached to this service
+            return {
+                ...country,
+                price: serviceCountries[country.id]?.pivot.price ?? 0,                      // Service-country price
+                _availablePhones: serviceCountries[country.id]?.pivot.availablePhones ?? 0, // Available phones is only for interface
+                is_active: Object.keys(serviceCountries).includes(country.id.toString())    // Country is attached
+            };
         }))
     });
 
     console.log(editServiceData);
 
+    /**
+     * Change any field of the country of the service by countryId
+     */
     const changeServiceCountryById = useCallback((countryId: number, field: string, value: any) => {
-        setEditServiceData(prev => ({
-            ...prev,
-            countries: prev.countries.map(country => {
-                if(country.id === countryId)
-                    return {
-                        ...country,
-                        [field]: value
-                    };
-                else return country;
-            })
-        }));
+        setEditServiceData(prev => {
+            console.log(prev.countries);
+            prev.countries[countryId] = {
+                ...prev.countries[countryId] ?? {},
+                [field]: value
+            };
+
+            return {
+                ...prev,
+                countries: prev.countries
+            };
+        });
     }, []);
 
+    /**
+     * Change price attribute of the country of the service by id
+     */
     const changePriceByCountryId = useCallback((countryId: number, price: number) => {
         changeServiceCountryById(countryId, 'price', price);
     }, []);
 
+    /**
+     * Change is_active attribute of the country of the service by id
+     */
     const changeIsActiveByCountryId = useCallback((countryId: number, is_active: boolean) => {
         changeServiceCountryById(countryId, 'is_active', is_active);
     }, []);
+
+    /**
+     * Change price of all countries of the service
+     */
+    const changeCommonPrice = useCallback((price: number) => {
+        setEditServiceData(prev => {
+            // for (const key in prev.countries) {
+            //     prev.countries[key].price = price;
+            // }
+            //
+            // return prev;
+
+            const updatedCountries = { ...prev.countries };
+            for (const key in updatedCountries) {
+                updatedCountries[key].price = price;
+            }
+            return { ...prev, countries: updatedCountries };
+
+        });
+    }, []);
+    useEffect(() => {
+        if (commonPrice.commonPrice != 0)
+            changeCommonPrice(+commonPrice.commonPrice);
+    }, [commonPrice.commonPrice]);
 
     /* ---- Edit Service Data --- */
 
@@ -184,6 +243,7 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
                     isEdit={isEdit}
                     countries={countries}
                     serviceCountries={service.countries}
+                    editServiceData={editServiceData}
 
                     changePriceByCountryId={changePriceByCountryId}
                     changeIsActiveByCountryId={changeIsActiveByCountryId}

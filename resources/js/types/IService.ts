@@ -12,7 +12,7 @@ export interface IService {
     name: string;
     short_name: string;
     image: string;
-    is_active?: boolean; // For db
+    is_active: boolean; // For db
 
     countries: ServiceCountryType[];
 

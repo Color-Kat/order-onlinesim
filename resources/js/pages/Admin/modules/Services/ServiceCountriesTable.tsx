@@ -1,14 +1,16 @@
 import React, {memo, useCallback, useMemo} from 'react';
 import {ICountry} from "@/types/ICountry.ts";
 import {IService} from "@/types/IService.ts";
-import {arrayToObject} from "@/utils/arrays/arrayToObject.ts";
+import {arrayToObjectWithId} from "@/utils/arrays/arrayToObjectWithId.ts";
 import {SimpleInput} from "@components/Inputs";
 import {twJoin} from "tailwind-merge";
+import {IEditServiceData} from "@pages/Admin/modules/Services/ServiceTableRow.tsx";
 
 interface ServiceCountriesTableProps {
     isEdit: boolean;
     countries: ICountry[];                   // List of all countries
     serviceCountries: IService['countries']; // List of the countries that is related to the service
+    editServiceData: IEditServiceData;
 
     changePriceByCountryId: (countryId: number, price: number) => void;
     changeIsActiveByCountryId: (countryId: number, is_active: boolean) => void;
@@ -16,25 +18,16 @@ interface ServiceCountriesTableProps {
 
 export const ServiceCountriesTable: React.FC<ServiceCountriesTableProps> = ({
                                                                                 isEdit,
-                                                                                countries,
-                                                                                serviceCountries,
+                                                                                // countries,
+                                                                                // serviceCountries,
+                                                                                editServiceData,
 
                                                                                 changePriceByCountryId,
                                                                                 changeIsActiveByCountryId
                                                                             }) => {
 
-    const countriesWithPrices = useMemo(() => {
-        return arrayToObject(serviceCountries);
-    }, [serviceCountries]);
 
-    // if (!serviceCountries.length) return (
-    //     <tr className="rounded-xl px-3 bg-blue-500/10 ">
-    //         <td></td>
-    //         <td colSpan={6}>
-    //             <div className="py-5 text-center text-xl">Empty</div>
-    //         </td>
-    //     </tr>
-    // );
+
 
     return (
         <tr className="rounded-xl px-3 bg-blue-500/10 ">
@@ -43,13 +36,13 @@ export const ServiceCountriesTable: React.FC<ServiceCountriesTableProps> = ({
 
                 <table className="w-full table-auto text-sm text-left">
                     <tbody className="text-blue-100 divide-y divide-slate-600">
-                    {countries.map(country => {
-                        const isActive = Object.keys(countriesWithPrices).includes(country.id.toString());
+                    {Object.values(editServiceData.countries).map(country => {
+                        // const isActive = Object.keys(countriesWithPrices).includes(country.id.toString());
 
                         return (
                             <tr key={country.id}>
                                 <td>
-                                    {isActive && <div className="rounded-full w-2 h-2 bg-blue-500"></div>}
+                                    {country.is_active && <div className="rounded-full w-2 h-2 bg-blue-500"></div>}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="flex items-center">
@@ -65,7 +58,7 @@ export const ServiceCountriesTable: React.FC<ServiceCountriesTableProps> = ({
                                 </td>
 
                                 <td className="text-sm">
-                                    <div>Available: {countriesWithPrices[country.id]?.pivot.availablePhones ?? '???'}</div>
+                                    <div>Available: {country._availablePhones}</div>
                                 </td>
 
                                 <td className="px-6 py-4">
@@ -78,7 +71,7 @@ export const ServiceCountriesTable: React.FC<ServiceCountriesTableProps> = ({
                                         disabled={!isEdit}
                                         type="checkbox"
                                         onChange={(e) => changeIsActiveByCountryId(country.id, e.target.checked)}
-                                        defaultChecked={isActive}
+                                        defaultChecked={country.is_active}
                                     />
                                 </td>
 
@@ -94,7 +87,7 @@ export const ServiceCountriesTable: React.FC<ServiceCountriesTableProps> = ({
                                             disabled={!isEdit}
                                             type="number"
                                             onChange={(e) => changePriceByCountryId(country.id, +e.target.value)}
-                                            defaultValue={countriesWithPrices[country.id]?.pivot.price ?? '???'}
+                                            value={country.price}
                                         />
                                         <div>₽</div>
                                     </div>
