@@ -45,9 +45,28 @@ class CountriesController extends Controller
         }
     }
 
+    public function update(Request $request) {
+        try {
+            $country = $this->countriesRepository->updateCountry($request->all());
+
+            return apiResponse([
+                'data' => $country,
+                'message' => 'Country updated successfully'
+            ], 201);
+        } catch (\Exception $e) {
+            return apiResponse([
+                'status' => 'error',
+                'message' => 'Failed to update country',
+                'errors' => [
+                    'exception' => $e->getMessage()
+                ]
+            ], 500);
+        }
+    }
+
     public function delete(Request $request) {
         try {
-            $country = $this->countriesRepository->deleteCountry($request->get('short_name'));
+            $country = $this->countriesRepository->deleteCountry($request->get('id'));
 
             return apiResponse([
                 'data' => $country,

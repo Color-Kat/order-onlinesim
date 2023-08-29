@@ -32,9 +32,20 @@ class CountriesRepository {
         return $country;
     }
 
-    public function deleteCountry($short_name) {
+    public function updateCountry($data) {
+        $country = Country::query()
+            ->where('id', $data['id'])
+            ->update($data)
+        ;
+
+        dd($country);
+
+        return $country;
+    }
+
+    public function deleteCountry($id) {
         $result = Country::query()
-            ->where('short_name', $short_name)
+            ->where('id', $id)
             ->delete();
 
         return $result;
