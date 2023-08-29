@@ -9,8 +9,6 @@ interface ServicesTableProps {
 export const ServicesTable: React.FC<ServicesTableProps> = memo(({}) => {
     const {data: servicesData} = useGetAllServicesQuery();
 
-    console.log(servicesData);
-
     return (
         <table className="w-full table-auto text-sm text-left">
             <thead

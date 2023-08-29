@@ -38,8 +38,37 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
         short_name: service.short_name,
         image: null,
         is_active: service.is_active,
-        countries: Object.values(service.countries).map(country => country.id)
+        countries: Object.values(service.countries).map(country => ({
+            id: country.id,
+            price: country.pivot.price,
+        }))
     });
+
+    console.log(editServiceData);
+
+    const changeServiceCountryById = useCallback((countryId: number, field: string, value: any) => {
+        setEditServiceData(prev => ({
+            ...prev,
+            countries: prev.countries.map(country => {
+                if(country.id === countryId)
+                    return {
+                        ...country,
+                        [field]: value
+                    };
+                else return country;
+            })
+        }));
+    }, []);
+
+    const changePriceByCountryId = useCallback((countryId: number, price: number) => {
+        changeServiceCountryById(countryId, 'price', price);
+    }, []);
+
+    const changeIsActiveByCountryId = useCallback((countryId: number, is_active: boolean) => {
+        changeServiceCountryById(countryId, 'is_active', is_active);
+    }, []);
+
+    /* ---- Edit Service Data --- */
 
     // Update country and turn off the edit mode
     const handleUpdateService = () => {
@@ -152,7 +181,12 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
             {/* Dropdown table of service countries */}
             {isOpen &&
                 <ServiceCountriesTable
+                    isEdit={isEdit}
                     countries={countries}
+                    serviceCountries={service.countries}
+
+                    changePriceByCountryId={changePriceByCountryId}
+                    changeIsActiveByCountryId={changeIsActiveByCountryId}
                 />
             }
         </>

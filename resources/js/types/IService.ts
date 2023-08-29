@@ -1,8 +1,10 @@
 import {ICountry} from "@/types/ICountry.ts";
 
 export type ServiceCountryType = {
-    price: number,
-    availablePhones: number;
+    pivot: {
+        price: number,
+        availablePhones: number;
+    }
 } & ICountry;
 
 export interface IService {

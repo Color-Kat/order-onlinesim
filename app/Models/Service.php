@@ -21,13 +21,17 @@ class Service extends Model
      */
     public function countries()
     {
-        return $this->belongsToMany(
-            Country::class,
-            'country_service',
-            'service_short_name',
-            'country_short_name',
-            'short_name',
-            'short_name'
-        );
+        return
+            $this->belongsToMany(
+                Country::class,
+                'country_service',
+                'service_short_name',
+                'country_short_name',
+                'short_name',
+                'short_name'
+            )
+                 ->where('is_active', true)
+                 ->withPivot('price', 'availablePhones')
+        ;
     }
 }

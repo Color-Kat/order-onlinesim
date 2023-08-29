@@ -21,7 +21,7 @@ class ServicesRepository {
         $countries = Country::query()
             ->select('id', 'name', 'short_name', 'code', 'image')
             ->orderBy('name')
-            ->where('isActive', true)
+            ->where('is_active', true)
             ->get()
         ;
 
