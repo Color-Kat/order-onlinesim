@@ -7,6 +7,8 @@ interface SwitchProps {
     setData: React.Dispatch<React.SetStateAction<any>>;
     name: string;
 
+    disabled?: boolean;
+
     className?: string;
     activeClassName?: string;
     inactiveClassName?: string;
@@ -17,6 +19,8 @@ export const Toggle: React.FC<SwitchProps> = ({
                                                   data,
                                                   setData,
                                                   name,
+
+                                                  disabled = false,
 
                                                   className,
                                                   activeClassName,
@@ -38,19 +42,20 @@ export const Toggle: React.FC<SwitchProps> = ({
                 checked={data[name]}
                 onChange={onChangeHandler}
                 className={twMerge(
-                    "relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out",
+                    "relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out",
                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
                     data[name] ? 'bg-app-accent' : 'bg-black/40 shadow-inner',
                     data[name] ? activeClassName : inactiveClassName,
                     className
                 )}
+                disabled={disabled}
             >
                 <span className="sr-only">Use setting</span>
                 <span
                     aria-hidden="true"
                     className={twJoin(
-                        data[name] ? 'translate-x-9' : 'translate-x-0',
-                        "pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+                        data[name] ? 'translate-x-[24px]' : 'translate-x-0',
+                        "pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
                     )}
                 />
             </Switch>

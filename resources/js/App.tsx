@@ -51,7 +51,7 @@ function App() {
                     <Route path="/admin" element={<AdminPage/>}>
                         <Route index element={null}/>
                         <Route path="countries" element={<AdminCountries/>}/>
-                        <Route path="prices" element={<AdminServices/>}/>
+                        <Route path="services" element={<AdminServices/>}/>
                     </Route>
                 </Route>
 

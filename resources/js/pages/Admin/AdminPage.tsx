@@ -14,8 +14,8 @@ export const AdminPage: React.FC<AdminIndexPageProps> = ({}) => {
             link: "/admin/countries"
         },
         {
-            title: "Prices",
-            link: "/admin/prices"
+            title: "Services",
+            link: "/admin/services"
         }
     ];
 
