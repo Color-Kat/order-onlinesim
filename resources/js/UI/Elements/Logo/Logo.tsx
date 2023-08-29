@@ -18,7 +18,7 @@ export const Logo: React.FC<LogoProps> = memo(({className}) => {
                     // width={120}
                     // height={50}
                     className="h-full"
-                    alt="Float UI logo"
+                    alt="Logo"
                 />
             </Link>
         </div>

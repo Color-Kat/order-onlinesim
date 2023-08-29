@@ -14,6 +14,8 @@ import {ICountry} from "@/types/ICountry.ts";
 import {Modal} from "@UI/Modals";
 import {RippleButton} from "@components/Buttons";
 import {EditableDiv} from "@components/Inputs/Input/EditableDiv.tsx";
+import {useCreateServiceMutation} from "@/store/admin/services/services.api.ts";
+import {toFormData} from "@/utils/toFormData.ts";
 
 const AdminServiceRow: React.FC<{ country: ICountry }> = ({country}) => {
     const [deleteCountry, {error: deleteError}] = useDeleteCountryMutation();
@@ -127,7 +129,7 @@ const AdminServiceRow: React.FC<{ country: ICountry }> = ({country}) => {
 
 export const AdminServices: React.FC = ({}) => {
     const {data} = useGetAllCountriesQuery();
-    // const [createCountry, {data, error}] = useCreateCountryMutation();
+    const [createService, {error}] = useCreateServiceMutation();
 
     const [newService, setNewService] = useState({
         name: '',
@@ -137,10 +139,10 @@ export const AdminServices: React.FC = ({}) => {
     });
 
     const handleCreateService = useCallback(async () => {
-        // await createCountry(newCountry as any);
+        await createService(toFormData(newService));
     }, [newService]);
 
-    console.log(data);
+    console.log(newService);
 
     return (
         <AdminTabContent>
@@ -149,7 +151,7 @@ export const AdminServices: React.FC = ({}) => {
                 <H3>Add new service</H3>
 
                 <div className="text-red-500 text-sm">
-                    {/*{(error as any)?.data?.message}*/}
+                    {(error as any)?.data?.message}
                 </div>
 
                 <div className="flex gap-5 items-center mt-2">

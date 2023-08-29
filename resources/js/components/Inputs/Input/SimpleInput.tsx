@@ -20,10 +20,14 @@ export const SimpleInput: React.FC<SimpleInputProps> = ({
     const changeHandler = onChange
         ? onChange
         : useCallback(
-            (e: any) => setData((prev: any) => ({
-                ...prev,
-                [name]: e.target.value
-            })),
+            (e: any) => setData((prev: any) => {
+                const value = e.target.value;
+
+                return {
+                    ...prev,
+                    [name]: value
+                };
+            }),
             []
         );
 

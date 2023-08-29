@@ -53,7 +53,7 @@ export const SimpleFooter: React.FC = memo(() => {
             {/* Rights, made by */}
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="sm:mt-0 w-full flex justify-between md:items-end md:flex-row flex-col-reverse">
-                    <div className="mt-4">&copy; {currentYear} Active-sim. All rights reserved.</div>
+                    <div className="mt-4">&copy; {currentYear} Active-sms. All rights reserved.</div>
 
                     <div className="flex flex-col">
                         <div>

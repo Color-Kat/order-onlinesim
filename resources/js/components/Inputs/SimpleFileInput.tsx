@@ -27,14 +27,20 @@ export const SimpleFileInput: React.FC<FileInputProps> = ({
      * Add files to list by Browse button.
      */
     const handleFileChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(e.target.files ?? []);
+        const files = e.target.files;
+
         setData((prev: any) => ({
             ...prev,
-            [name]: [
-                ...prev[name],
-                ...files
-            ]
+            [name]: files ? files[0] : null
         }));
+
+        // setData((prev: any) => ({
+        //     ...prev,
+        //     [name]: [
+        //         ...prev[name],
+        //         ...files
+        //     ]
+        // }));
     }, []);
 
     /**
