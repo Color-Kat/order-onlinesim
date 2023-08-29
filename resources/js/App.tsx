@@ -19,6 +19,7 @@ import {useTranslation} from "react-i18next";
 import {Policy} from "@pages/Documents/Policy.tsx";
 import {Terms} from "@pages/Documents/Terms.tsx";
 import {AdminCountries} from "@pages/Admin/AdminCountries.tsx";
+import {AdminServices} from "@pages/Admin/AdminServices.tsx";
 
 function App() {
     // For load language
@@ -50,7 +51,7 @@ function App() {
                     <Route path="/admin" element={<AdminPage/>}>
                         <Route index element={null}/>
                         <Route path="countries" element={<AdminCountries/>}/>
-                        <Route path="prices" element={<AdminCountries/>}/>
+                        <Route path="prices" element={<AdminServices/>}/>
                     </Route>
                 </Route>
 

@@ -5,6 +5,7 @@ export {Textarea} from './Textarea.tsx';
 export {Checkbox} from './Checkbox.tsx';
 
 export {FileInput} from './FileInput.tsx';
+export {SimpleFileInput} from './SimpleFileInput.tsx';
 
 export {RadioGroup} from './RadioGroup.tsx';
 
