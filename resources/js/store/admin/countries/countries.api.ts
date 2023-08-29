@@ -23,12 +23,22 @@ export const adminCountriesApi = createApi({
         createCountry: builder.mutation<IResponse, {
             name: string,
             code: string,
-            short_name: string,
+            short_name: number,
         }>({
             query: (payload) => ({
                 url: `countries/create`,
                 method: 'POST',
-                keepUnusedData: false,
+                body: payload
+            }),
+            invalidatesTags: ["Countries"]
+        }),
+
+        deleteCountry: builder.mutation<IResponse, {
+            short_name: number,
+        }>({
+            query: (payload) => ({
+                url: `countries/delete`,
+                method: 'DELETE',
                 body: payload
             }),
             invalidatesTags: ["Countries"]
@@ -38,5 +48,6 @@ export const adminCountriesApi = createApi({
 
 export const {
     useGetAllCountriesQuery,
-    useCreateCountryMutation
+    useCreateCountryMutation,
+    useDeleteCountryMutation
 } = adminCountriesApi;

@@ -21,6 +21,6 @@ if (!function_exists('apiResponse')) {
             'data'    => $data,
             'message' => $message,
             'errors'  => $errors
-        ]);
+        ], $code);
     }
 }

@@ -12,4 +12,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {
     Route::get('countries', [CountriesController::class, 'index'])->name('countries');
     Route::post('countries/create', [CountriesController::class, 'create'])->name('countries.create');
+    Route::delete('countries/delete', [CountriesController::class, 'delete'])->name('countries.delete');
 });

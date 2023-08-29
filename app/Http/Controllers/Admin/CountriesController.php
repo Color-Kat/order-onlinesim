@@ -44,4 +44,23 @@ class CountriesController extends Controller
             ], 500);
         }
     }
+
+    public function delete(Request $request) {
+        try {
+            $country = $this->countriesRepository->deleteCountry($request->get('short_name'));
+
+            return apiResponse([
+                'data' => $country,
+                'message' => 'Country successfully deleted'
+            ], 201);
+        } catch (\Exception $e) {
+            return apiResponse([
+                'status' => 'error',
+                'message' => 'Failed to delete country',
+                'errors' => [
+                    'exception' => $e->getMessage()
+                ]
+            ], 500);
+        }
+    }
 }

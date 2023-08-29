@@ -12,7 +12,9 @@ class CountriesRepository {
      * @return array The list of countries
      */
     public function getAllCountries() {
-        $countries = Country::all();
+        $countries = Country::query()
+            ->orderBy('name')
+            ->get();
 
         return $countries;
     }
@@ -28,5 +30,13 @@ class CountriesRepository {
         $country = Country::create($data);
 
         return $country;
+    }
+
+    public function deleteCountry($short_name) {
+        $result = Country::query()
+            ->where('short_name', $short_name)
+            ->delete();
+
+        return $result;
     }
 }
