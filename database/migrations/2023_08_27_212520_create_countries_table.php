@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('short_name')->unique(); // Короткое обозначение страны в API (0 - Россия и тд)
             $table->string('name');
             $table->text('image')->nullable();
-            $table->boolean('isActive')->default(true);
+            $table->boolean('is_active')->default(true);
 
             $table->timestamps();
         });

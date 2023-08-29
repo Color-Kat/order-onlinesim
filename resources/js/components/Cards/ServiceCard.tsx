@@ -4,11 +4,11 @@ import {IService} from "@/types/IService.ts";
 
 interface ServiceCardProps {
     service: IService;
-    isActive: boolean;
+    isSelected: boolean;
     onClick?: (id: number) => void;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isActive, onClick}) => {
+export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isSelected, onClick}) => {
 
     const availablePhones = useMemo(() => {
         return Object.values(service.countries).reduce(
@@ -28,7 +28,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = memo(({service, isActive,
         <li
             className={twJoin(
                 "relative rounded-xl py-2 pl-3 pr-2 w-56 cursor-pointer",
-                isActive ? "bg-blue-600/60" : "bg-blue-600/30 hover:bg-blue-600/50"
+                isSelected ? "bg-blue-600/60" : "bg-blue-600/30 hover:bg-blue-600/50"
             )}
             onClick={() => onClick ? onClick(service.id) : null}
         >

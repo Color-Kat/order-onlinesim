@@ -6,15 +6,15 @@ import {IService} from "@/types/IService.ts";
 
 interface ListOfCountriesProps {
     countries: { [key: number]: IService["countries"][number] };
-    activeId: number;
-    setActiveId: (id: number) => void;
+    selectedId: number;
+    setSelectedId: (id: number) => void;
 }
 
 export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
-                                                                                    countries,
-                                                                                    activeId,
-                                                                                    setActiveId
-                                                                                }) => {
+                                                                         countries,
+                                                                         selectedId,
+                                                                         setSelectedId
+                                                                     }) => {
     const [data, setData] = useState({
         search: ''
     });
@@ -26,7 +26,7 @@ export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
     }, [data.search, countries]);
 
     const clickCountryHandle = useCallback((id: number) => {
-        setActiveId(id);
+        setSelectedId(id);
     }, []);
 
     return (
@@ -53,7 +53,7 @@ export const ListOfCountries: React.FC<ListOfCountriesProps> = memo(({
                         return (
                             <CountryCard
                                 country={country}
-                                isActive={country.id === activeId}
+                                isSelected={country.id === selectedId}
                                 onClick={clickCountryHandle}
                                 key={i}
                             />

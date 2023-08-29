@@ -18,7 +18,17 @@ class ServicesRepository {
             ->with('countries')
             ->get();
 
-        return $services;
+        $countries = Country::query()
+            ->select('id', 'name', 'short_name', 'image')
+            ->orderBy('name')
+            ->where('isActive', true)
+            ->get()
+        ;
+
+        return [
+            'services' => $services,
+            'countries' => $countries
+        ];
     }
 
     /**

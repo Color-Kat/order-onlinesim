@@ -1,16 +1,18 @@
 import {ICountry} from "@/types/ICountry.ts";
 
+export type ServiceCountryType = {
+    price: number,
+    availablePhones: number;
+} & ICountry;
+
 export interface IService {
     id: number;
     name: string;
     short_name: string;
     image: string;
-    isActive?: boolean;
+    is_active?: boolean; // For db
 
-    countries: {
-        [key: string]: {
-            price: number,
-            availablePhones: number;
-        } & ICountry
-    }
+    countries: ServiceCountryType[];
+
+    isSelected?: boolean; // For user select
 }

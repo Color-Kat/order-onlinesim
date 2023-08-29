@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('short_name')->unique();
             $table->string('name');
             $table->text('image')->nullable();
-            $table->boolean('isActive')->default(true);
+            $table->boolean('is_active')->default(true);
 
             $table->timestamps();
         });

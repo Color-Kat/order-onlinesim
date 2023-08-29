@@ -4,6 +4,7 @@ export interface ICountry {
     short_name: number;
     name: string;
     image: string;
+    is_active?: boolean;
 
-    isActive?: boolean;
+    isSelected?: boolean;
 }

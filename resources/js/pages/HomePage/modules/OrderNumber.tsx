@@ -11,7 +11,7 @@ import {useTSelector} from "@hooks/redux.ts";
 import {ButtonLink, FilledArrowLink} from "@UI/Links";
 
 interface PlaceOrderProps {
-    country: IService["countries"][number];
+    country?: IService["countries"][number];
     service: IService;
 }
 
@@ -35,6 +35,8 @@ export const OrderNumber: React.FC<PlaceOrderProps> = memo(({
             navigate('/my-numbers');
         }, 2000);
     }
+
+    if(!country) return null;
 
     return (
         <section className="mb-20 sm:px-8 px-2 flex gap-10 justify-between max-w-screen-xl mx-auto">

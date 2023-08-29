@@ -10,7 +10,6 @@ import {ListOfCountries} from "@pages/HomePage/modules/ListOfCountries.tsx";
 import {H2} from "@UI/Typography";
 
 import {IService} from "@/types/IService.ts";
-import {ICountry} from "@/types/ICountry.ts";
 import {OrderNumber} from "@pages/HomePage/modules/OrderNumber.tsx";
 
 
@@ -20,8 +19,8 @@ let services: { [key: number]: IService } = {
         short_name: 'vk',
         name: 'Vkontakte',
         image: '/storage/serviceLogos/vk.svg',
-        countries: {
-            1: {
+        countries: [
+            {
                 id: 1,
                 code: 'RU',
                 short_name: 0,
@@ -30,7 +29,7 @@ let services: { [key: number]: IService } = {
                 price: 10,
                 availablePhones: 1000
             },
-            2: {
+            {
                 id: 2,
                 code: 'US',
                 short_name: 12,
@@ -39,15 +38,15 @@ let services: { [key: number]: IService } = {
                 price: 100,
                 availablePhones: 23
             },
-        },
+        ],
     },
     2: {
         id: 2,
         short_name: 'tg',
         name: 'Telegram',
         image: '/storage/serviceLogos/telegram.svg',
-        countries: {
-            2: {
+        countries: [
+            {
                 id: 2,
                 code: 'US',
                 short_name: 12,
@@ -56,7 +55,7 @@ let services: { [key: number]: IService } = {
                 price: 100,
                 availablePhones: 23
             },
-            3: {
+            {
                 id: 3,
                 code: 'CN',
                 short_name: 3,
@@ -64,8 +63,8 @@ let services: { [key: number]: IService } = {
                 image: '/storage/flags/cn.svg',
                 price: 50,
                 availablePhones: 15
-            },
-        },
+            }
+        ],
     },
 };
 
@@ -131,13 +130,13 @@ export const HomePage = () => {
         serviceId: 0,
     });
 
-    const setActiveServiceId = (id: number) => {
-        setActiveCountryId(0); // Reset country
+    const setSelectedServiceId = (id: number) => {
+        setSelectedCountryId(0); // Reset country
         setOrderData(prev => ({...prev, serviceId: id}));
         scrollToSection(listOfCountriesRef);
     };
 
-    const setActiveCountryId = (id: number) => {
+    const setSelectedCountryId = (id: number) => {
         setOrderData(prev => ({...prev, countryId: id}));
         scrollToSection(orderNumberRef);
     };
@@ -163,8 +162,8 @@ export const HomePage = () => {
 
             <ListOfServices
                 services={services}
-                activeId={orderData.serviceId}
-                setActiveId={setActiveServiceId}
+                selectedId={orderData.serviceId}
+                setSelectedId={setSelectedServiceId}
             />
 
             <div
@@ -174,8 +173,8 @@ export const HomePage = () => {
                 {orderData.serviceId !== 0 &&
                     <ListOfCountries
                         countries={services[orderData.serviceId].countries}
-                        activeId={orderData.countryId}
-                        setActiveId={setActiveCountryId}
+                        selectedId={orderData.countryId}
+                        setSelectedId={setSelectedCountryId}
                     />
                 }
             </div>
@@ -186,7 +185,7 @@ export const HomePage = () => {
             >
                 {orderData.countryId !== 0 &&
                     <OrderNumber
-                        country={services[orderData.serviceId].countries[orderData.countryId]}
+                        country={services[orderData.serviceId].countries.find(country => country.id === orderData.countryId)}
                         service={services[orderData.serviceId]}
                     />
                 }

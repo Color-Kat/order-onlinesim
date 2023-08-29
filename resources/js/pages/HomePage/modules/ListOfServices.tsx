@@ -6,14 +6,14 @@ import {IService} from "@/types/IService.ts";
 
 interface ListOfServicesProps {
     services: { [key: number]: IService };
-    activeId: number;
-    setActiveId: (id: number) => void;
+    selectedId: number;
+    setSelectedId: (id: number) => void;
 }
 
 export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
                                                                            services,
-                                                                           activeId,
-                                                                           setActiveId
+                                                                           selectedId,
+                                                                           setSelectedId
                                                                        }) => {
     const [data, setData] = useState({
         search: ''
@@ -26,7 +26,7 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
     }, [data.search]);
 
     const clickServiceHandle = useCallback((id: number) => {
-        setActiveId(id);
+        setSelectedId(id);
     }, []);
 
     return (
@@ -52,7 +52,7 @@ export const ListOfServices: React.FC<ListOfServicesProps> = memo(({
                         return (
                             <ServiceCard
                                 service={service}
-                                isActive={service.id === activeId}
+                                isSelected={service.id === selectedId}
                                 onClick={clickServiceHandle}
                                 key={service.id}
                             />

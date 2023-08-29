@@ -14,7 +14,10 @@ export const adminServicesApi = createApi({
     tagTypes: ['Services'],
     endpoints: (builder) => ({
 
-        getAllServices: builder.query<IResponse<IService[]>, void>({
+        getAllServices: builder.query<IResponse<{
+            services: IService[],
+            countries: ICountry[]
+        }>, void>({
             query: () => ({
                 url: `services`,
             }),
