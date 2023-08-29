@@ -19,17 +19,16 @@ class ServicesController extends Controller
 
     public function index()
     {
-//        $services = $this->servicesRepository->getAllServicesWithCountries();
-//
-//        return apiResponse([
-//            'data' => $services,
-//        ], 200);
+        $services = $this->servicesRepository->getAllServicesWithCountries();
+
+        return apiResponse([
+            'data' => $services,
+        ], 200);
     }
 
     public function create(CreateServiceRequest $request) {
         try {
-            dd($request->all());
-//            $service = $this->servicesRepository->createService($request->all());
+            $service = $this->servicesRepository->createService($request->all());
 
             return apiResponse([
                 'data' => $service,

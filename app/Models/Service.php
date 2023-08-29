@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
     use HasFactory;
+
+    use HasImage;
 
     protected $guarded = ['id'];
 
@@ -18,6 +21,13 @@ class Service extends Model
      */
     public function countries()
     {
-        return $this->belongsToMany(Country::class, 'country_service', 'service_short_name', 'country_short_name');
+        return $this->belongsToMany(
+            Country::class,
+            'country_service',
+            'service_short_name',
+            'country_short_name',
+            'short_name',
+            'short_name'
+        );
     }
 }

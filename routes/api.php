@@ -12,15 +12,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {
-    Route::get('countries', [CountriesController::class, 'index'])->name('countries');
 
     Route::prefix('countries')->as('countries.')->group(function () {
+        Route::get('', [CountriesController::class, 'index'])->name('index');
         Route::post('create', [CountriesController::class, 'create'])->name('create');
         Route::put('update', [CountriesController::class, 'update'])->name('update');
         Route::delete('delete', [CountriesController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('services')->as('services.')->group(function () {
+        Route::get('', [ServicesController::class, 'index'])->name('index');
         Route::post('create', [ServicesController::class, 'create'])->name('create');
         Route::put('update', [ServicesController::class, 'update'])->name('update');
         Route::delete('delete', [ServicesController::class, 'delete'])->name('delete');

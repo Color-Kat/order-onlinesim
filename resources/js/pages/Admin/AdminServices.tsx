@@ -14,7 +14,7 @@ import {ICountry} from "@/types/ICountry.ts";
 import {Modal} from "@UI/Modals";
 import {RippleButton} from "@components/Buttons";
 import {EditableDiv} from "@components/Inputs/Input/EditableDiv.tsx";
-import {useCreateServiceMutation} from "@/store/admin/services/services.api.ts";
+import {useCreateServiceMutation, useGetAllServicesQuery} from "@/store/admin/services/services.api.ts";
 import {toFormData} from "@/utils/toFormData.ts";
 
 const AdminServiceRow: React.FC<{ country: ICountry }> = ({country}) => {
@@ -128,7 +128,7 @@ const AdminServiceRow: React.FC<{ country: ICountry }> = ({country}) => {
 };
 
 export const AdminServices: React.FC = ({}) => {
-    const {data} = useGetAllCountriesQuery();
+    const {data} = useGetAllServicesQuery();
     const [createService, {error}] = useCreateServiceMutation();
 
     const [newService, setNewService] = useState({
@@ -142,7 +142,7 @@ export const AdminServices: React.FC = ({}) => {
         await createService(toFormData(newService));
     }, [newService]);
 
-    console.log(newService);
+    console.log(data);
 
     return (
         <AdminTabContent>

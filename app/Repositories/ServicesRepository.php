@@ -13,11 +13,12 @@ class ServicesRepository {
      * @return array The list of services
      */
     public function getAllServicesWithCountries() {
-        $countries = Service::query()
+        $services = Service::query()
             ->orderBy('name')
+            ->with('countries')
             ->get();
 
-        return $countries;
+        return $services;
     }
 
     /**
@@ -28,9 +29,21 @@ class ServicesRepository {
      * @return Service The newly created service.
      */
     public function createService($data) {
-        $country = Service::create($data);
+        // Create service
+        $service = Service::create($data);
 
-        return $country;
+        // Attach ALL countries to the new service with default price and zero availablePhones
+        $countries = Country::pluck('short_name');
+        $service->countries()->attach($countries, [
+            'price' => $data['default_price'],
+            'availablePhones' => 0
+        ]);
+
+        // Store image of the service
+        if ($data['image'])
+            $service->updateImage($data['image'], 'services');
+
+        return $service;
     }
 
     public function updateService($data) {

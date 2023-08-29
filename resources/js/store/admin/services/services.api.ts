@@ -3,6 +3,7 @@ import {prepareAuthHeader} from "../../utils/prepareAuthHeader.ts";
 import {ICountry} from "@/types/ICountry.ts";
 
 import {IResponse} from "@/store/types.ts";
+import {IService} from "@/types/IService.ts";
 
 export const adminServicesApi = createApi({
     reducerPath: 'api/admin/services',
@@ -13,12 +14,12 @@ export const adminServicesApi = createApi({
     tagTypes: ['Services'],
     endpoints: (builder) => ({
 
-        // getAllCountries: builder.query<IResponse<ICountry[]>, void>({
-        //     query: () => ({
-        //         url: `countries`,
-        //     }),
-        //     providesTags: ["Countries"],
-        // }),
+        getAllServices: builder.query<IResponse<IService[]>, void>({
+            query: () => ({
+                url: `services`,
+            }),
+            providesTags: ["Services"],
+        }),
 
         createService: builder.mutation<IResponse, FormData>({
             query: (payload) => ({
@@ -56,5 +57,6 @@ export const adminServicesApi = createApi({
 });
 
 export const {
+    useGetAllServicesQuery,
     useCreateServiceMutation
 } = adminServicesApi;
