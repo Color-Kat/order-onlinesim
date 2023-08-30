@@ -3,7 +3,7 @@ import {IService} from "@/types/IService.ts";
 import {ICountry} from "@/types/ICountry.ts";
 import {BsDashLg, BsPlusLg} from "react-icons/bs";
 import {EditableDiv} from "@components/Inputs/Input/EditableDiv.tsx";
-import {Toggle} from "@components/Inputs";
+import {SimpleFileInput, Toggle} from "@components/Inputs";
 import {Modal} from "@UI/Modals";
 import {ServiceCountriesTable} from "@pages/Admin/modules/Services/ServiceCountriesTable.tsx";
 import {arrayToObjectWithId} from "@/utils/arrays/arrayToObjectWithId.ts";
@@ -12,7 +12,7 @@ export interface IEditServiceData {
     id: number;
     name: string;
     short_name: string;
-    image: null | string;
+    image: null | string | File;
     is_active: boolean;
     countries: {
         [key: string | number]: (ICountry & {
@@ -29,6 +29,10 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
                                                                                         }) => {
     // const [deleteCountry, {error: deleteError}] = useDeleteCountryMutation();
     // const [updateCountry, {error: updateError}] = useUpdateCountryMutation();
+
+    // TODO change icon
+    // TODO save to db
+    // TODO delete
 
     /* --- Open country list --- */
     const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +60,7 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
         id: service.id,
         name: service.name,
         short_name: service.short_name,
-        image: null,
+        image: service.image ?? null,
         is_active: service.is_active,
         countries: arrayToObjectWithId(countries.map(country => {
             // Merge all countries and the countries that attached to this service
@@ -108,12 +112,6 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
      */
     const changeCommonPrice = useCallback((price: number) => {
         setEditServiceData(prev => {
-            // for (const key in prev.countries) {
-            //     prev.countries[key].price = price;
-            // }
-            //
-            // return prev;
-
             const updatedCountries = { ...prev.countries };
             for (const key in updatedCountries) {
                 updatedCountries[key].price = price;
@@ -154,6 +152,12 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
     //     (updateError as any)?.data?.message,
     // ]);
 
+    // Generate service icon preview
+    const imagePreview =
+        typeof editServiceData.image === 'string' || editServiceData.image === null
+            ? editServiceData.image ?? '' // Simple string URL
+            : URL.createObjectURL(editServiceData.image); // Preview from file
+
     return (
         <>
             <tr className="rounded-xl p-3 bg-blue-500/10">
@@ -169,7 +173,16 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
                 {/* Icon + name */}
                 <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                        <img className="w-7 h-7 mr-3 rounded-lg" src={service.image} alt=""/>
+                        <SimpleFileInput
+                            containerClassName="shrink-0"
+                            data={editServiceData}
+                            setData={setEditServiceData}
+                            name="image"
+                            disabled={!isEdit}
+                        >
+                            <img className="w-7 h-7 mr-3 rounded-lg" src={imagePreview} alt=""/>
+                        </SimpleFileInput>
+
                         <div className="font-bold text-lg">
                             <EditableDiv
                                 isEdit={isEdit}

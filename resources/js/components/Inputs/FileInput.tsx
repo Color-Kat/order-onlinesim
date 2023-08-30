@@ -1,4 +1,4 @@
-import React, {ChangeEvent, DragEvent, useCallback, useRef} from 'react';
+import React, {ChangeEvent, DragEvent, useCallback, useId, useRef} from 'react';
 import {BsFillTrashFill} from "react-icons/bs";
 import {PinkButton} from "@UI/Buttons";
 import {twMerge} from "tailwind-merge";
@@ -24,6 +24,8 @@ export const FileInput: React.FC<FileInputProps> = ({
                                                         containerClassName,
                                                         ...props
                                                     }) => {
+    const inputId = useId();
+
     const dragOverRef = useRef<HTMLDivElement>(null);
 
     /**
@@ -117,7 +119,7 @@ export const FileInput: React.FC<FileInputProps> = ({
                 className="flex flex-col items-center justify-center text-center"
             >
                 <input
-                    id="photoInput"
+                    id={inputId}
                     type="file"
                     accept={props.accept ?? 'image/*'}
                     multiple={props.multiple === undefined ?? true}
@@ -171,7 +173,7 @@ export const FileInput: React.FC<FileInputProps> = ({
                 )}
             </div>
 
-            <label htmlFor="photoInput" className="text-lg tracking-wide font-roboto cursor-pointer mt-3">
+            <label htmlFor={inputId} className="text-lg tracking-wide font-roboto cursor-pointer mt-3">
                 <PinkButton className="w-max h-max px-8 pointer-events-none">
                     {buttonText}
                 </PinkButton>
