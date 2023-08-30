@@ -47,16 +47,16 @@ class ServicesController extends Controller
 
     public function update(Request $request) {
         try {
-            $country = $this->countriesRepository->updateCountry($request->all());
+            $service = $this->servicesRepository->updateService($request->all());
 
             return apiResponse([
-                'data' => $country,
-                'message' => 'Country updated successfully'
+                'data' => $service,
+                'message' => 'Service updated successfully'
             ], 201);
         } catch (\Exception $e) {
             return apiResponse([
                 'status' => 'error',
-                'message' => 'Failed to update country',
+                'message' => 'Failed to update service',
                 'errors' => [
                     'exception' => $e->getMessage()
                 ]

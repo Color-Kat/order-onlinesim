@@ -33,19 +33,15 @@ export const adminServicesApi = createApi({
             invalidatesTags: ["Services"]
         }),
 
-        // updateCountry: builder.mutation<IResponse, {
-        //     id: number,
-        //     name: string,
-        //     code: string,
-        //     short_name: number,
-        // }>({
-        //     query: (payload) => ({
-        //         url: `countries/update`,
-        //         method: 'PUT',
-        //         body: payload
-        //     }),
-        //     invalidatesTags: ["Countries"]
-        // }),
+        updateService: builder.mutation<IResponse, FormData>({
+            query: (payload) => ({
+                url: `services/update`,
+                method: 'POST',
+                body: payload
+            }),
+            invalidatesTags: ["Services"]
+        }),
+
         // deleteCountry: builder.mutation<IResponse, {
         //     id: number,
         // }>({
@@ -61,5 +57,6 @@ export const adminServicesApi = createApi({
 
 export const {
     useGetAllServicesQuery,
-    useCreateServiceMutation
+    useCreateServiceMutation,
+    useUpdateServiceMutation
 } = adminServicesApi;

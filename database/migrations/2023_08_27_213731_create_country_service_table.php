@@ -21,8 +21,9 @@ return new class extends Migration
             $table->foreign('service_short_name')->references('short_name')->on('services');
             $table->foreign('country_short_name')->references('short_name')->on('countries');
 
-            $table->unsignedFloat('price');
-            $table->unsignedInteger('availablePhones');
+            $table->boolean('is_active')->default(1);
+            $table->unsignedFloat('price')->default(7);
+            $table->unsignedInteger('availablePhones')->default(0);
 
             $table->timestamps();
         });

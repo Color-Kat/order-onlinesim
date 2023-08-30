@@ -7,6 +7,8 @@ import {SimpleFileInput, Toggle} from "@components/Inputs";
 import {Modal} from "@UI/Modals";
 import {ServiceCountriesTable} from "@pages/Admin/modules/Services/ServiceCountriesTable.tsx";
 import {arrayToObjectWithId} from "@/utils/arrays/arrayToObjectWithId.ts";
+import {useUpdateServiceMutation} from "@/store/admin/services/services.api.ts";
+import {toFormData} from "@/utils/toFormData.ts";
 
 export interface IEditServiceData {
     id: number;
@@ -27,11 +29,9 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
                                                                                             service,
                                                                                             countries
                                                                                         }) => {
+    const [updateService, {error: updateError}] = useUpdateServiceMutation();
     // const [deleteCountry, {error: deleteError}] = useDeleteCountryMutation();
-    // const [updateCountry, {error: updateError}] = useUpdateCountryMutation();
 
-    // TODO change icon
-    // TODO save to db
     // TODO delete
 
     /* --- Open country list --- */
@@ -130,7 +130,10 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
     // Update country and turn off the edit mode
     const handleUpdateService = () => {
         setIsEdit(false);
-        // updateCountry(editCountryData);
+        updateService(toFormData({
+            ...editServiceData,
+            _method: 'PUT'
+        }));
     };
 
     // Delete country

@@ -13,7 +13,7 @@ trait HasImage
     /**
      * Update the image.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
+     * @param  \Illuminate\Http\UploadedFile $photo
      * @return void
      */
     public function updateImage(UploadedFile $photo, $folder)

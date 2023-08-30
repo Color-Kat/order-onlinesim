@@ -30,7 +30,7 @@ class Service extends Model
                 'short_name',
                 'short_name'
             )
-                 ->where('is_active', true)
+                 ->where('country_service.is_active', true)
                  ->withPivot('price', 'availablePhones')
         ;
     }
