@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Wallet;
 use App\Models\WalletHistory;
+use Illuminate\Support\Facades\Log;
 
 class WalletObserver
 {
@@ -18,6 +19,11 @@ class WalletObserver
         //
     }
 
+    public function updating() {
+//        Log::info('upating, nah');
+    }
+
+
     /**
      * Handle the Wallet "updated" event.
      * Insert new wallet history record when Wallet model is updated
@@ -27,6 +33,8 @@ class WalletObserver
      */
     public function updated(Wallet $wallet)
     {
+        Log::info('updated, nah');
+
         if ($wallet->isDirty('balance')) {
             $oldBalance = $wallet->getOriginal('balance');
             $newBalance = $wallet->balance;

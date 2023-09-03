@@ -20,6 +20,7 @@ import {Policy} from "@pages/Documents/Policy.tsx";
 import {Terms} from "@pages/Documents/Terms.tsx";
 import {AdminCountries} from "@pages/Admin/AdminCountries.tsx";
 import {AdminServices} from "@pages/Admin/AdminServices.tsx";
+import {FinancePage} from "@pages/FinancePage/FinancePage.tsx";
 
 function App() {
     // For load language
@@ -37,7 +38,13 @@ function App() {
                 <Route path="/test" element={<TestPage/>}/>
                 {/*<Route path="/snap-scroll" element={<SnapScrollPage/>}/>*/}
 
-                {/*  Auth  */}
+                {/*  Auth routes*/}
+                <Route element={<AuthRoute />}>
+                    <Route path="/finance" element={<FinancePage />}/>
+
+                </Route>
+
+                {/*  Login / Register  */}
                 <Route element={<NotAuthRoute/>}>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>

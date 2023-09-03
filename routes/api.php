@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CountriesController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\FinanceController;
 use App\Repositories\ServicesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('increase-balance', [FinanceController::class, 'increaseBalance'])->name('increase-balance');
+
 });
 
 Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {

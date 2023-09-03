@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Traits\AuthEmailTrait;
 use App\Models\Traits\HasRole;
+use App\Models\Traits\HasWallet;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     use AuthEmailTrait;
     use HasRole;
+    use HasWallet;
 
     protected $appends = ['isAdmin'];
 
@@ -48,4 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }
