@@ -68,7 +68,7 @@ class ServicesRepository
         // Detach all service countries because we will change short_name attribute value
         $service->countries()->detach();
 
-        $service->is_active = (bool)$data['is_active'];
+        $service->is_active = filter_var($data['is_active'], FILTER_VALIDATE_BOOLEAN); // convert string to bool
         $service->name = $data['name'];
         $service->short_name = $data['short_name'];
 
@@ -84,9 +84,9 @@ class ServicesRepository
         // 2. Retrieve only is_active, country_short_name and price fields
         $serviceCountries = array_map(function ($country) {
             return [
-                'is_active' => (bool) $country['is_active'],
+                'is_active'          => filter_var($country['is_active'], FILTER_VALIDATE_BOOLEAN), // convert string to bool
                 'country_short_name' => $country['short_name'],
-                'price' => $country['price'],
+                'price'              => $country['price'],
             ];
         }, array_values($data['countries']));
 
@@ -98,10 +98,11 @@ class ServicesRepository
 
     public function deleteService($id)
     {
-        $result = Service::query()
-                         ->where('id', $id)
-                         ->delete()
-        ;
+        $service = Service::query()->find($id);
+
+        $service->deleteImage();
+
+        $result = $service->delete();
 
         return $result;
     }

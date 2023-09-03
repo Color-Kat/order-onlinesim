@@ -42,21 +42,22 @@ export const adminServicesApi = createApi({
             invalidatesTags: ["Services"]
         }),
 
-        // deleteCountry: builder.mutation<IResponse, {
-        //     id: number,
-        // }>({
-        //     query: (payload) => ({
-        //         url: `countries/delete`,
-        //         method: 'DELETE',
-        //         body: payload
-        //     }),
-        //     invalidatesTags: ["Countries"]
-        // }),
+        deleteService: builder.mutation<IResponse, {
+            id: number,
+        }>({
+            query: (payload) => ({
+                url: `services/delete`,
+                method: 'DELETE',
+                body: payload
+            }),
+            invalidatesTags: ["Services"]
+        }),
     })
 });
 
 export const {
     useGetAllServicesQuery,
     useCreateServiceMutation,
-    useUpdateServiceMutation
+    useUpdateServiceMutation,
+    useDeleteServiceMutation
 } = adminServicesApi;

@@ -66,16 +66,16 @@ class ServicesController extends Controller
 
     public function delete(Request $request) {
         try {
-            $country = $this->countriesRepository->deleteCountry($request->get('id'));
+            $country = $this->servicesRepository->deleteService($request->get('id'));
 
             return apiResponse([
                 'data' => $country,
-                'message' => 'Country successfully deleted'
+                'message' => 'Service successfully deleted'
             ], 201);
         } catch (\Exception $e) {
             return apiResponse([
                 'status' => 'error',
-                'message' => 'Failed to delete country',
+                'message' => 'Failed to delete service',
                 'errors' => [
                     'exception' => $e->getMessage()
                 ]

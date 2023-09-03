@@ -7,7 +7,7 @@ import {SimpleFileInput, Toggle} from "@components/Inputs";
 import {Modal} from "@UI/Modals";
 import {ServiceCountriesTable} from "@pages/Admin/modules/Services/ServiceCountriesTable.tsx";
 import {arrayToObjectWithId} from "@/utils/arrays/arrayToObjectWithId.ts";
-import {useUpdateServiceMutation} from "@/store/admin/services/services.api.ts";
+import {useDeleteServiceMutation, useUpdateServiceMutation} from "@/store/admin/services/services.api.ts";
 import {toFormData} from "@/utils/toFormData.ts";
 
 export interface IEditServiceData {
@@ -30,9 +30,7 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
                                                                                             countries
                                                                                         }) => {
     const [updateService, {error: updateError}] = useUpdateServiceMutation();
-    // const [deleteCountry, {error: deleteError}] = useDeleteCountryMutation();
-
-    // TODO delete
+    const [deleteService, {error: deleteError}] = useDeleteServiceMutation();
 
     /* --- Open country list --- */
     const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +47,7 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
     }, []);
     /* --- Edit mode --- */
 
+    // Transform list of countries to object {countryId: country}
     const serviceCountries = useMemo(() => {
         return arrayToObjectWithId(service.countries);
     }, [service.countries]);
@@ -73,7 +72,11 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
         }))
     });
 
-    console.log(editServiceData);
+    // Generate service icon preview
+    const imagePreview =
+        typeof editServiceData.image === 'string' || editServiceData.image === null
+            ? editServiceData.image ?? ''                 // Simple string URL
+            : URL.createObjectURL(editServiceData.image); // Preview from file
 
     /**
      * Change any field of the country of the service by countryId
@@ -112,14 +115,16 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
      */
     const changeCommonPrice = useCallback((price: number) => {
         setEditServiceData(prev => {
-            const updatedCountries = { ...prev.countries };
+            const updatedCountries = {...prev.countries};
             for (const key in updatedCountries) {
                 updatedCountries[key].price = price;
             }
-            return { ...prev, countries: updatedCountries };
+            return {...prev, countries: updatedCountries};
 
         });
     }, []);
+
+    // Observe commonPrice changes
     useEffect(() => {
         if (commonPrice.commonPrice != 0)
             changeCommonPrice(+commonPrice.commonPrice);
@@ -138,28 +143,20 @@ export const AdminServiceRow: React.FC<{ service: IService, countries: ICountry[
 
     // Delete country
     const handleDeleteService = useCallback(() => {
-        // deleteCountry({
-        //     id: country.id
-        // });
+        deleteService({
+            id: service.id
+        });
     }, []);
 
-    // // Error handling
-    // useEffect(() => {
-    //     let error = (deleteError as any)?.data?.message ?? (updateError as any)?.data?.message;
-    //
-    //     if (error)
-    //         alert(error);
-    //
-    // }, [
-    //     (deleteError as any)?.data?.message,
-    //     (updateError as any)?.data?.message,
-    // ]);
+    // Error handling
+    useEffect(() => {
+        let error = (deleteError as any)?.data?.message ?? (updateError as any)?.data?.message;
 
-    // Generate service icon preview
-    const imagePreview =
-        typeof editServiceData.image === 'string' || editServiceData.image === null
-            ? editServiceData.image ?? '' // Simple string URL
-            : URL.createObjectURL(editServiceData.image); // Preview from file
+        if (error) alert(error);
+    }, [
+        (deleteError as any)?.data?.message,
+        (updateError as any)?.data?.message,
+    ]);
 
     return (
         <>

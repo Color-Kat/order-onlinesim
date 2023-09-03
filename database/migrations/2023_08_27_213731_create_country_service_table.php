@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->string('service_short_name');
             $table->string('country_short_name');
-            $table->foreign('service_short_name')->references('short_name')->on('services');
-            $table->foreign('country_short_name')->references('short_name')->on('countries');
+            $table->foreign('service_short_name')->references('short_name')->on('services')->onDelete('cascade');
+            $table->foreign('country_short_name')->references('short_name')->on('countries')->onDelete('cascade');
 
             $table->boolean('is_active')->default(1);
             $table->unsignedFloat('price')->default(7);
