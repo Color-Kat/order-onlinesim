@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('total_balance', 10, 2)->default(0);
 
             $table->string('currency')->default('RUB');
+            $table->string('last_payment_method')->default('');
 
             $table->timestamps();
         });

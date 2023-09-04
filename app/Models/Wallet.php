@@ -11,11 +11,4 @@ class Wallet extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        self::observe(WalletObserver::class);
-    }
 }

@@ -20,7 +20,7 @@ class WalletObserver
     }
 
     public function updating() {
-//        Log::info('upating, nah');
+//        Log::info('updating, nah');
     }
 
 
@@ -41,11 +41,12 @@ class WalletObserver
 
             $balanceDiff = $newBalance - $oldBalance;
 
-            WalletHistory::query()->insert([
+            WalletHistory::query()->create([
                 'user_id' => $wallet->user_id,
                 'wallet_id' => $wallet->id,
                 'amount' => $balanceDiff,
                 'currency' => $wallet->currency,
+                'payment_system' => $wallet->last_payment_method,
             ]);
         }
     }

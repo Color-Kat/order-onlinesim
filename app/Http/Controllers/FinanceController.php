@@ -8,17 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class FinanceController extends Controller
 {
-    public function increaseBalance(Request $request) {
+    public function increaseBalance(Request $request)
+    {
         $user = $request->user();
         $amount = $request->get('amount');
 
-        Wallet::query()->update(['balance'=>rand(0,1000)]);
-
-//        $result = $user->walletQuery()->update([
-//            'balance' => DB::raw("balance + $amount"),
-//            'total_balance' => DB::raw("balance + $amount"),
-//        ]);
-
-//        dump($result);
+        $wallet = $user->wallet()->first();
+        $wallet->balance += $amount;
+        $wallet->total_balance += $amount;
+        $wallet->last_payment_method = 'Sber';
+        $result = $wallet->save();
     }
 }
