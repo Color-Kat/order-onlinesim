@@ -19,12 +19,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->foreignId('role_id')->default(1);
 
-            //
-
+            // auth
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->string('password');
             $table->timestamps();
+
+            $table->string("ip")->default('');
+            $table->string("country")->default('none');
+            $table->timestamp("last_online_at")->useCurrent();
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LastOnlineAt;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -37,6 +38,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            LastOnlineAt::class
         ],
 
         'api' => [
@@ -46,6 +49,8 @@ class Kernel extends HttpKernel
 
             // Force to Json response
 //            \App\Http\Middleware\JsonResponseMiddleware::class,
+
+            LastOnlineAt::class
         ],
     ];
 
